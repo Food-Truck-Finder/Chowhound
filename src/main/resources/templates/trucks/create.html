@@ -34,7 +34,7 @@
 <!--                <option value="2">Mexican</option>-->
 <!--                <option value="3">Mexican</option>-->
 <!--                <option value="4">Mexican</option>-->
-                <option th:each="option : ${options}" th:value="${option.id}"><span th:text="${option.description}" th:remove="tag"></span></option>
+                <option th:each="option : ${cuisineOptions}" th:value="${option.id}"><span th:text="${option.description}" th:remove="tag"></span></option>
 
             </select>
 

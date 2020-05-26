@@ -43,10 +43,16 @@ public class TruckController {
         return "index";
     }
 
+    @GetMapping("/trucks/{id}")
+    public String postById(@ModelAttribute Truck truck, Model model) {
+        model.addAttribute("truck",truckRepo.getOne(truck.getId()));
+        return "trucks/show";
+    }
+
      @GetMapping("/trucks/create")
     public String registerTruck(Model model){
         model.addAttribute("truck",new Truck());
-        model.addAttribute("options", cuisineRepo.findAllByIsPrimaryIsTrue());
+        model.addAttribute("cuisineOptions", cuisineRepo.findAllByIsPrimaryIsTrue());
         return "trucks/create";
      }
 
@@ -70,4 +76,12 @@ public class TruckController {
         model.addAttribute("truck", truck);
         return "redirect:/index";
      }
+
+    //mapping for searching through posts
+    @GetMapping("trucks/search")
+    public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
+        List<Truck> filteredTrucks = truckRepo.findAllByNameContainingOrDescriptionContaining(searchTerm,searchTerm);
+        model.addAttribute("trucks", filteredTrucks);
+        return "index";
+    }
 }
