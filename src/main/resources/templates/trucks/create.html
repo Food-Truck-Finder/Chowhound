@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chowhound trucks</title>
+    <div th:replace="partials/partials :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<br>
+<div class="container main-cont">
+    <h1>Add a truck!</h1>
+    <div th:if="${param.error}">
+        Chowhound already knows this truck.
+    </div>
+    <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
+        <div class="form-group">
+<!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
+            <label for="username">Truck name:</label>
+            <input class="form-control" id="username" th:field="*{name}"/>
+
+            <label for="description">Trucks operating hours:</label>
+            <textarea class="form-control" id="description" type="text" th:field="*{description}"></textarea>
+            <label for="address">Truck's address:</label>
+            <textarea class="form-control" id="address" th:field="*{address}"></textarea>
+            <label for="hours">Trucks operating hours:</label>
+            <textarea class="form-control" id="hours" type="text" th:field="*{hours}"></textarea>
+
+
+            <label for="cuisines">Choose cuisines:</label>
+
+            <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple>
+
+<!--                <option value="1">Mexican</option>-->
+<!--                <option value="2">Mexican</option>-->
+<!--                <option value="3">Mexican</option>-->
+<!--                <option value="4">Mexican</option>-->
+                <option th:each="option : ${options}" th:value="${option.id}"><span th:text="${option.description}" th:remove="tag"></span></option>
+
+            </select>
+
+            <label for="owner">Do you own this truck?</label>
+            <input type="checkbox" id="owner" name="owner" value="true">
+            <br>
+
+            <input value="Mark it dude!" type="submit"/>
+        </div>
+    </form>
+    <br>
+</div>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+</body>
+</html>
