@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.ListUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +35,6 @@ public class TruckController {
     }
 
     //mapping for index page
-
     @GetMapping("/index")
     public String index(Model model) {
         List<Truck> trucks = truckRepo.findAll();
@@ -43,12 +43,7 @@ public class TruckController {
         return "index";
     }
 
-    @GetMapping("/trucks/{id}")
-    public String postById(@ModelAttribute Truck truck, Model model) {
-        model.addAttribute("truck",truckRepo.getOne(truck.getId()));
-        return "trucks/show";
-    }
-
+    //mapping to show form to add a truck
      @GetMapping("/trucks/create")
     public String registerTruck(Model model){
         model.addAttribute("truck",new Truck());
@@ -78,10 +73,37 @@ public class TruckController {
      }
 
     //mapping for searching through posts
-    @GetMapping("trucks/search")
+    @GetMapping("/trucks/search")
     public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model){
         List<Truck> filteredTrucks = truckRepo.findAllByNameContainingOrDescriptionContaining(searchTerm,searchTerm);
         model.addAttribute("trucks", filteredTrucks);
         return "index";
+    }
+
+    //mapping to show a single truck
+    @GetMapping("trucks/{id}")
+    public String truckById(@ModelAttribute Truck truck, Model model) {
+        model.addAttribute("truck",truckRepo.getOne(truck.getId()));
+        return "trucks/show";
+    }
+
+    //mapping to show list of user's favorite trucks
+    @GetMapping("trucks/my_favorites")
+    public String showUsersFavoriteTrucks(Model model){
+        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("trucks", usersFavs);
+        return "index";
+    }
+
+    //mapping to add a truck to user's favorite list
+    @PostMapping("trucks/my_favorites")
+    public String addNewFavoriteTruck(@ModelAttribute Truck truck, Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Truck> trucksToAdd = new ArrayList<>();
+        trucksToAdd.add(truck);
+        loggedInUser.setFavoriteTrucks(trucksToAdd);
+        ListUtils.toList(truck);
+        model.addAttribute("favmsg", "Truck added to your favorites");
+        return "redirect:/trucks/" + truck.getId();
     }
 }
