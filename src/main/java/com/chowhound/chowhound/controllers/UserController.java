@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, Model model){
 
-        String redirectStr = "redirect:/login";
+        String redirectStr = "redirect:/login", errorMsg = "";
 
         try{
         String hash = passwordEncoder.encode(user.getPassword());

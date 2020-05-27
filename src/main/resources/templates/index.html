@@ -13,11 +13,11 @@
     <h2>Lets sniff out some trucks!</h2>
     <form action="">
         <label for="sort">Sort by:</label>
-        <select id="sort" name="sort">
-            <option value="rating">Rating</option>
-            <option value="cuisine">Cuisine</option>
-            <option value="proximity">Near Me</option>
-            <option value="name">Name</option>
+        <select id="sort" name="sortType" th>
+            <option value="rating_d">Rating High-Low</option>
+            <option value="rating_a">Rating Low-High</option>
+            <option value="name_a">Name A-Z</option>
+            <option value="name_d">Name Z-A</option>
         </select>
         <input type="submit">
     </form>
@@ -39,7 +39,7 @@
 
                 <li class="list-group-item">
                     <p> Featured Cuisines:</p>
-                    <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.description}"></p>
+                    <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.category}"></p>
                 </li>
 
 

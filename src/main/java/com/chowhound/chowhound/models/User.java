@@ -15,6 +15,12 @@ public class User {
     @Column(nullable = false, unique =true)
     private String username;
 
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
     //email
     @Column(nullable = false)
     private String email;
@@ -66,6 +72,14 @@ public class User {
         username = copy.username;
         password = copy.password;
     }
+
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public long getId() {
         return id;
