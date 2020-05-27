@@ -19,13 +19,17 @@
             <option value="name_a">Name A-Z</option>
             <option value="name_d">Name Z-A</option>
         </select>
+        <input type="hidden" th:value="*{trucks}" name="trucks">
         <input id="searchSubmit" type="submit">
     </form>
     <hr>
 </div>
-<div class="row container align-center">
-    <div class="col-sm-4" th:each="truck : ${trucks}">
-        <div class="card container main-cont" style="width: 18rem;">
+
+<!--<div class="col-12"></div>-->
+
+<div class="row container align-center col-12 col-xl-8">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="truck : ${trucks}">
+        <div class="card container main-cont" style="max-width: 18rem;">
 <!--            <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
                 <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
@@ -60,17 +64,17 @@
 </div>
 
 <footer th:replace="partials/partials :: footer"></footer>
-<script>
-    $("#searchSubmit").click(function (e) {
-        e.preventDefault();
-        var searchTerm = window.location.href;
-        // alert(searchTerm);
-        var sortType = "&sortType=" + $('#sort').val();
-        // alert(sortType)
-        var redirectComp = searchTerm + sortType;
-        alert(redirectComp);
-        window.location.href = redirectComp;
-    })
-</script>
+<!--<script>-->
+<!--    $("#searchSubmit").click(function (e) {-->
+<!--        e.preventDefault();-->
+<!--        var searchTerm = window.location.href;-->
+<!--        // alert(searchTerm);-->
+<!--        var sortType = "&sortType=" + $('#sort').val();-->
+<!--        // alert(sortType)-->
+<!--        var redirectComp = searchTerm + sortType;-->
+<!--        alert(redirectComp);-->
+<!--        window.location.href = redirectComp;-->
+<!--    })-->
+<!--</script>-->
 </body>
 </html>
