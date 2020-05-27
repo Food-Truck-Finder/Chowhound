@@ -7,6 +7,7 @@ import com.chowhound.chowhound.repos.CuisineRepo;
 import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
+import com.chowhound.chowhound.services.SortTrucksService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.ListUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class TruckController {
@@ -23,12 +22,14 @@ public class TruckController {
     private UserRepo userRepo;
     private ImageRepo imageRepo;
     private CuisineRepo cuisineRepo;
+    private SortTrucksService sortTrucksService;
 
-    public TruckController(TruckRepo truckRepo, UserRepo userRepo, ImageRepo imageRepo, CuisineRepo cuisineRepo) {
+    public TruckController(TruckRepo truckRepo, UserRepo userRepo, ImageRepo imageRepo, CuisineRepo cuisineRepo, SortTrucksService sortTrucksService) {
         this.truckRepo = truckRepo;
         this.userRepo = userRepo;
         this.imageRepo = imageRepo;
         this.cuisineRepo = cuisineRepo;
+        this.sortTrucksService = sortTrucksService;
     }
 
     //mapping for index page
@@ -36,23 +37,7 @@ public class TruckController {
     public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType) {
 
         List<Truck> trucks = truckRepo.findAll();
-        switch (sortType) {
-            case "rating_a":
-                trucks.sort(Comparator.comparing(Truck::getAverageReviewRating));
-                break;
-            case "rating_d":
-                trucks.sort(Comparator.comparing(Truck::getAverageReviewRating));
-                Collections.reverse(trucks);
-                break;
-            case "name_a":
-                trucks.sort((Truck t1, Truck t2) -> t1.getName().compareToIgnoreCase(t2.getName()));
-                break;
-            case "name_d":
-                trucks.sort((Truck t1, Truck t2) -> t1.getName().compareToIgnoreCase(t2.getName()));
-                Collections.reverse(trucks);
-                break;
-        }
-
+        trucks =  sortTrucksService.sortTrucks(trucks,sortType);
         model.addAttribute("trucks", trucks);
         return "index";
     }
@@ -95,16 +80,19 @@ public class TruckController {
         return "redirect:/index";
     }
 
-    //mapping for searching through posts
+    //mapping for searching through trucks
     @GetMapping("/trucks/search")
-    public String searchForPosts(@RequestParam(name = "searchTerm") String searchTerm, Model model) {
-//        List<Truck> filterByName = truckRepo.findAllByNameContainingOrDescriptionContainingOrCuisines_CategoryContaining(searchTerm, searchTerm, searchTerm);
-//        List<Truck> filterByNameOrDescription = truckRepo.findAllByNameContainingOrDescriptionContaining(searchTerm, searchTerm);
-//        List<Truck> filterByCuisine = truckRepo.findAllByCuisinesContaining(cuisineRepo.findAllByCategoryContaining(searchTerm));
+    public String searchForTrucks(@RequestParam(name = "searchTerm") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
         List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
+        combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
         model.addAttribute("trucks", combinedResults);
         return "index";
     }
+
+    //mapping
+    @PostMapping("/trucks/search")
+    public String somethingAfterSearchForTrucks()
+
 
     //mapping to show a single truck
     @GetMapping("/trucks/{id}")
