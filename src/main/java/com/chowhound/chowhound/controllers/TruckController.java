@@ -7,17 +7,14 @@ import com.chowhound.chowhound.repos.CuisineRepo;
 import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
+import com.chowhound.chowhound.services.SortTrucksService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.ListUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class TruckController {
@@ -25,49 +22,105 @@ public class TruckController {
     private UserRepo userRepo;
     private ImageRepo imageRepo;
     private CuisineRepo cuisineRepo;
+    private SortTrucksService sortTrucksService;
 
-    public TruckController( TruckRepo truckRepo, UserRepo userRepo, ImageRepo imageRepo, CuisineRepo cuisineRepo){
+    public TruckController(TruckRepo truckRepo, UserRepo userRepo, ImageRepo imageRepo, CuisineRepo cuisineRepo, SortTrucksService sortTrucksService) {
         this.truckRepo = truckRepo;
         this.userRepo = userRepo;
         this.imageRepo = imageRepo;
         this.cuisineRepo = cuisineRepo;
+        this.sortTrucksService = sortTrucksService;
     }
 
     //mapping for index page
-
     @GetMapping("/index")
-    public String index(Model model) {
+    public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType) {
+
         List<Truck> trucks = truckRepo.findAll();
-        Collections.reverse(trucks);
+        trucks =  sortTrucksService.sortTrucks(trucks,sortType);
         model.addAttribute("trucks", trucks);
         return "index";
     }
 
-     @GetMapping("/trucks/create")
-    public String registerTruck(Model model){
-        model.addAttribute("truck",new Truck());
-        model.addAttribute("options", cuisineRepo.findAllByIsPrimaryIsTrue());
+    //mapping to show form to add a truck
+    @GetMapping("/trucks/create")
+    public String registerTruck(Model model) {
+        model.addAttribute("truck", new Truck());
+        model.addAttribute("cuisineOptions", cuisineRepo.findAllByIsPrimaryIsTrue());
         return "trucks/create";
-     }
+    }
 
-     @PostMapping("/trucks/create")
-    public String submitTruckRegistration(@ModelAttribute Truck truck, @RequestParam List<Cuisine> cuisines, @RequestParam boolean owner, Model model){
-//         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (user == null){
-//            return "redirect:/login";
-//        } else
-         if (owner){
-             try {
-                 User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                 truck.setUser(user);
-             } catch (Exception e) {
-                 return "redirect:/login";
-             }
-         }
+    @PostMapping("/trucks/create")
+    public String submitTruckRegistration(@ModelAttribute Truck truck, @RequestParam List<Cuisine> cuisines, @RequestParam boolean owner, @RequestParam String newCuisine, Model model) {
+        Cuisine newCustomCuisine = null;
+
+        if (!newCuisine.equals("")) {
+            try {
+                newCustomCuisine = cuisineRepo.findCuisineByCategoryContaining(newCuisine);
+                cuisines.add(newCustomCuisine);
+//                System.out.println(newCustomCuisine.getDescription());
+            } catch (Exception e) {
+                newCustomCuisine = new Cuisine();
+                newCustomCuisine.setCategory(newCuisine);
+                newCustomCuisine = cuisineRepo.save(newCustomCuisine);
+                cuisines.add(newCustomCuisine);
+//                System.out.println(newCustomCuisine.getDescription());
+            }
+        }
+//        System.out.println(newCustomCuisine.getDescription());
+        if (owner) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            truck.setUser(user);
+        }
+        cuisines.toString();
+
         truck.setCuisines(cuisines);
-        System.out.println(cuisines.toString());
         truck = this.truckRepo.save(truck);
         model.addAttribute("truck", truck);
         return "redirect:/index";
-     }
+    }
+
+    //mapping for searching through trucks
+    @GetMapping("/trucks/search")
+    public String searchForTrucks(@RequestParam(name = "searchTerm") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
+        List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
+        combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
+        model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute("trucks", combinedResults);
+        return "index";
+    }
+
+//    //mapping
+//    @PostMapping("/trucks/search")
+//    public String somethingAfterSearchForTrucks();
+//
+
+    //mapping to show a single truck
+    @GetMapping("/trucks/{id}")
+    public String truckById(@ModelAttribute Truck truck, Model model) {
+        model.addAttribute("truck", truckRepo.getOne(truck.getId()));
+        return "trucks/show";
+    }
+
+    //mapping to show list of user's favorite trucks
+    @GetMapping("/trucks/my_favorites")
+    public String showUsersFavoriteTrucks(Model model) {
+        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("trucks", usersFavs);
+        return "index";
+    }
+
+    //mapping to add a truck to user's favorite list
+    @PostMapping("/trucks/my_favorites")
+    public String addNewFavoriteTruck(@ModelAttribute Truck truck, Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Truck> trucksToAdd = new ArrayList<>();
+        trucksToAdd.add(truck);
+        loggedInUser.setFavoriteTrucks(trucksToAdd);
+        ListUtils.toList(truck);
+        model.addAttribute("favmsg", "Truck added to your favorites");
+        return "redirect:/trucks/" + truck.getId();
+    }
+
+
 }

@@ -24,12 +24,12 @@ public class CuisineTests {
         List<Truck> trucksWithTestCuisine = new ArrayList<>();
 
         testCuisine.setId(id);
-        testCuisine.setDescription(description);
+        testCuisine.setCategory(description);
         testCuisine.setIsPrimary(true);
         testCuisine.setTrucks(trucksWithTestCuisine);
 
         assertEquals(id,testCuisine.getId());
-        assertEquals(description, testCuisine.getDescription());
+        assertEquals(description, testCuisine.getCategory());
         assertTrue(testCuisine.isIsPrimary());
         assertEquals(0, testCuisine.getTrucks().size());
     }

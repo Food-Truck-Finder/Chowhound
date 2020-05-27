@@ -11,7 +11,7 @@ public class Cuisine {
     private long id;
 
     @Column(nullable = false)
-    private String description;
+    private String category;
 
     @Column(columnDefinition = "boolean default false")
     private boolean isPrimary;
@@ -30,12 +30,12 @@ public class Cuisine {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(String description) {
+        this.category = description;
     }
 
     public boolean isIsPrimary() {

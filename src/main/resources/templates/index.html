@@ -8,15 +8,25 @@
 
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="container main-cont">
+<div class="container main-cont text-center">
     <br>
     <h2>Lets sniff out some trucks!</h2>
+    <form action="">
+        <label for="sort">Sort by:</label>
+        <select id="sort" name="sortType" th>
+            <option value="rating_d" selected>Rating High-Low</option>
+            <option value="rating_a">Rating Low-High</option>
+            <option value="name_a">Name A-Z</option>
+            <option value="name_d">Name Z-A</option>
+        </select>
+        <input id="searchSubmit" type="submit">
+    </form>
     <hr>
 </div>
 <div class="row container align-center">
     <div class="col-sm-4" th:each="truck : ${trucks}">
         <div class="card container main-cont" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+<!--            <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
                 <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
                 <div class="d-inline-block text-wrap text-truncate"
@@ -26,7 +36,11 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><p th:text="${truck.hours}"></p></li>
                 <li class="list-group-item"><p th:text="${truck.address}"></p></li>
-                <li th:each="cuisine : ${truck.getCuisines()}"><p th:text="${cuisine.description}"></p></li>
+
+                <li class="list-group-item">
+                    <p> Featured Cuisines:</p>
+                    <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.category}"></p>
+                </li>
 
 
                 <li class="list-group-item">
@@ -40,23 +54,23 @@
             </ul>
             <div class="card-body">
                 <a href="#" class="card-link">Card link</a>
-                <!--        <a href="#" class="card-link">Another link</a>-->
             </div>
         </div>
     </div>
 </div>
-<!--<div th:each="truck : ${trucks}">-->
-<!--    <form>-->
-<!--        <h3><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h3>-->
-<!--        &lt;!&ndash;        <p><span th:="${truck.body}"></span></p>&ndash;&gt;-->
-<!--        <div class="d-inline-block text-wrap text-truncate"-->
-<!--             style="max-width: 100%; max-height: 6em; text-overflow: ellipsis" th:utext="${truck.description}"></div>-->
 
-<!--    </form>-->
-<!--    <br>-->
-<!--</div>-->
-
-
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+<footer th:replace="partials/partials :: footer"></footer>
+<script>
+    $("#searchSubmit").click(function (e) {
+        e.preventDefault();
+        var searchTerm = window.location.href;
+        // alert(searchTerm);
+        var sortType = "&sortType=" + $('#sort').val();
+        // alert(sortType)
+        var redirectComp = searchTerm + sortType;
+        alert(redirectComp);
+        window.location.href = redirectComp;
+    })
+</script>
 </body>
 </html>

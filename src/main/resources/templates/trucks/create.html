@@ -15,34 +15,44 @@
     <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
         <div class="form-group">
 <!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
-            <label for="username">Truck name:</label>
-            <input class="form-control" id="username" th:field="*{name}"/>
+            <label for="username"><strong>Truck's name:</strong></label>
+            <input class="form-control" id="username" th:field="*{name}" required/>
 
-            <label for="description">Trucks operating hours:</label>
-            <textarea class="form-control" id="description" type="text" th:field="*{description}"></textarea>
+            <label for="description"><strong>Truck's Description:</strong></label>
+            <textarea class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
+
             <label for="address">Truck's address:</label>
-            <textarea class="form-control" id="address" th:field="*{address}"></textarea>
-            <label for="hours">Trucks operating hours:</label>
+            <input class="form-control" type="text" id="address" th:field="*{address}" required>
+
+            <label for="city">Truck's address:</label>
+            <input class="form-control" type="text" id="city" th:field="*{city}" required>
+
+            <label for="state">Truck's address:</label>
+            <input class="form-control" type="text" id="state" th:field="*{state}" required>
+
+            <label for="zip">Truck's address:</label>
+            <input class="form-control" type="text" id="zip" th:field="*{zipCode}" required>
+
+            <label for="hours">Truck's operating hours:</label>
             <textarea class="form-control" id="hours" type="text" th:field="*{hours}"></textarea>
 
-
             <label for="cuisines">Choose cuisines:</label>
+            <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple required>
 
-            <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple>
-
-<!--                <option value="1">Mexican</option>-->
-<!--                <option value="2">Mexican</option>-->
-<!--                <option value="3">Mexican</option>-->
-<!--                <option value="4">Mexican</option>-->
-                <option th:each="option : ${options}" th:value="${option.id}"><span th:text="${option.description}" th:remove="tag"></span></option>
+                <option th:each="option : ${cuisineOptions}" th:value="${option.id}"><span th:text="${option.category}" th:remove="tag"></span></option>
 
             </select>
 
+            <label for="addCuisine">Add your own cuisine:</label>
+            <input class="form-control" id="addCuisine" name="newCuisine" type="text">
+
             <label for="owner">Do you own this truck?</label>
             <input type="checkbox" id="owner" name="owner" value="true">
-            <br>
+            <input id='ownerHidden' type='hidden' value='false' name='owner'>
 
+            <br>
             <input value="Mark it dude!" type="submit"/>
+
         </div>
     </form>
     <br>
