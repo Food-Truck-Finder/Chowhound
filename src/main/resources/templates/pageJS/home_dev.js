@@ -7,7 +7,7 @@ const options = {
     accept: 'image/*',
     uploadInBackground: false,
     storeTo: {
-        workflows: ["63039cab-55c0-406c-a2a0-c24ab75c0edd"]
+        workflows: [workflowKey]
     },
 };
 const picker = client.picker(options);
@@ -27,41 +27,52 @@ btn.addEventListener('click', function (e) {
     picker.open();
 });
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Submitting: ' + fileInput.value);
-});
+// form.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     alert('Submitting: ' + fileInput.value);
+// });
 
 // Helper to overwrite the field input value
 
 function updateForm(result) {
     const fileData = result.filesUploaded[0];
-    fileInput.value = fileData.url;
+    alert("Image sucessfully uploaded.");
 
-    // Some ugly DOM code to show some data.
-    const name = document.createTextNode('Selected: ' + fileData.filename);
-    const url = document.createElement('a');
-    url.href = fileData.url;
-    url.appendChild(document.createTextNode(fileData.url));
-    nameBox.appendChild(name);
-    urlBox.appendChild(document.createTextNode('Uploaded to: '));
-    urlBox.appendChild(url);
-    console.log(JSON.stringify(result));
+    // Appending image to a card for testing //
+   $("#truckCards").append(
+
+       // card layout start //
+       '<div class="card col-sm-12 col-md-4 col-lg-3 col-xl-2 align-content-center" >' +
+
+                        // vvvv meat and potatoes for getting the image to work vvvv //
+       '<img src="' + fileData.url + '"' + ' class="card-img-top" style="width: 100%; height: 143px;" alt="">' +  // use this to pull image uploaded URL //
+                                        // ^^^^ it works! ^^^^ //
+
+       '<div class="card-body">' +
+       '<h5 class="card-title">Card title</h5>' +
+       '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</p>' +
+       '<a href="#" class="btn btn-primary">Go somewhere</a>' +
+       '</div>' +
+       '</div>'
+       // card layout end //
+   )
 }
 
-$("#appendNewCard").click(function (e) {
-    e.preventDefault();
-    $("#truckCards").append(
-        '<div class="card col-sm-12 col-md-4 col-lg-3 col-xl-2 align-content-center" >' +
-        '<img src="" class="card-img-top" alt="">' +
-        '<div class="card-body">' +
-        '<h5 class="card-title">Card title</h5>' +
-        '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</p>' +
-        '<a href="#" class="btn btn-primary">Go somewhere</a>' +
-        '</div>' +
-        '</div>'
-    );
-});
+        // Testing new card button //
+
+// $("#appendNewCard").click(function (e) {
+//     e.preventDefault();
+//     $("#truckCards").append(
+//         '<div class="card col-sm-12 col-md-4 col-lg-3 col-xl-2 align-content-center" >' +
+//         '<img src="" class="card-img-top" alt="">' +
+//         '<div class="card-body">' +
+//         '<h5 class="card-title">Card title</h5>' +
+//         '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</p>' +
+//         '<a href="#" class="btn btn-primary">Go somewhere</a>' +
+//         '</div>' +
+//         '</div>'
+//     );
+// });
 
 
 
