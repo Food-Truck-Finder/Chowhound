@@ -85,6 +85,7 @@ public class TruckController {
     public String searchForTrucks(@RequestParam(name = "searchTerm") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
         List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
         combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
+        model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("trucks", combinedResults);
         return "index";
     }

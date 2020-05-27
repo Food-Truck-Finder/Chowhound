@@ -19,7 +19,7 @@
             <option value="name_a">Name A-Z</option>
             <option value="name_d">Name Z-A</option>
         </select>
-        <input type="submit">
+        <input id="searchSubmit" type="submit">
     </form>
     <hr>
 </div>
@@ -60,5 +60,17 @@
 </div>
 
 <footer th:replace="partials/partials :: footer"></footer>
+<script>
+    $("#searchSubmit").click(function (e) {
+        e.preventDefault();
+        var searchTerm = window.location.href;
+        // alert(searchTerm);
+        var sortType = "&sortType=" + $('#sort').val();
+        // alert(sortType)
+        var redirectComp = searchTerm + sortType;
+        alert(redirectComp);
+        window.location.href = redirectComp;
+    })
+</script>
 </body>
 </html>
