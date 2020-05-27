@@ -33,3 +33,4 @@ build/
 ### Spring Extra Ignores ###
 src/main/resources/application.properties
 src/main/resources/keys/APIKeys.js
+
