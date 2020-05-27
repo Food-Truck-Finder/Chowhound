@@ -13,20 +13,20 @@
     <h2>Lets sniff out some trucks!</h2>
     <form action="">
         <label for="sort">Sort by:</label>
-        <select id="sort" name="sort">
-            <option value="rating">Rating</option>
-            <option value="cuisine">Cuisine</option>
-            <option value="proximity">Near Me</option>
-            <option value="name">Name</option>
+        <select id="sort" name="sortType" th>
+            <option value="rating_d" selected>Rating High-Low</option>
+            <option value="rating_a">Rating Low-High</option>
+            <option value="name_a">Name A-Z</option>
+            <option value="name_d">Name Z-A</option>
         </select>
-        <input type="submit">
+        <input id="searchSubmit" type="submit">
     </form>
     <hr>
 </div>
 <div class="row container align-center">
     <div class="col-sm-4" th:each="truck : ${trucks}">
         <div class="card container main-cont" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+<!--            <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
                 <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
                 <div class="d-inline-block text-wrap text-truncate"
@@ -39,7 +39,7 @@
 
                 <li class="list-group-item">
                     <p> Featured Cuisines:</p>
-                    <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.description}"></p>
+                    <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.category}"></p>
                 </li>
 
 
@@ -60,5 +60,17 @@
 </div>
 
 <footer th:replace="partials/partials :: footer"></footer>
+<script>
+    $("#searchSubmit").click(function (e) {
+        e.preventDefault();
+        var searchTerm = window.location.href;
+        // alert(searchTerm);
+        var sortType = "&sortType=" + $('#sort').val();
+        // alert(sortType)
+        var redirectComp = searchTerm + sortType;
+        alert(redirectComp);
+        window.location.href = redirectComp;
+    })
+</script>
 </body>
 </html>

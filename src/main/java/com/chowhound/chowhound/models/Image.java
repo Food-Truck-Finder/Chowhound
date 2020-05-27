@@ -1,7 +1,7 @@
 package com.chowhound.chowhound.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
 
 @Entity
 @Table(name = "images")
@@ -27,6 +27,9 @@ public class Image {
     //boolean for primary image set by truck owner
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isPrimary;
+
+    @Column(nullable = false)
+    private Date datestamp;
 
     public Image() {
     }

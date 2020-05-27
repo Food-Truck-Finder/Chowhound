@@ -8,4 +8,6 @@ import java.util.List;
 public interface CuisineRepo  extends JpaRepository<Cuisine,Long> {
 //    List<Cuisine> findByPrimaryTrue();
     List<Cuisine> findAllByIsPrimaryIsTrue();
+    Cuisine findCuisineByCategoryContaining(String category);
+    Cuisine findAllByCategoryContaining(String category);
 }

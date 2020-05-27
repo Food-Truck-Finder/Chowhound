@@ -1,6 +1,8 @@
 package com.chowhound.chowhound.models;
 
 import javax.persistence.*;
+import javax.websocket.ClientEndpoint;
+import java.sql.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -25,6 +27,9 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "truck_id")
     Truck truck;
+
+    @Column
+    private Date datestamp;
 
     public Review() {
     }
