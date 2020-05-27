@@ -89,10 +89,10 @@ public class TruckController {
         return "index";
     }
 
-    //mapping
-    @PostMapping("/trucks/search")
-    public String somethingAfterSearchForTrucks()
-
+//    //mapping
+//    @PostMapping("/trucks/search")
+//    public String somethingAfterSearchForTrucks();
+//
 
     //mapping to show a single truck
     @GetMapping("/trucks/{id}")
