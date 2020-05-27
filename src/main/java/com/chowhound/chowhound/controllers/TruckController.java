@@ -82,11 +82,25 @@ public class TruckController {
 
     //mapping for searching through trucks
     @GetMapping("/trucks/search")
-    public String searchForTrucks(@RequestParam(name = "searchTerm") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
+    public String searchForTrucks(@RequestParam(name = "searchTerm",defaultValue = "") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
+//        List<Truck> combinedResults = null;
+//        try {
+//            combinedResults = (List<Truck>) model.getAttribute("trucks");
+//        }catch (Exception e) {
+//            combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
+//        }
+
+//        if (searchTerm.equals("")){
+//            String modelST = (String) model.getAttribute(searchTerm);
+//            combinedResults = truckRepo.findAllBySearchTerm(modelST);
+//        }
+
+
         List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
         combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
         model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("trucks", combinedResults);
+        model.addAttribute("sortType", sortType);
         return "index";
     }
 
