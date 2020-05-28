@@ -18,6 +18,8 @@ public interface TruckRepo extends JpaRepository<Truck,Long> {
     List<Truck> findAllByCuisinesContaining(Cuisine cuisine);
 //    List<Truck> findAll(Pageable page);
 
+//    List<Truck> findAllBy
+
 
 //    public Truck findByName(String name);
     List<Truck> findAllByFavoritedUsersEquals(User user);

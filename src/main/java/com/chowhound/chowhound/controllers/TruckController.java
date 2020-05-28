@@ -8,8 +8,6 @@ import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
 import com.chowhound.chowhound.services.SortTrucksService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -37,12 +35,32 @@ public class TruckController {
 
     //mapping for index page
     @GetMapping("/index")
-    public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "3") String size, Pageable pageable) {
-//        PageRequest firstPage = PageRequest.of(1,3);
-        Page<Truck> trucksPage = truckRepo.findAll(pageable);
-//        trucks =  sortTrucksService.sortTrucks(trucksPage,sortType);
+    public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "") String searchTerm) {
 
-        model.addAttribute("trucks", trucksPage);
+        List<Truck> trucks = truckRepo.findAllBySearchTerm(searchTerm);
+
+
+        if (!searchTerm.equals("")) {
+            model.addAttribute("searchTerm", searchTerm);
+        }
+
+        trucks =  sortTrucksService.sortTrucks(trucks,sortType);
+
+        model.addAttribute("trucks", trucks);
+        return "index";
+    }
+
+    //mapping for searching through trucks
+    @GetMapping("/trucks/search")
+    public String searchForTrucks(@RequestParam(name = "searchTerm",defaultValue = "") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
+
+
+        List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
+
+        combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
+        model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute("trucks", combinedResults);
+        model.addAttribute("sortType", sortType);
         return "index";
     }
 
@@ -84,33 +102,30 @@ public class TruckController {
         return "redirect:/index";
     }
 
-    //mapping for searching through trucks
-    @GetMapping("/trucks/search")
-    public String searchForTrucks(@RequestParam(name = "searchTerm",defaultValue = "") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
-        List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
-        combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
-        model.addAttribute("searchTerm", searchTerm);
-        model.addAttribute("trucks", combinedResults);
-        model.addAttribute("sortType", sortType);
-        return "index";
-    }
-
-//    //mapping
-//    @PostMapping("/trucks/search")
-//    public String somethingAfterSearchForTrucks();
-//
-
     //mapping to show a single truck
     @GetMapping("/trucks/{id}")
     public String truckById(@ModelAttribute Truck truck, Model model) {
+        try {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", user);
+        } catch (Exception e) {
+            System.out.println("No User logged in");
+        }
         model.addAttribute("truck", truckRepo.getOne(truck.getId()));
+
         return "trucks/show";
     }
 
     //mapping to show list of user's favorite trucks
     @GetMapping("/trucks/my_favorites")
     public String showUsersFavoriteTrucks(Model model) {
-        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals(loggedInUser);
+
+        for (Truck fav : usersFavs){
+            System.out.println(fav.getName());
+        }
+//        System.out.println(usersFavs);
         model.addAttribute("trucks", usersFavs);
         return "index";
     }
@@ -123,7 +138,7 @@ public class TruckController {
         trucksToAdd.add(truck);
         loggedInUser.setFavoriteTrucks(trucksToAdd);
         ListUtils.toList(truck);
-        model.addAttribute("favmsg", "Truck added to your favorites");
+        model.addAttribute("favMsg", "Truck added to your favorites");
         return "redirect:/trucks/" + truck.getId();
     }
 

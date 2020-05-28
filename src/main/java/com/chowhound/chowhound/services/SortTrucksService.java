@@ -1,7 +1,6 @@
 package com.chowhound.chowhound.services;
 
 import com.chowhound.chowhound.models.Truck;
-import com.chowhound.chowhound.repos.TruckRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -10,8 +9,6 @@ import java.util.List;
 
 @Service
 public class SortTrucksService {
-//    private final TruckRepo trucks;
-//    private final List<Truck> trucks;
 
     public List<Truck> sortTrucks(List<Truck> trucks, String sortType) {
         switch (sortType) {
