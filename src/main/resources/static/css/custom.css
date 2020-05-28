@@ -1,5 +1,5 @@
 body {
-    background-image: url("/images/cool-backgrounds.jpeg");
+    /*background-image: url("/images/images.jpeg");*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -23,3 +23,15 @@ image {
     background: #eee;
     opacity: .85;
 }
+
+/*.navbar {*/
+/*    background: #ED1B24;*/
+/*}*/
+
+/*.list-group-flush{*/
+/*    background: #FFFFEE;*/
+/*}*/
+
+/*.card{*/
+/*    background: #FF8D4A;*/
+/*}*/

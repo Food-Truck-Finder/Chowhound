@@ -19,8 +19,8 @@
             <option value="name_a">Name A-Z</option>
             <option value="name_d">Name Z-A</option>
         </select>
-        <input type="hidden" th:value="*{trucks}" name="trucks">
-        <input id="searchSubmit" type="submit">
+        <!--        <input type="hidden" th:value="*{trucks}" name="trucks">-->
+        <!--        <input id="searchSubmit" type="submit">-->
     </form>
     <hr>
 </div>
@@ -28,9 +28,10 @@
 <!--<div class="col-12"></div>-->
 
 <div class="row container align-center col-12 col-xl-8">
-    <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="truck : ${trucks}">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
+        <div th:text="${truck.averageReviewRating}"></div>
         <div class="card container main-cont" style="max-width: 18rem;">
-<!--            <img src="..." class="card-img-top" alt="...">-->
+            <!--            <img src="..." class="card-img-top" alt="...">-->
             <div class="card-body">
                 <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
                 <div class="d-inline-block text-wrap text-truncate"
@@ -50,7 +51,7 @@
                 <li class="list-group-item">
 
                     <p>average rating: <!--/*@thymesVar id="reviews" type="java.util.List"*/-->
-                        <span th:text="${truck.getAverageReviewRating()}"> </span></p>
+                        <span class="rating" th:text="${truck.getAverageReviewRating()}"> </span></p>
 
                 </li>
 
@@ -64,17 +65,49 @@
 </div>
 
 <footer th:replace="partials/partials :: footer"></footer>
-<!--<script>-->
-<!--    $("#searchSubmit").click(function (e) {-->
-<!--        e.preventDefault();-->
-<!--        var searchTerm = window.location.href;-->
-<!--        // alert(searchTerm);-->
-<!--        var sortType = "&sortType=" + $('#sort').val();-->
-<!--        // alert(sortType)-->
-<!--        var redirectComp = searchTerm + sortType;-->
-<!--        alert(redirectComp);-->
-<!--        window.location.href = redirectComp;-->
-<!--    })-->
-<!--</script>-->
+<script>
+
+    $(document).ready(function () {
+
+        $("#sort").change(function (evt) {
+
+            let sortValue = evt.target.value;
+
+            switch (sortValue) {
+                case "rating_a":
+
+                    let truckCards = [...document.getElementsByClassName("truck-card")];
+                    // console.log(truckCards);
+
+                    truckCards.getElementsByClassName("rating").sort((a, b) => a[0] < b[0] ? 1 : -1);
+                    console.log(truckCards.getElementsByClassName("rating").val());
+                    // console.log(truckCards);
+                    break;
+
+
+            }
+
+        })
+        // let sortSelect = document.getElementById("sort");
+        // sortSelect.onchange(handleChange);
+        //
+        // console.log(sortSelect);
+        //
+        // function handleChange(evt) {
+        //     console.log(evt.target.value);
+        //
+        // }
+    });
+    // $("#sort").onchange(function (e) {
+    //     // e.preventDefault();
+    //     var searchTerm = window.location.href;
+    //     // alert(searchTerm);
+    //     var sortType = "&sortType=" + $('#sort').val();
+    //     // alert(sortType)
+    //     var redirectComp = searchTerm + sortType;
+    //     alert(redirectComp);
+    //     window.location.href = redirectComp;
+    // })
+</script>
 </body>
 </html>

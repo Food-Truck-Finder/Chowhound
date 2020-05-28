@@ -8,6 +8,9 @@ import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
 import com.chowhound.chowhound.services.SortTrucksService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,11 +37,12 @@ public class TruckController {
 
     //mapping for index page
     @GetMapping("/index")
-    public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType) {
+    public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "3") String size, Pageable pageable) {
+//        PageRequest firstPage = PageRequest.of(1,3);
+        Page<Truck> trucksPage = truckRepo.findAll(pageable);
+//        trucks =  sortTrucksService.sortTrucks(trucksPage,sortType);
 
-        List<Truck> trucks = truckRepo.findAll();
-        trucks =  sortTrucksService.sortTrucks(trucks,sortType);
-        model.addAttribute("trucks", trucks);
+        model.addAttribute("trucks", trucksPage);
         return "index";
     }
 
@@ -83,19 +87,6 @@ public class TruckController {
     //mapping for searching through trucks
     @GetMapping("/trucks/search")
     public String searchForTrucks(@RequestParam(name = "searchTerm",defaultValue = "") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
-//        List<Truck> combinedResults = null;
-//        try {
-//            combinedResults = (List<Truck>) model.getAttribute("trucks");
-//        }catch (Exception e) {
-//            combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
-//        }
-
-//        if (searchTerm.equals("")){
-//            String modelST = (String) model.getAttribute(searchTerm);
-//            combinedResults = truckRepo.findAllBySearchTerm(modelST);
-//        }
-
-
         List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
         combinedResults =  sortTrucksService.sortTrucks(combinedResults,sortType);
         model.addAttribute("searchTerm", searchTerm);
