@@ -3,12 +3,9 @@
 const client = filestack.init(fileStackKey);
 const options = {
     onUploadDone: updateForm,
-    maxSize: 10 * 1024 * 1024,
+    maxSize: 10 * 1920 * 1080,
     accept: 'image/*',
     uploadInBackground: false,
-    storeTo: {
-        workflows: [workflowKey]
-    },
 };
 const picker = client.picker(options);
 
@@ -35,17 +32,33 @@ function updateForm(result) {
     const fileData = result.filesUploaded[0];
     alert("Image successfully uploaded.");
 
-    // Appending image to a card for testing //
-    $(".gallery-wrapper").append(
+    // Appending image to carousel for testing //
+    $("#carouselPics").append(
 
         // vvvv meat and potatoes for getting the image to work vvvv //
-        '<div class="carousel-item">' +
-        '<img src="' + fileData.url + '"' + ' style="width: 400px; height: 400px;" alt="">' +  // use this to pull image uploaded URL //
+        '<div class="item">' +
+        '<img src="' + fileData.url + '"' + ' alt="">' +  // use this to pull image uploaded URL //
         '</div>'
         // ^^^^ it works! ^^^^ //
 
     )
 }
+
+// Slider functionality //
+
+$('.slider').slick({
+    draggable: true,
+    arrows: false,
+    dots: false,
+    fade: true,
+    speed: 900,
+    infinite: true,
+    cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+    touchThreshold: 100,
+    autoplay: true,
+    autoplaySpeed: 3000
+});
+
 
 
 
