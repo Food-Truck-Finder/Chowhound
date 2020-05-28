@@ -10,7 +10,7 @@
 </div>
 <body>
 <!-- This is my standard navbar-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light  border-bottom">
     <img class="navbar-brand" src="/images/chowhound_brand.png" alt="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
                 trucks</a></li>
             <!--            <li class="nav-item"><a class="nav-link" href="/welcome">Welcome</a></li>-->
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/trucks/search">
+        <form class="form-inline my-2 my-lg-0" action="/index">
             <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search"
                    aria-label="Search">
             <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>

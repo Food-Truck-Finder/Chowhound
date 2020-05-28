@@ -1,0 +1,16 @@
+insert into chow_hound_db.cuisines (id, is_primary, category) values (1, 1, 'Mexican');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (2, 1, 'Italian');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (3, 1, 'Pizza');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (4, 1, 'Tacos');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (5, 0, 'Puerto Rican');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (6, 1, 'Sandwiches');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (7, 1, 'American');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (8, 1, 'Asian');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (9, 1, 'Seafood');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (10, 0, 'Chinese');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (11, 0, 'Thai');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (12, 0, 'Sushi');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (13, 1, 'Hamburgers');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (14, 1, 'Breakfast');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (15, 1, 'BBQ');
+insert into chow_hound_db.cuisines (id, is_primary, category) values (16, 1, 'Mediterranean');
