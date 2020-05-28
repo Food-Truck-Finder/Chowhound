@@ -1,0 +1,11 @@
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (1, 2);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (1, 3);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (2, 1);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (2, 4);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (3, 1);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (4, 1);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (5, 2);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (6, 1);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (6, 5);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (7, 1);
+insert into chow_hound_db.truck_cuisines (truck_id, cuisine_id) values (8, 4);
