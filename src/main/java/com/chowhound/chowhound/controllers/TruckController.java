@@ -105,12 +105,21 @@ public class TruckController {
     //mapping to show a single truck
     @GetMapping("/trucks/{id}")
     public String truckById(@ModelAttribute Truck truck, Model model) {
+        List<Truck> favTrucks = new ArrayList<>();
         try {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
+            favTrucks = truckRepo.findAllByFavoritedUsersEquals(user);
+
+            if (favTrucks.contains(truck)) {
+                model.addAttribute("isFav", true);
+            }
+
         } catch (Exception e) {
             System.out.println("No User logged in");
         }
+
+
         model.addAttribute("truck", truckRepo.getOne(truck.getId()));
 
         return "trucks/show";
