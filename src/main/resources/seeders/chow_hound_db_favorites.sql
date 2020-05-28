@@ -1,0 +1,9 @@
+insert into chow_hound_db.favorites (user_id, truck_id) values (1, 1);
+insert into chow_hound_db.favorites (user_id, truck_id) values (1, 5);
+insert into chow_hound_db.favorites (user_id, truck_id) values (1, 3);
+insert into chow_hound_db.favorites (user_id, truck_id) values (3, 2);
+insert into chow_hound_db.favorites (user_id, truck_id) values (3, 5);
+insert into chow_hound_db.favorites (user_id, truck_id) values (3, 7);
+insert into chow_hound_db.favorites (user_id, truck_id) values (5, 4);
+insert into chow_hound_db.favorites (user_id, truck_id) values (5, 8);
+insert into chow_hound_db.favorites (user_id, truck_id) values (5, 6);
