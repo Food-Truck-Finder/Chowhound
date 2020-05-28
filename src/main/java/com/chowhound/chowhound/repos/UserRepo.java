@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface UserRepo extends JpaRepository<User,Long> {
     User findByUsername(String username);
+
 //    List<Truck> findAllByFavoriteTrucks(User user);
 }
