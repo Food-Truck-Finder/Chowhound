@@ -28,6 +28,28 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
             <div class="card container main-cont" style="max-width: 100%;">
                 <!--            <img src="..." class="card-img-top" alt="...">-->
+
+                <!-- testing -->
+
+                <div class="slideshow card-img-top">
+                    <div id="carouselPics" class="slider dragging">
+                        <div class="item" th:each="image : ${truck.images}">
+                            <img th:src="${image.path}">
+                            <!--                        <div class="item">-->
+                            <!--                            <img src="https://cdn.filestackcontent.com/SCX0pPGGTyb1pGvcHcJw">-->
+                            <!--                        </div>-->
+                            <!--                        <div class="item">-->
+                            <!--                            <img src="https://cdn.filestackcontent.com/Q0sSvL6RQdGE7cUd1zAE">-->
+                            <!--                        </div>-->
+                            <!--                        <div class="item">-->
+                            <!--                            <img src="https://cdn.filestackcontent.com/DLJa8kbQgmtsROdZzeUg">-->
+                            <!--                        </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- end testing -->
+
                 <div class="card-body">
                     <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
                     <div class="d-inline-block text-wrap text-truncate"

@@ -3,12 +3,9 @@
 const client = filestack.init(fileStackKey);
 const options = {
     onUploadDone: updateForm,
-    maxSize: 10 * 1024 * 1024,
+    maxSize: 10 * 1920 * 1080,
     accept: 'image/*',
     uploadInBackground: false,
-    storeTo: {
-        workflows: [workflowKey]
-    },
 };
 const picker = client.picker(options);
 

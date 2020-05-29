@@ -24,8 +24,6 @@ btn.addEventListener('click', function (e) {
     picker.open();
 });
 
-
-
 // Helper to overwrite the field input value
 
 function updateForm(result) {
