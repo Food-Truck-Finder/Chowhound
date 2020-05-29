@@ -36,7 +36,9 @@ public class TruckController {
         if (!searchTerm.equals("")) {
             model.addAttribute("searchTerm", searchTerm);
         }
+
         trucks = sortTrucksService.sortTrucks(trucks, sortType);
+
         model.addAttribute("trucks", trucks);
         return "index";
     }
@@ -44,7 +46,11 @@ public class TruckController {
     //mapping for searching through trucks
     @GetMapping("/trucks/search")
     public String searchForTrucks(@RequestParam(name = "searchTerm", defaultValue = "") String searchTerm, @RequestParam(defaultValue = "") String sortType, Model model) {
+
+
         List<Truck> combinedResults = truckRepo.findAllBySearchTerm(searchTerm);
+
+
         combinedResults = sortTrucksService.sortTrucks(combinedResults, sortType);
         model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("trucks", combinedResults);
@@ -87,14 +93,18 @@ public class TruckController {
     //mapping to show a single truck
     @GetMapping("/trucks/{id}")
     public String truckById(@ModelAttribute Truck truck, Model model) {
+
         truck = truckRepo.getOne(truck.getId());
+
         List<Truck> favTrucks = new ArrayList<>();
         try {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
             favTrucks = truckRepo.findAllByFavoritedUsersEquals(user);
             System.out.println(favTrucks.contains(truck));
+
             model.addAttribute("isFav", favTrucks.contains(truck));
+
             if (truck.getUser() == null) {
                 User tempUser = new User();
                 truck.setUser(tempUser);
@@ -103,6 +113,7 @@ public class TruckController {
             System.out.println("No User logged in");
         }
         model.addAttribute("truck", truck);
+
         return "trucks/show";
     }
 
@@ -111,6 +122,7 @@ public class TruckController {
     public String showUsersFavoriteTrucks(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals(loggedInUser);
+
         for (Truck fav : usersFavs) {
             System.out.println(fav.getName());
         }
