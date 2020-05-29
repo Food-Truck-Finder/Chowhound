@@ -73,6 +73,22 @@ public class User {
         password = copy.password;
     }
 
+//    public User(User copy) {
+//        id = copy.id;
+//        username = copy.username;
+//        firstName = copy.firstName;
+//        lastName = copy.lastName;
+//        email = copy.email;
+//        password = copy.password;
+//        isAdmin = copy.isAdmin;
+//        isOwner = copy.isOwner;
+//        currentLat = copy.currentLat;
+//        currentLon = copy.currentLon;
+//        images = copy.images;
+//        reviews = copy.reviews;
+//        favoriteTrucks = copy.favoriteTrucks;
+//    }
+
     public String getFirstName() { return firstName; }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
