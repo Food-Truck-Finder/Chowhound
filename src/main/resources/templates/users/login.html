@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Log In</title>
+    <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
+<div th:replace="partials/partials :: navbar"></div>
 <div class="container main-cont">
     <br>
     <h1>Log In</h1>
@@ -24,6 +26,6 @@
     </form>
     <br>
 </div>
-
+<footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>

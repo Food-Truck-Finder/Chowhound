@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Sign Up</title>
+    <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
+<div th:replace="partials/partials :: navbar"></div>
 <br>
 <div class="container main-cont">
     <h1>Create an account</h1>
@@ -34,5 +36,6 @@
     </form>
     <br>
 </div>
+<footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>
