@@ -48,7 +48,7 @@ function updateForm(result) {
 
 $('.slider').slick({
     draggable: true,
-    arrows: false,
+    arrows: true,
     dots: false,
     fade: true,
     speed: 900,
