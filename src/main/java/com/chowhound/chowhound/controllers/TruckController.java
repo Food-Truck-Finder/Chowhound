@@ -130,40 +130,6 @@ public class TruckController {
         return "index";
     }
 
-    //mapping to add a truck to user's favorite list
-    @GetMapping("/trucks/addFav")
-    public String addNewFavoriteTruck(@ModelAttribute Truck truck, @RequestParam long truckId, Model model) {
-
-        try {
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            long findUserID = user.getId();
-            user = userRepo.findById(findUserID);
-
-            truck = truckRepo.getOne(truckId);
-
-            model.addAttribute("truck", truck);
-            List<Truck> favTrucks = user.getFavoriteTrucks();
-            favTrucks.add(truck);
-            user.setFavoriteTrucks(favTrucks);
-
-            user = userRepo.save(user);
-
-            model.addAttribute("user", user);
-
-            model.addAttribute("isFav", true);
-
-            if (truck.getUser() == null) {
-                User tempUser = new User();
-                truck.setUser(tempUser);
-            }
-        } catch (Exception e) {
-            System.out.println("No User logged in");
-            e.printStackTrace();
-        }
-
-        model.addAttribute("favMsg", "Truck added to your favorites");
-        return "redirect:/trucks/" + truck.getId();
-    }
 }
 
 
