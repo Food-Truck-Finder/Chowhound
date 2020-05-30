@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Home</title>
+    <title>Carousel testing</title>
 </head>
 <body>
 <h3>Testing out upload image feature</h3>
@@ -26,38 +26,40 @@
 </div>
 
 
-<br>
-<br>
-
-<button id="appendNewCard">Click me to make a new card</button>
-
 <main>
-    <div id="cardContainer" class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div id="truckCards" class="row">
-                    <!-- Cards being appended here -->
-                </div>
+    <div class="slideshow">
+        <div id="carouselPics" class="slider dragging">
+<!--            <div class="item" th:each="image : ${truck.images}">-->
+            <!-- <img th:src="${image.path}">  -->
+            <div class="item">
+                <img src="https://cdn.filestackcontent.com/SCX0pPGGTyb1pGvcHcJw">
+            </div>
+            <div class="item">
+                <img src="https://cdn.filestackcontent.com/Q0sSvL6RQdGE7cUd1zAE">
+            </div>
+            <div class="item">
+                <img src="https://cdn.filestackcontent.com/DLJa8kbQgmtsROdZzeUg">
             </div>
         </div>
     </div>
 </main>
 
-
-<!-- Bootstrap Styling -->
+<!-- Slick CSS -->
+<link rel="stylesheet" href="../static/css/slick.css">
+<!-- Booststrap CSS -->
 <link rel="stylesheet" href="../static/css/bootstrap.min.css">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="../static/css/home_dev.css">
+<link rel="stylesheet" href="../static/css/carousel_dev.css">
 <!-- Jquery -->
 <script src="../static/js/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="../static/js/bootstrap.bundle.min.js"></script>
+<!-- Slick JS -->
+<script src="../static/js/slick-1.8.1.js"></script>
 <!-- Filestack picker -->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <!-- API Keys -->
 <script src="../keys/APIKeys.js"></script>
 <!-- Filestack Javascript -->
-<script src="../static/js/home_dev.js"></script>
+<script src="../static/js/carousel_dev.js"></script>
 
 
 </body>

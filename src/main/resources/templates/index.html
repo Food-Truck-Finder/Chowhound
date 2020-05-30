@@ -20,39 +20,87 @@
         <input type="hidden" name="searchTerm" th:value="${searchTerm}">
         <input id="searchSubmit" type="submit">
     </form>
-    <hr>
+    <hr/>
 </div>
+
 
 <div class="container align-items-center overflow-auto">
     <div class="row container text-center col-12">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
-            <div class="card container main-cont" style="max-width: 100%;">
-                <!--            <img src="..." class="card-img-top" alt="...">-->
-                <div class="card-body">
-                    <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/'+ ${truck.id}}"></a></h5>
-                    <div class="d-inline-block text-wrap text-truncate"
-                         style="max-width: 100%; max-height: 6em; text-overflow: ellipsis"
-                         th:utext="${truck.description}">
+            <div class="card">
+                <div class="card-img-top">
+                    <div id="carouselExampleControls" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+
+
+
+                            <div class="carousel-item active" th:if="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                                <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
+                            </div>
+                            <div class="carousel-item" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                                <img class="d-block max w-100 maxSize" th:src="${image.path}" alt="Image">
+                            </div>
+
+
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><p th:text="${truck.hours}"></p></li>
-                    <li class="list-group-item"><p th:text="${truck.address}"></p></li>
+
+                <!-- Card details below carousel -->
+                <!-- Truck Name -->
+                <div class="card-body">
+                    <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                    </h5>
+                    <p class="card-text text-left"><span>Description: </span><span
+                            th:utext="${truck.description}"></span></p>
+                </div>
+                <!-- Truck food type handling -->
+                <ul class="list-group">
                     <li class="list-group-item">
-                        <p> Featured Cuisines:</p>
-                        <p th:each="cuisine : ${truck.getCuisines()}" th:text="${cuisine.category}"></p>
+                        <p class="text-center">Cuisines</p>
+                        <p class="text-left" th:each="cuisine : ${truck.getCuisines()}"
+                           th:text="${cuisine.category}"></p>
                     </li>
                     <li class="list-group-item">
-                        <p>average rating: <span class="rating" th:text="${truck.getAverageReviewRating()}"> </span></p>
+                        <p><span class="text-left">Food Rating: </span>
+                            <span class="rating text-left" th:text="${truck.getAverageReviewRating()}"></span>
+                            <span class="text-left"> (put icon here)</span>
+                        </p>
+                    </li>
+                    <!-- truck info handling -->
+                    <li class="list-group-item text-left">
+                        <p class="text-center">Address</p>
+                        <p th:text="${truck.address}"></p>
+                        <p>
+                            <span th:text="${truck.city}"></span><span>, </span>
+                            <span th:text="${truck.state}"></span><span>  </span>
+                            <span th:text="${truck.zipCode}"></span>
+                        <p>
+                            <span>Hours: </span>
+                            <span th:text="${truck.hours}"></span>
+                        </p>
+                        <p>
+                            <span>Phone: </span>
+                            <span th:text="${truck.phoneNumber}"></span>
+                        </p>
                     </li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <footer th:replace="partials/partials :: footer"></footer>
 </body>

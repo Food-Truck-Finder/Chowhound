@@ -51,22 +51,29 @@
 //     const fileData = result.filesUploaded[0];
 //     alert("Image successfully uploaded.");
 //
-//     // Appending image to a card for testing //
-//    $("#truckCards").append(
+//     // Appending image to carousel for testing //
+//     $("#carouselPics").append(
 //
-//        // card layout start //
-//        '<div class="card col-sm-12 col-md-4 col-lg-3 col-xl-2 align-content-center" >' +
+//         // vvvv meat and potatoes for getting the image to work vvvv //
+//         '<div class="item">' +
+//         '<img src="' + fileData.url + '"' + ' alt="">' +  // use this to pull image uploaded URL //
+//         '</div>'
+//         // ^^^^ it works! ^^^^ //
 //
-//                         // vvvv meat and potatoes for getting the image to work vvvv //
-//        '<img src="' + fileData.url + '">' +  // use this to pull image uploaded URL //
-//                                         // ^^^^ it works! ^^^^ //
-//
-//        '<div class="card-body">' +
-//        '<h5 class="card-title">Card title</h5>' +
-//        '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</p>' +
-//        '<a href="#" class="btn btn-primary">Go somewhere</a>' +
-//        '</div>' +
-//        '</div>'
-//        // card layout end //
-//    )
+//     )
 // }
+//
+// // Slider functionality //
+//
+// $('.slider').slick({
+//     draggable: true,
+//     arrows: true,
+//     dots: false,
+//     fade: true,
+//     speed: 900,
+//     infinite: true,
+//     cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+//     touchThreshold: 100,
+//     autoplay: true,
+//     autoplaySpeed: 3000
+// });
