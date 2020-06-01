@@ -11,7 +11,7 @@
 
 <div class="container main-cont">
     <h1>Bark About This Truck!</h1>
-    <form th:action="@{'/trucks/' + ${truck.id} + '/review'" method="post">
+    <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post">
         <label for="reviewText">Speak!</label>
         <textarea class="form-control" id="reviewText" name="reviewText"  type="text"></textarea>
         <select name="stars" id="stars">
