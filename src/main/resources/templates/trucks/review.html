@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace ="partials/partials :: head"></div>
+    <title>Review a Truck</title>
+
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+
+
+<div class="container main-cont">
+    <h1>Bark About This Truck!</h1>
+    <form th:action="@{'/trucks/' + ${truck.id} + '/review'" method="post">
+        <label for="reviewText">Speak!</label>
+        <textarea class="form-control" id="reviewText" name="reviewText"  type="text"></textarea>
+        <select name="stars" id="stars">
+            <option value="oneStar">One Bone</option>
+            <option value="twoStar">Two Bones</option>
+            <option value="threeStar">Three Bones</option>
+            <option value="fourStar">Four Bones</option>
+            <option value="fiveStar">Five Bones</option>
+        </select>
+        <input type="hidden" name="datestamp" id="datestamp" value="<?php CURDATE(); ?>">
+        <input type="submit" class="btn btn-sm btn-success">
+    </form>
+</div>
+
+
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+</body>
+</html>
