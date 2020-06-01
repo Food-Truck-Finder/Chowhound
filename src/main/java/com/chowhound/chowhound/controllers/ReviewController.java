@@ -1,14 +1,15 @@
 package com.chowhound.chowhound.controllers;
 
+import com.chowhound.chowhound.models.Review;
 import com.chowhound.chowhound.models.Truck;
+import com.chowhound.chowhound.models.User;
 import com.chowhound.chowhound.repos.ReviewRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ReviewController {
@@ -28,14 +29,37 @@ public class ReviewController {
 
     //Mapping to get review page
     @GetMapping ("/reviews/{id}/addReview")
-    public String GetReviewForm (
+    public String getReviewForm (
             @ModelAttribute Truck truck, @PathVariable ("id") Long truckId, Model model
     ) {
         truck = truckRepo.getOne(truckId);
+        model.addAttribute("truck",truck);
+        Review review = new Review();
+        model.addAttribute("review", review);
         return "trucks/review";
     }
 
 
     //Mapping to post review page
+    @PostMapping ("/reviews/{id}/addReview")
+    public String postReview (
+            @ModelAttribute Truck truck, @PathVariable ("id") Long truckId, Model model, @ModelAttribute Review review, @RequestParam ("stars") int stars
+
+    ) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long findUserId = user.getId();
+        user=userRepo.findById(findUserId);
+        truck = truckRepo.getOne((truckId));
+
+        review.setStars(stars);
+        review.setTruck(truck);
+        review.setUser(user);
+
+        reviewRepo.save(review);
+
+        return "redirect:/trucks/" + truck.getId();
+
+    }
+
 }
 

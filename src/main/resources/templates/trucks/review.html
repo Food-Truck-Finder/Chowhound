@@ -11,17 +11,17 @@
 
 <div class="container main-cont">
     <h1>Bark About This Truck!</h1>
-    <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post">
+    <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post" th:object="${review}">
         <label for="reviewText">Speak!</label>
-        <textarea class="form-control" id="reviewText" name="reviewText"  type="text"></textarea>
+        <textarea class="form-control" id="reviewText" name="reviewText" type="text" th:field="*{reviewText}"></textarea>
         <select name="stars" id="stars">
-            <option value="oneStar">One Bone</option>
-            <option value="twoStar">Two Bones</option>
-            <option value="threeStar">Three Bones</option>
-            <option value="fourStar">Four Bones</option>
-            <option value="fiveStar">Five Bones</option>
+            <option value="1">One Bone</option>
+            <option value="2">Two Bones</option>
+            <option value="3">Three Bones</option>
+            <option value="4">Four Bones</option>
+            <option value="5">Five Bones</option>
         </select>
-        <input type="hidden" name="datestamp" id="datestamp" value="<?php CURDATE(); ?>">
+<!--        <input type="hidden" name="datestamp" id="datestamp" value="<?php CURDATE(); ?>" th:field="*{datestamp}">-->
         <input type="submit" class="btn btn-sm btn-success">
     </form>
 </div>
