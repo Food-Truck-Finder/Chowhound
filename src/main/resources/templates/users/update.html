@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace="partials/partials :: head"></div>
+    <title>Update your profile</title>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<br>
+<div class="container main-cont">
+    <h1>Change your contact email and/or your password</h1>
+    <form th:action="@{/update_profile}" method="POST" th:object="${user}">
+        <!--        <label for="username">Username</label>-->
+        <input type="hidden" id="username" th:field="*{username}"/>
+        <input type="hidden" id="id" th:field="*{id}"/>
+        <!--        <br>-->
+        <label for="email">Email</label>
+        <input id="email" th:value="${user.email}" th:field="*{email}"/>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
+        <br>
+        <input value="Save Changes!" type="submit"/>
+    </form>
+    <br>
+</div>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+</body>
+</html>
