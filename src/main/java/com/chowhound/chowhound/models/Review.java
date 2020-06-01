@@ -1,5 +1,6 @@
 package com.chowhound.chowhound.models;
 
+
 import javax.persistence.*;
 import javax.websocket.ClientEndpoint;
 import java.sql.Date;
@@ -53,4 +54,12 @@ public class Review {
     public Truck getTruck() { return truck; }
 
     public void setTruck(Truck truck) { this.truck = truck; }
+
+    public Date getDatestamp() {
+        return datestamp;
+    }
+
+    public void setDatestamp(Date datestamp) {
+        this.datestamp = datestamp;
+    }
 }

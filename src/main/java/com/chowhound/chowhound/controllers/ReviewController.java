@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+//import java.sql.Date;
+import java.util.Date;
+
 @Controller
 public class ReviewController {
     private TruckRepo truckRepo;
@@ -46,11 +49,13 @@ public class ReviewController {
             @ModelAttribute Truck truck, @PathVariable ("id") Long truckId, Model model, @ModelAttribute Review review, @RequestParam ("stars") int stars
 
     ) {
+        Date date = new Date();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long findUserId = user.getId();
         user=userRepo.findById(findUserId);
         truck = truckRepo.getOne((truckId));
 
+        review.setDatestamp(new java.sql.Date(date.getTime()));
         review.setStars(stars);
         review.setTruck(truck);
         review.setUser(user);
