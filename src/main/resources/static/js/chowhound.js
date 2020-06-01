@@ -1,6 +1,6 @@
 "use strict";
 
-const client = filestack.init(fileStackKey);
+const client = filestack.init(/*ADD KEY HERE*/);
 const options = {
     onUploadDone: updateForm,
     maxSize: 10 * 1920 * 1080,
@@ -28,8 +28,12 @@ btn.addEventListener('click', function (e) {
 
 function updateForm(result) {
     const fileData = result.filesUploaded[0];
+    console.log(fileData.url);
+    $("#imageURL").val(fileData.url);
     alert("Image successfully uploaded.");
+
 }
+
 
 
 

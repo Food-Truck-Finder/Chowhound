@@ -7,9 +7,17 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
+
 <div class="container main-cont">
+
+    <!-- Just finding out how to target truck ID -->
+    <!-- hidden, just used to get truck ID -->
+<!--    <p><span>Truck Id: </span><span id="truckID" th:inline="text">[[${truck.id}]]</span></p>-->
+
+
+
     <br>
-    <h3><a th:text="${truck.name}" href="/index"></a></h3>
+    <h3 th:text="${truck.name}" href="/index" style="text-align: center"></h3>
     <div class="container">
         <p th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
@@ -17,11 +25,32 @@
         </div>
 
         <p>Fetch the owner:
-            <a th:if="${truck.user} != null" th:text="${truck.user.username}" th:href="@{|mailto:${truck.user.email}|}"></a>
+            <span> <a th:if="${truck.user} != null" th:text="${truck.user.email}" th:href="@{|mailto:${truck.user.email}|}"></a></span>
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
+        </p>
+        <p>
+        <div class="container-fluid">
+            <div class="box">
+                <form id="pick-form">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" type="button" id="picker">Upload a picture</button>
+                            <input type="hidden" id="fileupload">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         </p>
 <!--        <p th:text="${truck.user}"></p>-->
     </div>
+
+    <form method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
+        <input type="text" id="imageURL" name="imageURL">
+
+    <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save</button>
+    </form>
+
 
     <div sec:authorize="isAuthenticated()" th:if="${truck.user.id} == ${user.id}">
 
@@ -66,7 +95,7 @@
 
 
 </div>
-
 <footer th:replace="partials/partials :: footer"></footer>
+
 </body>
 </html>
