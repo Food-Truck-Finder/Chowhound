@@ -12,6 +12,16 @@ body {
     overscroll-behavior: none;
 }
 
+.nav-logo{
+
+}
+
+.navbar-brand {
+    max-height: 100%;
+    max-width: 73%;
+    background-size: auto;
+}
+
 .container {
     margin-top: 1em;
 }
