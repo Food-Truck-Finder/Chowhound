@@ -44,14 +44,14 @@ public class UserController {
         return redirectStr;
     }
 
-
-
+    //mapping to get user ifo update view
     @GetMapping("/update_profile")
     public String showUpdateProfileForm(Model model){
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "users/update";
     }
 
+     // mapping for user to update email and/or password
     @PostMapping("/update_profile")
     public String saveProfileUpdate(@ModelAttribute User user, Model model){
         String hash = passwordEncoder.encode(user.getPassword());
