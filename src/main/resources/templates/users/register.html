@@ -6,36 +6,37 @@
 </head>
 <body>
 <div th:replace="partials/partials :: navbar"></div>
-<br>
-<div class="container main-cont">
-    <h1>Create an account</h1>
+
+<div id="signUpContainer">
+    <h1 class="text-center">Create an account</h1>
     <div th:if="${param.error}">
         Username is already taken.
     </div>
-
-    <form th:action="@{/register}" method="POST" th:object="${user}">
-        <label for="username"><strong>Username</strong></label>
-        <input id="username" th:field="*{username}" required/>
-        <br>
-        <label for="firstName"><strong>First Name</strong></label>
-        <input id="firstName" th:field="*{firstName}" required/>
-        <br>
-        <label for="lastName"><strong>Last Name</strong></label>
-        <input id="lastName" th:field="*{lastName}" required/>
-        <br>
-        <label for="email"><strong>Email</strong></label>
-        <input id="email" th:field="*{email}" required/>
-        <br>
-        <label for="password"><strong>Password</strong></label>
-        <input id="password" type="password" th:field="*{password}" required/>
-        <br>
-        <p><strong>REQUIRED</strong></p>
-
-        <input id="register" value="Sign me up!" type="submit"/>
-
-    </form>
-    <br>
+    <div class="register-page">
+        <div class="form">
+            <form class="register-form" th:action="@{/register}" method="POST" th:object="${user}">
+                <label for="username"><strong>Username</strong></label>
+                <input id="username" th:field="*{username}" required/>
+                <label for="firstName"><strong>First Name</strong></label>
+                <input id="firstName" th:field="*{firstName}" required/>
+                <label for="lastName"><strong>Last Name</strong></label>
+                <input id="lastName" th:field="*{lastName}" required/>
+                <label for="email"><strong>Email</strong></label>
+                <input id="email" th:field="*{email}" required/>
+                <label for="password"><strong>Password</strong></label>
+                <input id="password" type="password" th:field="*{password}" required/>
+                <p>
+                    <button id="register" type="submit">Create Account</button>
+                </p>
+            </form>
+            <div class="p-3">
+                <p class="text-center">Already a member? <a class="message" th:href="@{/login}">Sign In</a></p>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>
