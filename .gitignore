@@ -36,3 +36,4 @@ src/main/resources/application.properties
 keys/APIKeys.js
 src/main/resources/keys/APIKeys.js
 keys/*
+src/main/resources/static/js/APIKeys.js
