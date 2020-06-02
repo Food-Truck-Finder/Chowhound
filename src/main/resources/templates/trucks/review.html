@@ -11,9 +11,11 @@
 
 <div class="container main-cont">
     <h1>Bark About This Truck!</h1>
-    <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post" th:object="${review}">
+    <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post">
+<!--        th:object="${review}"-->
         <label for="reviewText">Speak!</label>
-        <textarea class="form-control" id="reviewText" name="reviewText" type="text" th:field="*{reviewText}"></textarea>
+        <textarea class="form-control" id="reviewText" name="reviewText" type="text" ></textarea>
+<!--        th:field="*{reviewText}"-->
         <select name="stars" id="stars">
             <option value="1">One Bone</option>
             <option value="2">Two Bones</option>

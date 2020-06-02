@@ -38,7 +38,7 @@ public class ReviewController {
         truck = truckRepo.getOne(truckId);
         model.addAttribute("truck",truck);
         Review review = new Review();
-        model.addAttribute("review", review);
+//        model.addAttribute("review", review);
         return "trucks/review";
     }
 
@@ -46,16 +46,27 @@ public class ReviewController {
     //Mapping to post review page
     @PostMapping ("/reviews/{id}/addReview")
     public String postReview (
-            @ModelAttribute Truck truck, @PathVariable ("id") Long truckId, Model model, @ModelAttribute Review review, @RequestParam ("stars") int stars
-
+            @ModelAttribute Truck truck,
+            @PathVariable ("id") Long truckId,
+            Model model,
+            @RequestParam ("stars") int stars,
+            @RequestParam ("reviewText") String reviewText
     ) {
+        Review review;
         Date date = new Date();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long findUserId = user.getId();
         user=userRepo.findById(findUserId);
         truck = truckRepo.getOne((truckId));
 
+        if (reviewRepo.findByUserEqualsAndTruckEquals(user,truck) != null) {
+            review = reviewRepo.findByUserEqualsAndTruckEquals(user,truck);
+        } else {
+            review = new Review();
+        }
+
         review.setDatestamp(new java.sql.Date(date.getTime()));
+        review.setReviewText(reviewText);
         review.setStars(stars);
         review.setTruck(truck);
         review.setUser(user);
