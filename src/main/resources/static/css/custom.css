@@ -13,7 +13,8 @@ body {
 }
 
 .nav-logo{
-
+    max-height: 100%;
+    max-width: 73%;
 }
 
 .navbar-brand {
