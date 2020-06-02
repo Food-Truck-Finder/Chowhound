@@ -29,7 +29,7 @@
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
             <div class="card">
                 <div class="card-img-top">
-                    <div id="carouselExampleControls" class="carousel slide" data-interval="false">
+                    <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
 
 
@@ -44,12 +44,12 @@
 
 
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                        <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
                            data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                        <a class="carousel-control-next" th:href="'#carouselControls' + ${truck.id}" role="button"
                            data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
