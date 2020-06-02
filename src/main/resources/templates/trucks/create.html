@@ -15,26 +15,26 @@
     <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
         <div class="form-group">
 <!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
-            <label for="username"><strong>Truck's name:</strong></label>
-            <input class="form-control" id="username" th:field="*{name}" required/>
+<!--            <label for="username"><strong>Truck's name:</strong></label>-->
+            <input placeholder="Truck name" class="form-control" id="username" th:field="*{name}" required/>
 
-            <label for="description"><strong>Truck's Description:</strong></label>
-            <textarea class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
+<!--            <label for="description"><strong>Description:</strong></label>-->
+            <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
 
-            <label for="address">Truck's address:</label>
-            <input class="form-control" type="text" id="address" th:field="*{address}" required>
+            <label for="address">Where is the truck located?</label>
+            <input placeholder="Street" class="form-control" type="text" id="address" th:field="*{address}" required>
 
-            <label for="city">Truck's address:</label>
-            <input class="form-control" type="text" id="city" th:field="*{city}" required>
+<!--            <label for="city">City:</label>-->
+            <input placeholder="City" class="form-control" type="text" id="city" th:field="*{city}" required>
 
-            <label for="state">Truck's address:</label>
-            <input class="form-control" type="text" id="state" th:field="*{state}" required>
+<!--            <label for="state">State:</label>-->
+            <input placeholder="State" class="form-control" type="text" maxlength="2" id="state" th:field="*{state}" required>
 
-            <label for="zip">Truck's address:</label>
-            <input class="form-control" type="text" id="zip" th:field="*{zipCode}" required>
+<!--            <label for="zip">Zipcode:</label>-->
+            <input placeholder="Zipcode" class="form-control" type="number" maxlength="5" id="zip" th:field="*{zipCode}" required>
 
-            <label for="hours">Truck's operating hours:</label>
-            <textarea class="form-control" id="hours" type="text" th:field="*{hours}"></textarea>
+            <label for="hours">Operating hours:</label>
+            <input placeholder="Ex. 9:00AM-5:00PM" class="form-control" id="hours" type="text" th:field="*{hours}">
 
             <label for="cuisines">Choose cuisines:</label>
             <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple required>

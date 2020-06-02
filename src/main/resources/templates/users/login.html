@@ -6,26 +6,34 @@
 </head>
 <body>
 <div th:replace="partials/partials :: navbar"></div>
-<div class="container main-cont">
-    <br>
-    <h1>Log In</h1>
+
+<div id="signInContainer">
+    <h1 class="text-center">Log In</h1>
     <div th:if="${param.error}">
         Invalid Username and Password.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text"/>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password"/>
-        <input type="submit" value="Log In"/>
-        <a th:href="@{/register}">Register here</a>
-    </form>
-    <br>
+    <div class="signIn-page">
+        <div class="form">
+            <form th:action="@{/login}" method="post">
+                <label for="username"><strong>Username</strong></label>
+                <input id="username" name="username" type="text"/>
+                <label for="password"><strong>Password</strong></label>
+                <input id="password" name="password" type="password"/>
+                <p>
+                    <button type="submit">Log In</button>
+                </p>
+            </form>
+            <div class="p-3">
+                <p class="text-center">Not a member? <a class="message" th:href="@{/register}">Register here</a></p>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>

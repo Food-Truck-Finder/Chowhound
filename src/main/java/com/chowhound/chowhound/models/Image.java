@@ -28,7 +28,7 @@ public class Image {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isPrimary;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date datestamp;
 
     public Image() {

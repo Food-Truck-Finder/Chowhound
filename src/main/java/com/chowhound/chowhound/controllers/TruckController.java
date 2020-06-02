@@ -1,6 +1,7 @@
 package com.chowhound.chowhound.controllers;
 
 import com.chowhound.chowhound.models.Cuisine;
+import com.chowhound.chowhound.models.Image;
 import com.chowhound.chowhound.models.Truck;
 import com.chowhound.chowhound.models.User;
 import com.chowhound.chowhound.repos.CuisineRepo;
@@ -8,6 +9,7 @@ import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
 import com.chowhound.chowhound.services.SortTrucksService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -115,6 +117,35 @@ public class TruckController {
         model.addAttribute("truck", truck);
 
         return "trucks/show";
+    }
+
+    //post mapping for viewing a single truck to add an image
+    @PostMapping("/trucks/{id}/saveImg")
+    public String addImage(@PathVariable("id") long truckId, @ModelAttribute Truck truck, Model model, @RequestParam("imageURL") String imageUrl) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userRepo.findById(user.getId());
+
+        List<Image> truckImages = new ArrayList<>();
+
+        Image newImage = new Image();
+        newImage.setPath(imageUrl);
+        newImage.setPrimary(false);
+        newImage.setUser(user);
+        newImage.setTruck(truck);
+
+        truck = truckRepo.getOne(truck.getId());
+        if (truck.getImages() != null){
+            truckImages = truck.getImages();
+        }
+
+        truckImages.add(newImage);
+        truck.setImages(truckImages);
+        imageRepo.save(newImage);
+        truckRepo.save(truck);
+
+        model.addAttribute("truck", truck);
+
+        return "redirect:/trucks/" + truckId;
     }
 
     //mapping to show list of user's favorite trucks

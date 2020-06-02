@@ -25,31 +25,27 @@
 
 
 <div class="container align-items-center overflow-auto">
-    <div class="row container text-center col-12">
+    <div class="row text-center">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
             <div class="card">
                 <div class="card-img-top">
-                    <div id="carouselExampleControls" class="carousel slide" data-interval="false">
+                    <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
-
-
-
-                            <div class="carousel-item active" th:if="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                            <div class="carousel-item active" th:if="${image.isPrimary() == true}"
+                                 th:each="image : ${truck.images}">
                                 <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
                             </div>
-                            <div class="carousel-item" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
-                                <img class="d-block max w-100 maxSize" th:src="${image.path}" alt="Image">
+                            <div class="carousel-item" th:unless="${image.isPrimary() == true}"
+                                 th:each="image : ${truck.images}">
+                                <img class="d-block max w-100 imgSize" th:src="${image.path}" alt="Image">
                             </div>
-
-
-
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                        <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
                            data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                        <a class="carousel-control-next" th:href="'#carouselControls' + ${truck.id}" role="button"
                            data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
@@ -78,24 +74,61 @@
                             <span class="text-left"> (put icon here)</span>
                         </p>
                     </li>
-                    <!-- truck info handling -->
-                    <li class="list-group-item text-left">
-                        <p class="text-center">Address</p>
-                        <p th:text="${truck.address}"></p>
-                        <p>
-                            <span th:text="${truck.city}"></span><span>, </span>
-                            <span th:text="${truck.state}"></span><span>  </span>
-                            <span th:text="${truck.zipCode}"></span>
-                        <p>
-                            <span>Hours: </span>
-                            <span th:text="${truck.hours}"></span>
-                        </p>
-                        <p>
-                            <span>Phone: </span>
-                            <span th:text="${truck.phoneNumber}"></span>
-                        </p>
-                    </li>
                 </ul>
+                <!-- truck info handling -->
+
+                <button type="button" class="btn btn-info" data-toggle="modal"
+                        th:data-target="'#truckModal' + ${truck.id}">
+                    <span>Contact </span><span th:text="${truck.name}"></span>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span><h4 class="text-left">[[${truck.name}]]</h4></span>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group">
+                                    <h5>Address</h5>
+                                    <li class="list-group-item">
+
+                                        <p th:text="${truck.address}"></p>
+                                        <p>
+                                            <span th:text="${truck.city}"></span><span>, </span>
+                                            <span th:text="${truck.state}"></span><span>  </span>
+                                            <span th:text="${truck.zipCode}"></span>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-6 text-center">
+                                        <strong>Hours</strong>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <strong>Phone</strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 text-center">
+                                        [[${truck.hours}]]
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        [[${truck.phoneNumber}]]
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
