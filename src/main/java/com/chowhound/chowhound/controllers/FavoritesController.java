@@ -1,6 +1,5 @@
 package com.chowhound.chowhound.controllers;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.chowhound.chowhound.models.Truck;
 import com.chowhound.chowhound.models.User;
 import com.chowhound.chowhound.repos.CuisineRepo;
@@ -9,15 +8,12 @@ import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
 import com.chowhound.chowhound.services.SortTrucksService;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

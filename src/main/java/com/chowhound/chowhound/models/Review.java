@@ -1,7 +1,6 @@
 package com.chowhound.chowhound.models;
 
 import javax.persistence.*;
-import javax.websocket.ClientEndpoint;
 import java.sql.Date;
 
 @Entity
