@@ -1,6 +1,6 @@
 "use strict";
 
-const client = filestack.init(/*INSERT API KEY HERE*/);
+const client = filestack.init(fileStackKey);
 const options = {
     onUploadDone: updateForm,
     maxSize: 10 * 1920 * 1080,

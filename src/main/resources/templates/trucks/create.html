@@ -51,8 +51,23 @@
             <input id='ownerHidden' type='hidden' value='false' name='owner'>
 
             <br>
-            <input value="Mark it dude!" type="submit"/>
+            <p>
+            <div class="container-fluid">
+                <div class="box">
+                    <form id="pick-form">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button" type="button" id="picker">Upload a picture</button>
+                                <input type="hidden" id="fileupload">
 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </p>
+            <input type="text" id="imageURL" name="imageURL">
+            <button type="submit">Mark it dude!</button>
         </div>
     </form>
     <br>
