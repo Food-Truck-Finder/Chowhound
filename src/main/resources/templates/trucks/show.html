@@ -58,9 +58,9 @@
     </div>
 
     <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
-        <input type="text" id="imageURL" name="imageURL">
+        <input type="hidden" id="imageURL" name="imageURL">
 
-    <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save</button>
+    <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save Image</button>
     </form>
 
 
@@ -78,17 +78,7 @@
                     <path fill-rule="evenodd"
                           d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
                           clip-rule="evenodd"/>
-                </svg>
-            </button>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-                <svg class="bi bi-trash-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
-                          clip-rule="evenodd"/>
-                </svg>
+                </svg> Edit your truck
             </button>
         </form>
 
