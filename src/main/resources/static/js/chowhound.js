@@ -63,8 +63,8 @@ $(document).ready(function () {
     /* image will no longer show up if an image uploaded .isPrimary() */
     let numberOfTrucks = $("#mainTruckContainer").children().length;
     for (let i = 1; i <= numberOfTrucks; i++) {
-        if (document.getElementById("truck_" + i)) {
-            if (document.getElementById("truck_" + i).childNodes.item(1).childNodes.item(1).childNodes.item(1).childNodes.item(1).children.item(0) === null) {
+        if ($("#truck_" + i)) {
+            if ($("#truck_" + i).children().children().children().children().children().hasClass("active") === false) {
                 $("#truck" + i + "carousel").append(
                     '<div id="' + 'truck_' + i + '_primaryImg" ' +
                     'class="' + 'carousel-item active mainCarouselImage">' +
