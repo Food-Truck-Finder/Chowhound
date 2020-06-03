@@ -12,7 +12,7 @@ body {
     overscroll-behavior: none;
 }
 
-.nav-logo{
+.nav-logo {
     max-height: 100%;
     max-width: 73%;
 }
@@ -36,6 +36,7 @@ image {
     border-radius: 4px;
     background: #eee;
     opacity: .85;
+    z-index: 0;
 }
 
 .hidden {
@@ -49,20 +50,27 @@ image {
 
 /* Card styling */
 #cardImageContainer {
-    padding: 0px;
+    padding: 0;
+}
+
+.cardImageFixed {
+    object-position: center;
+    object-fit: cover;
+    height: 15rem;
 }
 
 .card {
-    border-bottom: 0px;
+    border-bottom: 0;
 }
 
 .card, .card > .list-group:last-child .list-group-item:last-child {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .card-body {
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    height: 105px;
 }
 
 .truck-card, .list-group-item {
@@ -70,9 +78,13 @@ image {
 }
 
 .list-group-item {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.cuisines {
+    height: 105px;
 }
 
 .circleIcon {
@@ -81,16 +93,8 @@ image {
 }
 
 li p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
-
-/* Card image max size */
-.imgSize {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
 
 /* Registration  & SignIn */
 #signUpContainer, #signInContainer {
@@ -98,7 +102,7 @@ li p {
     background: lightgrey;
     border-radius: 10px;
     width: 400px;
-    margin:auto;
+    margin: auto;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -133,7 +137,6 @@ li p {
     margin: 0;
 }
 
-
 .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
@@ -155,6 +158,18 @@ li p {
     margin: 15px 0 0;
     color: dodgerblue;
     font-size: 12px;
+}
+
+/* Truck page styling */
+.truckImage {
+    transition: transform .2s;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.truckImage:hover {
+    transform: scale(1.5);
 }
 
 

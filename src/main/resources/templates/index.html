@@ -23,21 +23,18 @@
     <hr/>
 </div>
 
-
 <div class="container align-items-center overflow-auto">
-    <div class="row text-center">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
-            <div class="card">
+    <div id="mainTruckContainer" class="row text-center">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3" th:each="truck : ${trucks}">
+            <div class="card container main-cont py-3">
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" th:if="${image.isPrimary() == true}"
-                                 th:each="image : ${truck.images}">
-                                <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
+                        <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner">
+                            <div th:id="'truck_' + ${truck.id} + '_primaryImage'" class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"  th:each="image : ${truck.images}">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
-                            <div class="carousel-item" th:unless="${image.isPrimary() == true}"
-                                 th:each="image : ${truck.images}">
-                                <img class="d-block max w-100 imgSize" th:src="${image.path}" alt="Image">
+                            <div class="carousel-item" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
                         </div>
                         <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
@@ -58,12 +55,12 @@
                 <div class="card-body">
                     <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
                     </h5>
-                    <p class="card-text text-left"><span>Description: </span><span
+                    <p class="card-text text-left d-flex"><span>Description: </span><span
                             th:utext="${truck.description}"></span></p>
                 </div>
                 <!-- Truck food type handling -->
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item cuisines">
                         <p class="text-center">Cuisines</p>
                         <p class="text-left" th:each="cuisine : ${truck.getCuisines()}"
                            th:text="${cuisine.category}"></p>
@@ -75,8 +72,8 @@
                         </p>
                     </li>
                 </ul>
-                <!-- truck info handling -->
 
+                <!-- truck info handling -->
                 <button type="button" class="btn btn-info" data-toggle="modal"
                         th:data-target="'#truckModal' + ${truck.id}">
                     <span>Contact </span><span th:text="${truck.name}"></span>
@@ -97,7 +94,6 @@
                                 <ul class="list-group">
                                     <h5>Address</h5>
                                     <li class="list-group-item">
-
                                         <p th:text="${truck.address}"></p>
                                         <p>
                                             <span th:text="${truck.city}"></span><span>, </span>
@@ -134,7 +130,7 @@
     </div>
 </div>
 
-
 <footer th:replace="partials/partials :: footer"></footer>
+
 </body>
 </html>

@@ -7,35 +7,27 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-
 <div class="container main-cont">
-
-    <!-- Just finding out how to target truck ID -->
-    <!-- hidden, just used to get truck ID -->
-<!--    <p><span>Truck Id: </span><span id="truckID" th:inline="text">[[${truck.id}]]</span></p>-->
-
-
-
     <br>
     <h3 th:text="${truck.name}" href="/index" style="text-align: center"></h3>
     <div class="container">
         <p th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
-            <img th:src="${image.path}" style="height: 90px; width: auto"/>
+            <img th:id="'imageNumber' + ${image.id}" class="truckImage" th:src="${image.path}"/>
         </div>
-
         <p>Fetch the owner:
-
-            <span> <a th:if="${truck.user} != null" th:text="${truck.user.email}" th:href="@{|mailto:${truck.user.email}|}"></a></span>
+            <span>
+                <a th:if="${truck.user} != null" th:text="${truck.user.email}" th:href="@{|mailto:${truck.user.email}|}"></a>
+            </span>
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
         </p>
         <p>
-        <div class="container-fluid">
+        <div id="truckImageAddPictureButton">
             <div class="box">
                 <form id="pick-form">
                     <div class="field">
                         <div class="control">
-                            <button class="button" type="button" id="picker">Upload a picture</button>
+                            <button class="btn btn-success" type="button" id="picker">Add a picture</button>
                             <input type="hidden" id="fileupload">
                         </div>
                     </div>
@@ -43,22 +35,15 @@
             </div>
         </div>
         </p>
-<!--        <p th:text="${truck.user}"></p>-->
-
     </div>
 
     <form method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
-        <input type="text" id="imageURL" name="imageURL">
-
-    <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save</button>
+        <input class="hidden" type="text" id="imageURL" name="imageURL">
+        <button class="btn btn-sm btn-success hidden" type="submit" name="saveImg" id="saveImg">Save</button>
     </form>
 
-
     <div sec:authorize="isAuthenticated()" th:if="${truck.user.id} == ${user.id}">
-
         <form>
-
-
             <button style="color: white" class="btn btn-warning btn-sm"
                     th:formaction="'/trucks/' + ${truck.id} + '/edit'"
                     th:formmethod="get" th:href="@{'/trucks/' + ${truck.id} + '/edit'}" value="Edit Post">
@@ -81,15 +66,12 @@
                 </svg>
             </button>
         </form>
-
     </div>
 
     <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
         <a class="btn btn-warning btn-sm" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
             favorites</a>
     </div>
-
-
     <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
         <a class="btn btn-success btn-sm" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
     </div>
@@ -97,9 +79,8 @@
         <a class="btn btn-success btn-sm" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
     </div>
     <br>
-
-
 </div>
+
 <footer th:replace="partials/partials :: footer"></footer>
 
 </body>
