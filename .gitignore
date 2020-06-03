@@ -33,5 +33,5 @@ build/
 
 ### Spring Extra Ignores ###
 src/main/resources/application.properties
-src/main/java/com/chowhound/chowhound/public/APIKeys.js
-**/APIKeys.js
+/src/main/resources/static/js/apiKeys.js
+src/main/resources/static/js/apiKeys.js

@@ -33,15 +33,17 @@
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
                         <div class="carousel-inner">
+
                             <div class="carousel-item active" th:if="${image.isPrimary() == true}"
                                  th:each="image : ${truck.images}">
                                 <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
                             </div>
+
                             <div class="carousel-item" th:unless="${image.isPrimary() == true}"
                                  th:each="image : ${truck.images}">
                                 <img class="d-block max w-100 imgSize" th:src="${image.path}" alt="Image">
                             </div>
-                        </div>
+
                         <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
                            data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

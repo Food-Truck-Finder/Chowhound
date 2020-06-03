@@ -124,11 +124,18 @@ public class TruckController {
                 images.remove(primary);
             }
         }
+
+        if (imageUrl.equals("")) {
+            newTruckImage.setPath("https://user-images.githubusercontent.com/13071055/45196982-c7bd6100-b213-11e8-90c9-8c9cdee8717f.png");
+        } else {
+            newTruckImage.setPath(imageUrl);
+        }
+
+
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userRepo.getOne(user.getId());
 
         Date date = new Date();
-        newTruckImage.setPath(imageUrl);
         newTruckImage.setPrimary(true);
         newTruckImage.setUser(user);
         newTruckImage.setTruck(truck);
