@@ -88,7 +88,17 @@ public class TruckController {
         return "trucks/create";
     }
     @PostMapping("/trucks/create")
-    public String submitTruckRegistration(@ModelAttribute Truck truck, @RequestParam List<Cuisine> cuisines, @RequestParam boolean owner, @RequestParam String newCuisine, Model model) {
+    public String submitTruckRegistration(
+            @ModelAttribute Truck truck,
+            @RequestParam List<Cuisine> cuisines,
+            @RequestParam boolean owner,
+            @RequestParam String newCuisine,
+            @RequestParam(value = "imageURL") String imageUrl,
+            Model model) {
+
+        Image newTruckImage = new Image();
+        List<Image> images = new ArrayList<>();
+
         Cuisine newCustomCuisine = null;
         if (!newCuisine.equals("")) {
             try {
@@ -105,9 +115,35 @@ public class TruckController {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             truck.setUser(user);
         }
+
+        if (truck.getImages() != null){
+            images = truck.getImages();
+            int primary = -1;
+            for (Image image: images){
+                if (image.isPrimary()){
+                    primary = images.indexOf(image);
+                }
+            }
+            if (primary != -1) {
+                images.remove(primary);
+            }
+        }
+        User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userRepo.getOne(user.getId());
+
+        Date date = new Date();
+        newTruckImage.setPath(imageUrl);
+        newTruckImage.setPrimary(true);
+        newTruckImage.setUser(user);
+        newTruckImage.setTruck(truck);
+        newTruckImage.setDatestamp(new java.sql.Date(date.getTime()));
+        images.add(newTruckImage);
+
+        truck.setImages(images);
         cuisines.toString();
         truck.setCuisines(cuisines);
         truck = this.truckRepo.save(truck);
+        imageRepo.save(newTruckImage);
         model.addAttribute("truck", truck);
         return "redirect:/index";
     }

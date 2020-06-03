@@ -31,8 +31,25 @@ function updateForm(result) {
     console.log(fileData.url);
     $("#imageURL").val(fileData.url);
     alert("Image successfully uploaded.");
-
 }
+
+function showOwnerRegisterInfo() {
+        $("#ownerEmail").removeClass("hidden");
+        $("#ownerPhoneNumber").removeClass("hidden");
+        $("#ownerTwitterUrl").removeClass("hidden");
+        $("#ownerFacebookUrl").removeClass("hidden");
+        $("#ownerInstagramUrl").removeClass("hidden");
+}
+
+function hideOwnerRegistrationInfo() {
+        $("#ownerEmail").addClass("hidden");
+        $("#ownerPhoneNumber").addClass("hidden");
+        $("#ownerTwitterUrl").addClass("hidden");
+        $("#ownerFacebookUrl").addClass("hidden");
+        $("#ownerInstagramUrl").addClass("hidden");
+}
+
+
 
 
 

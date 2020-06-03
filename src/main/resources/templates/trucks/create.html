@@ -49,9 +49,16 @@
             <label for="addCuisine">Add your own cuisine:</label>
             <input class="form-control" id="addCuisine" name="newCuisine" type="text">
 
-            <label for="owner">Do you own this truck?</label>
-            <input type="checkbox" id="owner" name="owner" value="true">
+            <label for="ownerCheckbox">Do you own this truck?</label>
+            <!-- Checkbox -->
+            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" value="true" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
             <input id='ownerHidden' type='hidden' value='false' name='owner'>
+            <!-- Owner Additional Info -->
+            <input id="ownerEmail" class="hidden form-control" placeholder="Email Address" type="email">
+            <input id="ownerPhoneNumber" class="hidden form-control" placeholder="Phone Number" type="text">
+            <input id="ownerTwitterUrl"  class="hidden form-control" placeholder="Twitter URL" type="url">
+            <input id="ownerFacebookUrl" class="hidden form-control" placeholder="Facebook URL" type="url">
+            <input id="ownerInstagramUrl" class="hidden form-control" placeholder="Instagram URL" type="url">
 
 
             <label for="instagram"></label>
@@ -62,12 +69,28 @@
             <input type="text" id="twitter" name="twitter" th:field="*{twitter}">
 
             <br>
-            <input value="Mark it dude!" type="submit"/>
+            <p>
+            <div class="container-fluid">
+                <div class="box">
+                    <form id="pick-form">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button" type="button" id="picker">Upload a picture</button>
+                                <input type="hidden" id="fileupload">
 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </p>
+            <input type="text" id="imageURL" name="imageURL">
+            <button type="submit">Mark it dude!</button>
         </div>
     </form>
     <br>
 </div>
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
+
 </body>
 </html>
