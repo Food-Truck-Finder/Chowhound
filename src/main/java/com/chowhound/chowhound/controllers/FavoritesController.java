@@ -33,6 +33,20 @@ public class FavoritesController {
         this.sortTrucksService = sortTrucksService;
     }
 
+    //mapping to show list of user's favorite trucks
+    @GetMapping("/favorites")
+    public String showUsersFavoriteTrucks(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals(loggedInUser);
+
+//        for (Truck fav : usersFavs) {
+//            System.out.println(fav.getName());
+//        }
+        model.addAttribute("favorites", usersFavs);
+        model.addAttribute("trucks", usersFavs);
+        return "index";
+    }
+
     //mapping to add a truck to user's favorite list
     @GetMapping("/favorites/{id}/addFav")
     public String addNewFavoriteTruck(@ModelAttribute Truck truck, @PathVariable("id") long truckId, Model model) {

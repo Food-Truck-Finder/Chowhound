@@ -9,7 +9,6 @@ import com.chowhound.chowhound.repos.ImageRepo;
 import com.chowhound.chowhound.repos.TruckRepo;
 import com.chowhound.chowhound.repos.UserRepo;
 import com.chowhound.chowhound.services.SortTrucksService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -171,18 +170,7 @@ public class TruckController {
         return "redirect:/trucks/" + truckId;
     }
 
-    //mapping to show list of user's favorite trucks
-    @GetMapping("/trucks/my_favorites")
-    public String showUsersFavoriteTrucks(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals(loggedInUser);
 
-        for (Truck fav : usersFavs) {
-            System.out.println(fav.getName());
-        }
-        model.addAttribute("trucks", usersFavs);
-        return "index";
-    }
 
 }
 
