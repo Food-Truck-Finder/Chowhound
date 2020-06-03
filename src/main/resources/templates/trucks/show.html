@@ -8,7 +8,7 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div class="container main-cont">
+<div class="container main-cont text-center">
 
     <!-- Just finding out how to target truck ID -->
     <!-- hidden, just used to get truck ID -->
@@ -17,11 +17,21 @@
 
 
     <br>
-    <h3 th:text="${truck.name}" href="/index" style="text-align: center"></h3>
+    <h3><a th:text="${truck.name}" href="/index"></a></h3>
     <div class="container">
         <p th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
             <img th:src="${image.path}" style="height: 90px; width: auto"/>
+        </div>
+
+        <div class="container reviews my-4">
+        <div class="container" th:each="review : ${truck.reviews}"> Reviews:
+            <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
+            <p th:text="${review.reviewText}"></p>
+            <p th:text="${review.stars}"></p>
+            <p th:text="${review.datestamp}"></p>
+            <hr>
+        </div>
         </div>
 
         <p>Fetch the owner:
@@ -30,7 +40,7 @@
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
         </p>
         <p>
-        <div class="container-fluid">
+        <div sec:authorize="isAuthenticated()" class="container-fluid">
             <div class="box">
                 <form id="pick-form">
                     <div class="field">
@@ -47,7 +57,7 @@
 
     </div>
 
-    <form method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
+    <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
         <input type="text" id="imageURL" name="imageURL">
 
     <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save</button>

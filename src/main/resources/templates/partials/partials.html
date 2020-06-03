@@ -25,7 +25,7 @@
 <!--            <li class="nav-item"><a class="nav-link" href="/index">Find some chow</a></li>-->
             <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/trucks/create">Add a
                 Truck</a></li>
-            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/trucks/my_favorites">My
+            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/favorites">My
                 trucks</a></li>
             <!--            <li class="nav-item"><a class="nav-link" href="/welcome">Welcome</a></li>-->
         </ul>
@@ -54,7 +54,6 @@
 <!-- Footer -->
 <footer th:fragment="footer">
     <standard_scripts>
-
         <!-- Keys -->
         <script th:src="@{../../js/APIKeys.js}"></script>
         <!-- JQuery -->

@@ -33,6 +33,9 @@
 <!--            <label for="zip">Zipcode:</label>-->
             <input placeholder="Zipcode" class="form-control" type="number" maxlength="5" id="zip" th:field="*{zipCode}" required>
 
+            <label for="phoneNumber">Phone Number:</label>
+            <input placeholder="123-456-7890" type="tel" name="phoneNumber" id="phoneNumber" th:field="*{phoneNumber}">
+
             <label for="hours">Operating hours:</label>
             <input placeholder="Ex. 9:00AM-5:00PM" class="form-control" id="hours" type="text" th:field="*{hours}">
 
@@ -56,6 +59,14 @@
             <input id="ownerTwitterUrl"  class="hidden form-control" placeholder="Twitter URL" type="url">
             <input id="ownerFacebookUrl" class="hidden form-control" placeholder="Facebook URL" type="url">
             <input id="ownerInstagramUrl" class="hidden form-control" placeholder="Instagram URL" type="url">
+
+
+            <label for="instagram"></label>
+            <input type="text" id="instagram" name="instagram" th:field="*{instagram}">
+            <label for="facebook"></label>
+            <input type="text" id="facebook" name="facebook" th:field="*{facebook}">
+            <label for="twitter"></label>
+            <input type="text" id="twitter" name="twitter" th:field="*{twitter}">
 
             <br>
             <p>
