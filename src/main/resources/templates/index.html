@@ -26,7 +26,7 @@
 
 <div class="container align-items-center overflow-auto">
     <div class="row text-center">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 truck-card" th:each="truck : ${trucks}">
+        <div class="col-12 col-lg-6 col-xl-3 truck-card" th:each="truck : ${trucks}">
             <div class="card">
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
@@ -56,8 +56,10 @@
                 <!-- Card details below carousel -->
                 <!-- Truck Name -->
                 <div class="card-body">
-                    <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                    <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a><span th:if="${favorites.contains(truck)}"><img
+                            alt="favorite" src="images/favorite.png"></span>
                     </h5>
+
                     <p class="card-text text-left"><span>Description: </span><span
                             th:utext="${truck.description}"></span></p>
                 </div>

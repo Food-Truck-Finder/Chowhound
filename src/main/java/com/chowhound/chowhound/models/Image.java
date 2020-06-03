@@ -73,4 +73,12 @@ public class Image {
     public void setPrimary(boolean primary) {
         isPrimary = primary;
     }
+
+    public Date getDatestamp() {
+        return datestamp;
+    }
+
+    public void setDatestamp(Date datestamp) {
+        this.datestamp = datestamp;
+    }
 }
