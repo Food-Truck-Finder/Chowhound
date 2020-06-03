@@ -157,6 +157,12 @@ li p {
     font-size: 12px;
 }
 
+.reviews {
+    border: grey 1px solid;
+    max-height: 175px;
+    overflow: scroll;
+}
+
 
 
 

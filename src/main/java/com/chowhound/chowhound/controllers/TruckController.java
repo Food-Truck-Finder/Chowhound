@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,23 @@ public class TruckController {
     //mapping for index page
     @GetMapping("/index")
     public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "") String searchTerm) {
+        User user;
+        List<Truck> favorites = new ArrayList<>();
+
+        try {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            user = null;
+        }
+        if (user != null) {
+            user = userRepo.getOne(user.getId());
+            favorites = user.getFavoriteTrucks();
+        }
+
+//        if (user != null) {
+//            favorites = user.getFavoriteTrucks();
+//        }
+
         List<Truck> trucks = truckRepo.findAllBySearchTerm(searchTerm);
         if (!searchTerm.equals("")) {
             model.addAttribute("searchTerm", searchTerm);
@@ -43,6 +61,7 @@ public class TruckController {
 
         trucks = sortTrucksService.sortTrucks(trucks, sortType);
 
+        model.addAttribute("favorites", favorites);
         model.addAttribute("trucks", trucks);
         return "index";
     }
@@ -129,7 +148,9 @@ public class TruckController {
 
         List<Image> truckImages = new ArrayList<>();
 
+        Date date = new Date();
         Image newImage = new Image();
+        newImage.setDatestamp(new java.sql.Date(date.getTime()));
         newImage.setPath(imageUrl);
         newImage.setPrimary(false);
         newImage.setUser(user);
