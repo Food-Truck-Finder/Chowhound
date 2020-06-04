@@ -43,7 +43,7 @@
         <a sec:authorize="isAnonymous()" class="nav-link" href="/login">Login</a>
         <a sec:authorize="isAnonymous()" class="nav-link" href="/register">Register</a>
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-            <button class="btn-link btn">Logout</button>
+            <button id="logoutButton" class="btn-link btn">Logout</button>
         </form>
         <a sec:authorize="isAuthenticated()" class="nav-link" href="/update_profile">
             <svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
