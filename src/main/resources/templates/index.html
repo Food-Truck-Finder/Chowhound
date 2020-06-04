@@ -25,23 +25,20 @@
     <hr/>
 </div>
 
-
 <div class="container align-items-center overflow-auto">
-    <div class="row text-center">
-        <div class="col-12 col-lg-6 col-xl-3 truck-card" th:each="truck : ${trucks}">
-            <div class="card">
+
+    <div id="mainTruckContainer" class="row text-center">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3" th:each="truck : ${trucks}">
+            <div class="card container main-cont py-3">
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active" th:if="${image.isPrimary() == true}"
-                                 th:each="image : ${truck.images}">
-                                <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
+                        <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner">
+                            <div th:id="'truck_' + ${truck.id} + '_primaryImage'" class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"  th:each="image : ${truck.images}">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
+                            <div class="carousel-item secondaryCarouselImage" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
 
-                            <div class="carousel-item" th:unless="${image.isPrimary() == true}"
-                                 th:each="image : ${truck.images}">
-                                <img class="d-block max w-100 imgSize" th:src="${image.path}" alt="Image">
                             </div>
 
                             <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
@@ -56,6 +53,7 @@
                             </a>
                         </div>
                     </div>
+
 
                     <!-- Card details below carousel -->
                     <!-- Truck Name -->
@@ -139,8 +137,9 @@
             </div>
         </div>
     </div>
-
 </div>
-    <footer th:replace="partials/partials :: footer"></footer>
+
+<footer th:replace="partials/partials :: footer"></footer>
+
 </body>
 </html>
