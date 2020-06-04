@@ -12,8 +12,7 @@
 
     <!-- Just finding out how to target truck ID -->
     <!-- hidden, just used to get truck ID -->
-<!--    <p><span>Truck Id: </span><span id="truckID" th:inline="text">[[${truck.id}]]</span></p>-->
-
+    <!--    <p><span>Truck Id: </span><span id="truckID" th:inline="text">[[${truck.id}]]</span></p>-->
 
 
     <br>
@@ -25,20 +24,26 @@
         </div>
 
         <div class="container reviews my-4">
-        <div class="container" th:each="review : ${truck.reviews}"> Reviews:
-            <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
-            <p th:text="${review.reviewText}"></p>
-            <p th:text="${review.stars}"></p>
-            <p th:text="${review.datestamp}"></p>
-            <hr>
-        </div>
+            <div class="container" th:each="review : ${truck.reviews}"> Reviews:
+                <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
+                <p th:text="${review.reviewText}"></p>
+                <p th:text="${review.stars}"></p>
+                <p th:text="${review.datestamp}"></p>
+                <hr>
+            </div>
         </div>
 
         <p>Fetch the owner:
-
-            <span> <a th:if="${truck.user} != null" th:text="${truck.user.email}" th:href="@{|mailto:${truck.user.email}|}"></a></span>
+            <span> <a th:if="${truck.user} != null" th:text="${truck.user.email}"
+                      th:href="@{|mailto:${truck.user.email}|}"></a></span>
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
         </p>
+
+        <div class="socialMedia">
+            <a th:if="${truck.twitter} != null" th:href="${truck.twitter}"><i class="fa fa-twitter"></i></a>
+            <a th:if="${truck.instagram} != null" th:href="${truck.instagram}"><i class="fa fa-instagram"></i></a>
+            <a th:if="${truck.facebook} != null" th:href="${truck.twitter}"><i class="fa fa-facebook"></i></a>
+        </div>
         <p>
         <div sec:authorize="isAuthenticated()" class="container-fluid">
             <div class="box">
@@ -53,14 +58,14 @@
             </div>
         </div>
         </p>
-<!--        <p th:text="${truck.user}"></p>-->
+        <!--        <p th:text="${truck.user}"></p>-->
 
     </div>
 
     <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
         <input type="hidden" id="imageURL" name="imageURL">
 
-    <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save Image</button>
+        <button class="btn btn-sm btn-success" type="submit" name="saveImg" id="saveImg">Save Image</button>
     </form>
 
 
@@ -78,7 +83,8 @@
                     <path fill-rule="evenodd"
                           d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
                           clip-rule="evenodd"/>
-                </svg> Edit your truck
+                </svg>
+                Edit your truck
             </button>
         </form>
 

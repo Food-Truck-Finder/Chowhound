@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="partials/partials :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<div class="container p-5 text-center">
+    <th:block th:switch="${error}">
+        <div th:case="'Not Found'">
+            <h1>Page not found!!</h1>
+            <h3>The truth is, we were looking for what you wanted but then we saw a squirrel...sorry!</h3>
+            <a class="btn btn-success" href="/index">But you can find your way home here.</a>
+        </div>
+        <div th:case="'Forbidden'">
+            <h1>My master says "You don't have permission to view this page."...sorry!</h1>
+            <a class="btn btn-success" href="/login"> Click here to login</a>
+            <a class="btn btn-success" href="/register"> Click here to register</a>
+        </div>
+    </th:block>
+    <br>
+
+        <img width="95%" id="errorImg" src="https://www.thelabradorsite.com/wp-content/uploads/2017/04/Dog-cone-the-right-choice-for-your-lab-LS-long.jpg" alt="dog in cone">
+
+
+</div>
+
+<script>
+
+    let random = Math.ceil(Math.random() * 4);
+    let errorImg = document.getElementById("errorImg");
+    errorImg.src = "../../images/error_" + random + ".jpg";
+
+</script>
+</body>
+</html>
