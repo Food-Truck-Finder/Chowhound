@@ -13,7 +13,7 @@
 /*}*/
 
 
-.nav-logo{
+.nav-logo {
     max-height: 100%;
     max-width: 73%;
 }
@@ -24,9 +24,6 @@
     background-size: auto;
 }
 
-.container {
-    margin-top: 1em;
-}
 
 image {
     opacity: 1;
@@ -37,7 +34,12 @@ image {
     border-radius: 4px;
     background: #eee;
     opacity: .85;
+    z-index: 0;
 }
+
+.height-100 {
+    height:100%;
+    }
 
 .hidden {
     display: none;
@@ -50,20 +52,51 @@ image {
 
 /* Card styling */
 #cardImageContainer {
-    padding: 0px;
+    padding: 0;
+}
+
+.cardImageFixed {
+    object-position: center;
+    object-fit: cover;
+    height: 15rem;
 }
 
 .card {
-    border-bottom: 0px;
+    border-bottom: 0;
+    padding: 0;
+}
+
+.cardTitleAnchor {
+    width: 100%;
+}
+
+.cardTitleContainer {
+    margin: 5px 0;
+}
+
+.card-header {
+    background: transparent;
+    padding: 0;
+    border-bottom: none;
+}
+
+.card-header .fa {
+    transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+    transform: rotate(90deg);
 }
 
 .card, .card > .list-group:last-child .list-group-item:last-child {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .card-body {
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 5px;
+}
+
+.listPadding {
+    padding: 4px 0px;
 }
 
 .truck-card, .list-group-item {
@@ -71,9 +104,14 @@ image {
 }
 
 .list-group-item {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+
+}
+
+.height-125 {
+    /*height: 125px;*/
 }
 
 .circleIcon {
@@ -82,14 +120,11 @@ image {
 }
 
 li p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-/* Card image max size */
-.imgSize {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.foodTypes {
+    padding: 4px;
 }
 
 
@@ -99,7 +134,7 @@ li p {
     background: lightgrey;
     border-radius: 10px;
     width: 400px;
-    margin:auto;
+    margin: auto;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -134,7 +169,6 @@ li p {
     margin: 0;
 }
 
-
 .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
@@ -158,37 +192,38 @@ li p {
     font-size: 12px;
 }
 
+/* Truck page styling */
+.truckImage {
+    transition: transform .2s;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.truckImage:hover {
+    transform: scale(1.5);
+}
+
 .reviews {
     border: grey 1px solid;
     max-height: 175px;
     overflow: scroll;
 }
 
-/*#homeLogo {*/
-/*    background-image: url("/images/chowhound-homelogo.png");*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    background-attachment: fixed;*/
-/*    height: 100vh;*/
-/*    object-fit: contain;*/
-/*    position: relative;*/
-/*    overscroll-behavior: none;*/
-/*    opacity: 1;*/
-/*}*/
 
-/*nav {*/
-/*    background-color: white;*/
-/*    opacity: 1;*/
-/*}*/
+.favImg {
+    height: 18%;
+    width: 18%;
+    z-index: 5;
+}
 
-/*!*.padding-top-xl {*!*/
-/*!*    padding-top: 6em;*!*/
-/*!*}*!*/
+i {
+    font-size: 2rem;
+}
 
-/*.img-fluid {*/
-/*    max-width: 100%;*/
-/*    height: auto;*/
-/*}*/
+.navbar{
+    background: #f9f8fa;
+}
 
 #homeTextCard {
     color: black;

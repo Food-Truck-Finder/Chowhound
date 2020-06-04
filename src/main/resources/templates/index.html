@@ -16,6 +16,8 @@
             <option value="rating_a">Rating Low-High</option>
             <option value="name_a">Name A-Z</option>
             <option value="name_d">Name Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
         </select>
         <input type="hidden" name="searchTerm" th:value="${searchTerm}">
         <input id="searchSubmit" type="submit">
@@ -23,111 +25,123 @@
     <hr/>
 </div>
 
-
 <div class="container align-items-center overflow-auto">
-    <div class="row text-center">
-        <div class="col-12 col-lg-6 col-xl-3 truck-card" th:each="truck : ${trucks}">
-            <div class="card">
+
+    <div id="mainTruckContainer" class="row">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3 height-100" th:each="truck : ${trucks}">
+            <div class="card container main-cont">
+
+                <!-- Truck name handling -->
+                <h2 class="card-header text-center">
+                    <div class="cardTitleContainer">
+                        <a class="cardTitleAnchor" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                        <img th:if="${favorites.contains(truck)}" class="favImg" alt="favorite"
+                             src="images/hydrant-favorite.svg">
+                    </div>
+                </h2>
+
+                <!-- Card Image handling -->
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" th:if="${image.isPrimary() == true}"
+                        <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner">
+                            <div th:id="'truck_' + ${truck.id} + '_primaryImage'"
+                                 class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"
                                  th:each="image : ${truck.images}">
-                                <img class="d-block w-100 maxSize" th:src="${image.path}" alt="Image">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
-                            <div class="carousel-item" th:unless="${image.isPrimary() == true}"
+                            <div class="carousel-item secondaryCarouselImage" th:unless="${image.isPrimary() == true}"
                                  th:each="image : ${truck.images}">
-                                <img class="d-block max w-100 imgSize" th:src="${image.path}" alt="Image">
+                                <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
+
                             </div>
+
+                            <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" th:href="'#carouselControls' + ${truck.id}" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" th:href="'#carouselControls' + ${truck.id}" role="button"
-                           data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" th:href="'#carouselControls' + ${truck.id}" role="button"
-                           data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
-
-                <!-- Card details below carousel -->
-                <!-- Truck Name -->
                 <div class="card-body">
-                    <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a><span th:if="${favorites.contains(truck)}"><img
-                            alt="favorite" src="images/favorite.png"></span>
-                    </h5>
+                    <!-- Truck Description -->
+                    <p class="card-text text-left">Description: [[${truck.description}]]</p>
+                    <!--  Cuisines handling -->
+                    <h6 class="card-header">
+                        <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
+                           aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                            <i class="fa fa-chevron-down pull-right"></i>
+                            Cuisines
+                        </a>
+                    </h6>
+                    <div th:id="'collapse-collapsed_' + ${truck.id}" class="collapse" aria-labelledby="heading-collapsed">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <p class="col-6 col-xl-4 foodTypes" th:each="cuisine : ${truck.getCuisines()}"
+                                       th:text="${cuisine.category}"></p>
+                                </div>
+                            </div>
+                        </div>
 
-                    <p class="card-text text-left"><span>Description: </span><span
-                            th:utext="${truck.description}"></span></p>
+                    </div>
+                    <!-- Food Rating -->
+                    <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
                 </div>
-                <!-- Truck food type handling -->
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <p class="text-center">Cuisines</p>
-                        <p class="text-left" th:each="cuisine : ${truck.getCuisines()}"
-                           th:text="${cuisine.category}"></p>
-                    </li>
-                    <li class="list-group-item">
-                        <p><span class="text-left">Food Rating: </span>
-                            <span class="rating text-left" th:text="${truck.getAverageReviewRating()}"></span>
-                            <span class="text-left"> (put icon here)</span>
-                        </p>
-                    </li>
-                </ul>
                 <!-- truck info handling -->
-
                 <button type="button" class="btn btn-info" data-toggle="modal"
                         th:data-target="'#truckModal' + ${truck.id}">
                     <span>Contact </span><span th:text="${truck.name}"></span>
                 </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span><h4 class="text-left">[[${truck.name}]]</h4></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <h5>Address</h5>
+                                <li class="list-group-item">
 
-                <!-- Modal -->
-                <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span><h4 class="text-left">[[${truck.name}]]</h4></span>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <ul class="list-group">
-                                    <h5>Address</h5>
-                                    <li class="list-group-item">
-
-                                        <p th:text="${truck.address}"></p>
-                                        <p>
-                                            <span th:text="${truck.city}"></span><span>, </span>
-                                            <span th:text="${truck.state}"></span><span>  </span>
-                                            <span th:text="${truck.zipCode}"></span>
-                                        </p>
-                                    </li>
-                                </ul>
-                                <div class="row">
-                                    <div class="col-6 text-center">
-                                        <strong>Hours</strong>
-                                    </div>
-                                    <div class="col-6 text-center">
-                                        <strong>Phone</strong>
-                                    </div>
+                                    <p th:text="${truck.address}"></p>
+                                    <p>
+                                        <span th:text="${truck.city}"></span><span>, </span>
+                                        <span th:text="${truck.state}"></span><span>  </span>
+                                        <span th:text="${truck.zipCode}"></span>
+                                    </p>
+                                </li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <strong>Hours</strong>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6 text-center">
-                                        [[${truck.hours}]]
-                                    </div>
-                                    <div class="col-6 text-center">
-                                        [[${truck.phoneNumber}]]
-                                    </div>
+                                <div class="col-6 text-center">
+                                    <strong>Phone</strong>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    [[${truck.hours}]]
+                                </div>
+                                <div class="col-6 text-center">
+                                    [[${truck.phoneNumber}]]
+                                </div>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +150,7 @@
     </div>
 </div>
 
-
 <footer th:replace="partials/partials :: footer"></footer>
+
 </body>
 </html>
