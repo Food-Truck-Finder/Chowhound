@@ -85,52 +85,51 @@
                             th:data-target="'#truckModal' + ${truck.id}">
                         <span>Contact </span><span th:text="${truck.name}"></span>
                     </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span><h4 class="text-left">[[${truck.name}]]</h4></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <h5>Address</h5>
+                                <li class="list-group-item">
 
-                    <!-- Modal -->
-                    <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <span><h4 class="text-left">[[${truck.name}]]</h4></span>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <p th:text="${truck.address}"></p>
+                                    <p>
+                                        <span th:text="${truck.city}"></span><span>, </span>
+                                        <span th:text="${truck.state}"></span><span>  </span>
+                                        <span th:text="${truck.zipCode}"></span>
+                                    </p>
+                                </li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <strong>Hours</strong>
                                 </div>
-                                <div class="modal-body">
-                                    <ul class="list-group">
-                                        <h5>Address</h5>
-                                        <li class="list-group-item">
-
-                                            <p th:text="${truck.address}"></p>
-                                            <p>
-                                                <span th:text="${truck.city}"></span><span>, </span>
-                                                <span th:text="${truck.state}"></span><span>  </span>
-                                                <span th:text="${truck.zipCode}"></span>
-                                            </p>
-                                        </li>
-                                    </ul>
-                                    <div class="row">
-                                        <div class="col-6 text-center">
-                                            <strong>Hours</strong>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <strong>Phone</strong>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 text-center">
-                                            [[${truck.hours}]]
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            [[${truck.phoneNumber}]]
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <div class="col-6 text-center">
+                                    <strong>Phone</strong>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    [[${truck.hours}]]
+                                </div>
+                                <div class="col-6 text-center">
+                                    [[${truck.phoneNumber}]]
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
