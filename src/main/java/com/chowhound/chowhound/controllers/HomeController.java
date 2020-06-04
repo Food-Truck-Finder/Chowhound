@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/home")
-    @ResponseBody
+//    @ResponseBody
     public String hello() {
-        return "Hello from Spring!";
+//        return "Hello from Spring!";
+//    }
+
+        return "/home";
     }
 }

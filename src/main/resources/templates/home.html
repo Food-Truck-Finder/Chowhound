@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
     <title>Home</title>
+    <div th:replace="partials/partials :: head"></div>
+
 </head>
 <body>
+<nav th:replace="partials/partials :: navbar"></nav>
 
-<h1>This is the home page</h1>
+    <div class="card bg-dark text-white padding-top-xl" id="homeBody">
+        <img class="card-img img-fluid" src="images/chowhound-background.png" alt="Card image">
+        <div class="card-img-overlay">
+            <div class="card" id="homeBodyOverlay">
+                <div class="card-body" id="homeTextCard">
+                    My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard! They're using our own satellites against us. And the clock is ticking. Life finds a way. Just my luck, no ice. Checkmate... Eventually, you do plan to have dinosaurs on your dinosaur tour, right?
 
+                    Jaguar shark! So tell me - does it really exist? Did he just throw my cat out of the window? God help us, we're in the hands of engineers. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager? Remind me to thank John for a lovely weekend.
+
+                    Hey, take a look at the earthlings. Goodbye! Did he just throw my cat out of the window? Is this my espresso machine? Wh-what is-h-how did you get my espresso machine? You know what? It is beets. I've crashed into a beet truck. God help us, we're in the hands of engineers.
+
+                    God help us, we're in the hands of engineers. Checkmate... You know what? It is beets. I've crashed into a beet truck. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine? Remind me to thank John for a lovely weekend. Do you have any idea how long it takes those cups to decompose.
+
+                    Must go faster... go, go, go, go, go! We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Did he just throw my cat out of the window? Did he just throw my cat out of the window?
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>

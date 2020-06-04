@@ -1,16 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-body {
-    /*background-image: url("/images/images.jpeg");*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
-    object-fit: contain;
-    position: relative;
-    overscroll-behavior: none;
-}
+/*.wrapper {*/
+/*    !*background-image: url("/images/chowhound-background.png");*!*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    !*background-size: cover;*!*/
+/*    background-attachment: fixed;*/
+/*    height: 100vh;*/
+/*    object-fit: contain;*/
+/*    position: relative;*/
+/*    overscroll-behavior: none;*/
+/*}*/
+
 
 .nav-logo{
     max-height: 100%;
@@ -163,6 +164,39 @@ li p {
     overflow: scroll;
 }
 
+/*#homeLogo {*/
+/*    background-image: url("/images/chowhound-homelogo.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    background-attachment: fixed;*/
+/*    height: 100vh;*/
+/*    object-fit: contain;*/
+/*    position: relative;*/
+/*    overscroll-behavior: none;*/
+/*    opacity: 1;*/
+/*}*/
 
+/*nav {*/
+/*    background-color: white;*/
+/*    opacity: 1;*/
+/*}*/
+
+/*!*.padding-top-xl {*!*/
+/*!*    padding-top: 6em;*!*/
+/*!*}*!*/
+
+/*.img-fluid {*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*}*/
+
+#homeTextCard {
+    color: black;
+}
+
+#homeBodyOverlay {
+    background-color: rgba(200, 203, 207, .40);
+    /*opacity: .25;*/
+}
 
 
