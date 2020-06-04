@@ -34,7 +34,7 @@ public class TruckController {
     }
 
     //mapping for index page
-    @GetMapping("/index")
+    @GetMapping({"/index", "/"})
     public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "") String searchTerm) {
         User user;
         List<Truck> favorites = new ArrayList<>();
