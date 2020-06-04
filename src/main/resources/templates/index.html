@@ -27,16 +27,30 @@
 
 <div class="container align-items-center overflow-auto">
 
-    <div id="mainTruckContainer" class="row text-center">
-        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3" th:each="truck : ${trucks}">
-            <div class="card container main-cont py-3">
+    <div id="mainTruckContainer" class="row">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3 height-100" th:each="truck : ${trucks}">
+            <div class="card container main-cont">
+
+                <!-- Truck name handling -->
+                <h2 class="card-header text-center">
+                    <div class="cardTitleContainer">
+                        <a class="cardTitleAnchor" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                        <img th:if="${favorites.contains(truck)}" class="favImg" alt="favorite"
+                             src="images/hydrant-favorite.svg">
+                    </div>
+                </h2>
+
+                <!-- Card Image handling -->
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
                         <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner">
-                            <div th:id="'truck_' + ${truck.id} + '_primaryImage'" class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"  th:each="image : ${truck.images}">
+                            <div th:id="'truck_' + ${truck.id} + '_primaryImage'"
+                                 class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"
+                                 th:each="image : ${truck.images}">
                                 <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
-                            <div class="carousel-item secondaryCarouselImage" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                            <div class="carousel-item secondaryCarouselImage" th:unless="${image.isPrimary() == true}"
+                                 th:each="image : ${truck.images}">
                                 <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
 
                             </div>
@@ -53,39 +67,36 @@
                             </a>
                         </div>
                     </div>
-
-
-                    <!-- Card details below carousel -->
-                    <!-- Truck Name -->
-                    <div class="card-body">
-                        <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a><span th:if="${favorites.contains(truck)}">
-                            <img class="favImg" alt="favorite" src="images/hydrant-favorite.svg"></span>
-                        </h5>
-
-                        <p class="card-text text-left"><span>Description: </span><span
-                                th:utext="${truck.description}"></span></p>
-                    </div>
-                    <!-- Truck food type handling -->
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p class="text-center">Cuisines</p>
-                            <p class="text-left" th:each="cuisine : ${truck.getCuisines()}"
-                               th:text="${cuisine.category}"></p>
-                        </li>
-                        <li class="list-group-item">
-                            <p><span class="text-left">Food Rating: </span>
-                                <span class="rating text-left" th:text="${truck.getAverageReviewRating()}"></span>
-                                <span class="text-left"> (put icon here)</span>
-                            </p>
-                        </li>
-                    </ul>
-                    <!-- truck info handling -->
-
-                    <button type="button" class="btn btn-info" data-toggle="modal"
-                            th:data-target="'#truckModal' + ${truck.id}">
-                        <span>Contact </span><span th:text="${truck.name}"></span>
-                    </button>
                 </div>
+                <div class="card-body">
+                    <!-- Truck Description -->
+                    <p class="card-text text-left">Description: [[${truck.description}]]</p>
+                    <!--  Cuisines handling -->
+                    <h6 class="card-header">
+                        <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
+                           aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                            <i class="fa fa-chevron-down pull-right"></i>
+                            Cuisines
+                        </a>
+                    </h6>
+                    <div th:id="'collapse-collapsed_' + ${truck.id}" class="collapse" aria-labelledby="heading-collapsed">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <p class="col-6 col-xl-4 foodTypes" th:each="cuisine : ${truck.getCuisines()}"
+                                       th:text="${cuisine.category}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Food Rating -->
+                    <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
+                </div>
+                <!-- truck info handling -->
+                <button type="button" class="btn btn-info" data-toggle="modal"
+                        th:data-target="'#truckModal' + ${truck.id}">
+                    <span>Contact </span><span th:text="${truck.name}"></span>
+                </button>
             </div>
             <!-- Modal -->
             <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
