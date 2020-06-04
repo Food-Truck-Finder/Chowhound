@@ -183,6 +183,14 @@ li p {
     width: 18%;
 }
 
+i {
+    font-size: 2rem;
+}
+
+.navbar{
+    background: #f9f8fa;
+}
+
 
 
 

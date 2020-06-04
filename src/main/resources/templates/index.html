@@ -59,7 +59,7 @@
                     <!-- Truck Name -->
                     <div class="card-body">
                         <h5 class="card-title"><a th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a><span th:if="${favorites.contains(truck)}">
-                            <img class="favImg" alt="favorite" src="images/hydrant-favorite.svg"></span>
+                            <img class="favImg       " alt="favorite" src="images/hydrant-favorite.svg"></span>
                         </h5>
 
                         <p class="card-text text-left"><span>Description: </span><span
