@@ -19,7 +19,7 @@
 </div>
 <body>
 <!-- This is my standard navbar-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light  border-bottom">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
     <a class="nav-logo" th:href="@{/index}"><img class="navbar-brand" src="/images/chowhound_brand.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +57,20 @@
 
 <!-- Footer -->
 <footer th:fragment="footer">
+
+    <div class="navbar border-top align-items-center fixed-bottom">
+
+        <ul class="navbar-nav m-auto text-center" id="footer-nav">
+
+            <li class="nav-item">
+                <p>Chowhound © 2020</p>
+                <a th:href="@{/about}">About us</a>
+                <a href="https://github.com/Food-Truck-Finder" target="_blank"><i class="fa fa-github"></i></a>
+            </li>
+
+        </ul>
+
+    </div>
   
         <!-- Keys -->
         <script th:src="@{../../js/apiKeys.js}"></script>

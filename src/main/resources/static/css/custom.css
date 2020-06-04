@@ -215,6 +215,14 @@ li p {
     z-index: 5;
 }
 
+i {
+    font-size: 2rem;
+}
+
+.navbar{
+    background: #f9f8fa;
+}
+
 
 
 
