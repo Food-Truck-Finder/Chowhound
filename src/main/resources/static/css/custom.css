@@ -1,16 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-body {
-    /*background-image: url("/images/images.jpeg");*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
-    object-fit: contain;
-    position: relative;
-    overscroll-behavior: none;
-}
+/*.wrapper {*/
+/*    !*background-image: url("/images/chowhound-background.png");*!*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    !*background-size: cover;*!*/
+/*    background-attachment: fixed;*/
+/*    height: 100vh;*/
+/*    object-fit: contain;*/
+/*    position: relative;*/
+/*    overscroll-behavior: none;*/
+/*}*/
+
 
 .nav-logo {
     max-height: 100%;
@@ -209,6 +210,7 @@ li p {
     overflow: scroll;
 }
 
+
 .favImg {
     height: 18%;
     width: 18%;
@@ -223,6 +225,13 @@ i {
     background: #f9f8fa;
 }
 
+#homeTextCard {
+    color: black;
+}
 
+#homeBodyOverlay {
+    background-color: rgba(200, 203, 207, .40);
+    /*opacity: .25;*/
+}
 
 
