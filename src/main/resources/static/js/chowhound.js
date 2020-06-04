@@ -2,7 +2,7 @@
 
 /* Only runs filestack API logic if in a window that we have the upload button in */
 /* Doing this to avoid console errors and so it doesn't run when not needed */
-if ((window.location.href.indexOf("trucks") > -1) && (!($("#logoutButton")))) {
+if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index() > -1)) {
 
     const client = filestack.init(fileStackKey);
     const options = {
@@ -37,33 +37,86 @@ if ((window.location.href.indexOf("trucks") > -1) && (!($("#logoutButton")))) {
 
 /* Placeholder image logic */
 /* image will no longer show up if an image uploaded .isPrimary() */
-let numberOfTrucks = $("#mainTruckContainer").children().length;
-for (let i = 1; i <= numberOfTrucks; i++) {
-    if ($("#truck_" + i)) {
-        if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
-            && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === true)) {
-            let secondaryToPrimaryImage = $("#truck_" + i).children().children().children().children().children().first()[0].lastElementChild.currentSrc;
-            $("#truck" + i + "carousel").append(
-                "<div id=\"truck_" + i + "_primaryImg\" " +
-                "class=\"carousel-item active mainCarouselImage\">" +
-                "<img class=\"d-block w-100 cardImageFixed\" " +
-                "src=\"" + secondaryToPrimaryImage + "\"" +
-                "alt=\"temporaryImage\">" +
-                "</div>"
-            );
-            document.querySelector("#truck" + i + "carousel > div.carousel-item.secondaryCarouselImage").remove();
-        } else if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
-            && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === false)) {
-            $("#truck" + i + "carousel").append(
-                "<div id=\"truck_" + i + "_primaryImg\" " +
-                "class=\"carousel-item active mainCarouselImage\">" +
-                "<img class=\"d-block w-100 cardImageFixed\" " +
-                "src=\"../images/placeholderImg.png\" " +
-                "alt=\"placeholderImg\">" +
-                "</div>"
-            );
+if (window.location.href.indexOf("index") > -1) {
+    let numberOfTrucks = $("#mainTruckContainer").children().length;
+    for (let i = 1; i <= numberOfTrucks; i++) {
+        if ($("#truck_" + i)) {
+            if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === true)) {
+                let secondaryToPrimaryImage = $("#truck_" + i).children().children().children().children().children().first()[0].lastElementChild.currentSrc;
+                $("#truck" + i + "carousel").append(
+                    "<div id=\"truck_" + i + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"" + secondaryToPrimaryImage + "\"" +
+                    "alt=\"temporaryImage\">" +
+                    "</div>"
+                );
+                document.querySelector("#truck" + i + "carousel > div.carousel-item.secondaryCarouselImage").remove();
+            } else if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === false)) {
+                $("#truck" + i + "carousel").append(
+                    "<div id=\"truck_" + i + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"../images/placeholderImg.png\" " +
+                    "alt=\"placeholderImg\">" +
+                    "</div>"
+                );
+            }
         }
     }
+}
+
+/* Favorites & searched truck placeholder image handling */
+if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.indexOf("searchTerm") > -1)) {
+    function favoritesTruckIdGetter() {
+        let truckIdBucket = [];
+        let truckIdsToCheck = [];
+        let numberOfTrucks = $("#mainTruckContainer").children().length;
+        for (let i = 1; i < 1000; i++) {
+            if (document.querySelector("#truck_" + i)) {
+                truckIdsToCheck.push(i.toString());
+                if (truckIdsToCheck.length === numberOfTrucks) {
+                    truckIdBucket = truckIdsToCheck;
+                    console.log(truckIdBucket);
+                    break;
+                }
+            }
+        }
+        truckIdBucket.forEach(function (truck) {
+            favoritesTruckImageHandler(truck);
+        });
+    }
+
+    function favoritesTruckImageHandler(truckId) {
+        if ($("#truck_" + truckId)) {
+            if (($("#truck_" + truckId).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + truckId).children().children().children().children().children().hasClass("secondaryCarouselImage") === true)) {
+                let secondaryToPrimaryImage = $("#truck_" + truckId).children().children().children().children().children().first()[0].lastElementChild.currentSrc;
+                $("#truck" + truckId + "carousel").append(
+                    "<div id=\"truck_" + truckId + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"" + secondaryToPrimaryImage + "\"" +
+                    "alt=\"temporaryImage\">" +
+                    "</div>"
+                );
+                document.querySelector("#truck" + truckId + "carousel > div.carousel-item.secondaryCarouselImage").remove();
+            } else if (($("#truck_" + truckId).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + truckId).children().children().children().children().children().hasClass("secondaryCarouselImage") === false)) {
+                $("#truck" + truckId + "carousel").append(
+                    "<div id=\"truck_" + truckId + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"../images/placeholderImg.png\" " +
+                    "alt=\"placeholderImg\">" +
+                    "</div>"
+                );
+            }
+        }
+    }
+    favoritesTruckIdGetter();
 }
 
 /* NEW TRUCK EVENT TO SHOW AND HIDE ADDITIONAL INFO */
