@@ -5,11 +5,17 @@
 <div th:fragment="head">
     <meta charset="UTF-8"/>
 
+    <!-- font awesome CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap CSS-->
     <link th:href="@{../../css/bootstrap.css}" rel="stylesheet">
 
     <!-- Custom CSS-->
     <link th:href="@{../../css/custom.css}" rel="stylesheet">
+
+    <!-- Error Page CSS-->
+    <link th:href="@{../../css/error.css}" rel="stylesheet">
 </div>
 <body>
 <!-- This is my standard navbar-->
@@ -25,7 +31,7 @@
 <!--            <li class="nav-item"><a class="nav-link" href="/index">Find some chow</a></li>-->
             <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/trucks/create">Add a
                 Truck</a></li>
-            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/trucks/my_favorites">My
+            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/favorites">My
                 trucks</a></li>
             <!--            <li class="nav-item"><a class="nav-link" href="/welcome">Welcome</a></li>-->
         </ul>
@@ -49,11 +55,9 @@
     </div>
 </nav>
 
-
-
 <!-- Footer -->
 <footer th:fragment="footer">
-
+  
         <!-- Keys -->
         <script th:src="@{../../js/apiKeys.js}"></script>
         <!-- JQuery -->

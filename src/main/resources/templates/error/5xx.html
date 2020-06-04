@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="partials/partials :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<div class="container p-5 text-center">
+    <br>
+    <h1>Something went wrong!!</h1>
+    <h3>You're never gonna believe this, but there was this cat, and, and...sorry!</h3>
+    <a class="btn btn-success" href="/index">But you can find your way home here.</a>
+    <br>
+    <img width="95%" id="errorImg" src="" alt="dog in cone">
+
+
+</div>
+
+<script>
+
+    let random = Math.ceil(Math.random() * 4);
+    let errorImg = document.getElementById("errorImg");
+    errorImg.src = "../../images/error_" + random + ".jpg";
+
+</script>
+</body>
+</html>

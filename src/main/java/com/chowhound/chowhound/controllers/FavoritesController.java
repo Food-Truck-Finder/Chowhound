@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,6 +32,21 @@ public class FavoritesController {
         this.imageRepo = imageRepo;
         this.cuisineRepo = cuisineRepo;
         this.sortTrucksService = sortTrucksService;
+    }
+
+    //mapping to show list of user's favorite trucks
+    @GetMapping("/favorites")
+    public String showUsersFavoriteTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "") String searchTerm) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Truck> usersFavs = truckRepo.findAllByFavoritedUsersEquals(loggedInUser);
+
+//        for (Truck fav : usersFavs) {
+//            System.out.println(fav.getName());
+//        }
+        usersFavs = sortTrucksService.sortTrucks(usersFavs, sortType);
+        model.addAttribute("favorites", usersFavs);
+        model.addAttribute("trucks", usersFavs);
+        return "index";
     }
 
     //mapping to add a truck to user's favorite list

@@ -172,6 +172,17 @@ li p {
     transform: scale(1.5);
 }
 
+.reviews {
+    border: grey 1px solid;
+    max-height: 175px;
+    overflow: scroll;
+}
+
+.favImg {
+    height: 18%;
+    width: 18%;
+}
+
 
 
 

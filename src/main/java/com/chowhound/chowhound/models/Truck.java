@@ -1,6 +1,7 @@
 package com.chowhound.chowhound.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -47,13 +48,21 @@ public class Truck {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isVerified;
 
+    @Column
+    private String instagram;
+
+    @Column
+    private String facebook;
+
+    @Column
+    private String twitter;
+
+    @Column
+    private Date dateAdded;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-//    SELECT *
-//    FROM  trucks AS t
-//    JOIN users AS u ON t.user_id = u.id;
 
     // relationship for images
     @OneToMany(mappedBy = "truck")
@@ -201,4 +210,19 @@ public class Truck {
         return reviews.stream().mapToInt(Review::getStars).average().orElse(0);
     }
 
+    public String getInstagram() { return instagram; }
+
+    public void setInstagram(String instagram) { this.instagram = instagram; }
+
+    public String getFacebook() { return facebook; }
+
+    public void setFacebook(String facebook) { this.facebook = facebook; }
+
+    public String getTwitter() { return twitter; }
+
+    public void setTwitter(String twitter) { this.twitter = twitter; }
+
+    public Date getDateAdded() { return dateAdded; }
+
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
 }

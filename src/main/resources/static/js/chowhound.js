@@ -1,4 +1,5 @@
 "use strict";
+
 $(document).ready(function () {
 
     /* Only runs filestack API logic if in a window that we have the upload button in */
@@ -39,13 +40,15 @@ $(document).ready(function () {
     /* NEW TRUCK EVENT TO SHOW AND HIDE ADDITIONAL INFO */
     function showOwnerRegisterInfo() {
         $("#ownerEmail").removeClass("hidden");
+        $("#primaryImg").addClass("hidden");
         $("#ownerPhoneNumber").removeClass("hidden");
         $("#ownerTwitterUrl").removeClass("hidden");
         $("#ownerFacebookUrl").removeClass("hidden");
         $("#ownerInstagramUrl").removeClass("hidden");
     }
 
-    function hideOwnerRegistrationInfo() {
+function hideOwnerRegistrationInfo() {
+        $("#primaryImg").addClass("hidden");
         $("#ownerEmail").addClass("hidden");
         $("#ownerPhoneNumber").addClass("hidden");
         $("#ownerTwitterUrl").addClass("hidden");
