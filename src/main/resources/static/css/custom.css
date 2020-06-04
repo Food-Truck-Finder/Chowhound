@@ -225,13 +225,7 @@ i {
     background: #f9f8fa;
 }
 
-#homeTextCard {
-    color: black;
+#homeBody {
+    opacity: 50;
 }
-
-#homeBodyOverlay {
-    background-color: rgba(200, 203, 207, .40);
-    /*opacity: .25;*/
-}
-
 
