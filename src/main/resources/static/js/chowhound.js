@@ -37,32 +37,6 @@ $(document).ready(function () {
         }
     }
 
-    /* NEW TRUCK EVENT TO SHOW AND HIDE ADDITIONAL INFO */
-    function showOwnerRegisterInfo() {
-        $("#ownerEmail").removeClass("hidden");
-        $("#primaryImg").addClass("hidden");
-        $("#ownerPhoneNumber").removeClass("hidden");
-        $("#ownerTwitterUrl").removeClass("hidden");
-        $("#ownerFacebookUrl").removeClass("hidden");
-        $("#ownerInstagramUrl").removeClass("hidden");
-    }
-
-function hideOwnerRegistrationInfo() {
-        $("#primaryImg").addClass("hidden");
-        $("#ownerEmail").addClass("hidden");
-        $("#ownerPhoneNumber").addClass("hidden");
-        $("#ownerTwitterUrl").addClass("hidden");
-        $("#ownerFacebookUrl").addClass("hidden");
-        $("#ownerInstagramUrl").addClass("hidden");
-    }
-
-    /* TRUCK VIEW EVENT TO HIDE UPLOAD PIC & SHOW SAVE BUTTON */
-    function showSaveButtonAndHideUpload() {
-        $("#truckImageAddPictureButton").addClass("hidden");
-        $("#saveImg").removeClass("hidden");
-    }
-
-
     /* Placeholder image logic */
     /* image will no longer show up if an image uploaded .isPrimary() */
     let numberOfTrucks = $("#mainTruckContainer").children().length;
@@ -94,6 +68,29 @@ function hideOwnerRegistrationInfo() {
         }
     }
 });
+
+/* NEW TRUCK EVENT TO SHOW AND HIDE ADDITIONAL INFO */
+function showOwnerRegisterInfo() {
+    $("#primaryImg").removeClass("hidden");
+    $("#ownerPhoneNumber").removeClass("hidden");
+    $("#ownerTwitterUrl").removeClass("hidden");
+    $("#ownerFacebookUrl").removeClass("hidden");
+    $("#ownerInstagramUrl").removeClass("hidden");
+}
+
+function hideOwnerRegistrationInfo() {
+    $("#primaryImg").addClass("hidden");
+    $("#ownerPhoneNumber").addClass("hidden");
+    $("#ownerTwitterUrl").addClass("hidden");
+    $("#ownerFacebookUrl").addClass("hidden");
+    $("#ownerInstagramUrl").addClass("hidden");
+}
+
+/* TRUCK VIEW EVENT TO HIDE UPLOAD PIC & SHOW SAVE BUTTON */
+function showSaveButtonAndHideUpload() {
+    $("#truckImageAddPictureButton").addClass("hidden");
+    $("#saveImg").removeClass("hidden");
+}
 
 
 
