@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/user/update", // only authenticated users can create trucks
                         "/truck/{id}", // only authenticated users can edit trucks
-                        "/truck/delete/{id}", // only authenticated users can delete trucks
+                        "/truck/{id}/edit", // only authenticated users can delete trucks
                         "/truck/create" // only authenticated users can create trucks
                 )
                 .authenticated()

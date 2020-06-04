@@ -49,10 +49,6 @@ public class TruckController {
             favorites = user.getFavoriteTrucks();
         }
 
-//        if (user != null) {
-//            favorites = user.getFavoriteTrucks();
-//        }
-
         List<Truck> trucks = truckRepo.findAllBySearchTerm(searchTerm);
         if (!searchTerm.equals("")) {
             model.addAttribute("searchTerm", searchTerm);
@@ -128,17 +124,25 @@ public class TruckController {
                 images.remove(primary);
             }
         }
+
+        if (imageUrl.equals("")) {
+            newTruckImage.setPath("https://user-images.githubusercontent.com/13071055/45196982-c7bd6100-b213-11e8-90c9-8c9cdee8717f.png");
+        } else {
+            newTruckImage.setPath(imageUrl);
+        }
+
+
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userRepo.getOne(user.getId());
 
         Date date = new Date();
-        newTruckImage.setPath(imageUrl);
         newTruckImage.setPrimary(true);
         newTruckImage.setUser(user);
         newTruckImage.setTruck(truck);
         newTruckImage.setDatestamp(new java.sql.Date(date.getTime()));
         images.add(newTruckImage);
 
+        truck.setDateAdded(new java.sql.Date(date.getTime()));
         truck.setImages(images);
         cuisines.toString();
         truck.setCuisines(cuisines);
@@ -206,7 +210,81 @@ public class TruckController {
         return "redirect:/trucks/" + truckId;
     }
 
+    @GetMapping("/trucks/{id}/edit")
+    public String getTruckUpdateView(
+            Model model,
+            @PathVariable("id") long truckId,
+            @ModelAttribute Truck truck
+    ){
+        model.addAttribute("cuisineOptions", cuisineRepo.findAllByIsPrimaryIsTrue());
+        model.addAttribute("truck", truckRepo.getOne(truckId));
+        return "/trucks/update";
+    }
 
+    @PostMapping("trucks/{id}/edit")
+    public String updateTruckInfo(
+            @ModelAttribute Truck truck,
+            @RequestParam List<Cuisine> cuisines,
+            @RequestParam String newCuisine,
+            @RequestParam(value = "imageURL") String imageUrl,
+            Model model){
+
+        Image newTruckImage = new Image();
+        List<Image> images = new ArrayList<>();
+
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        truck.setUser(user);
+
+        //adds a custom cuisine if one is added
+        Cuisine newCustomCuisine = null;
+        if (!newCuisine.equals("")) {
+            try {
+                newCustomCuisine = cuisineRepo.findCuisineByCategoryContaining(newCuisine);
+                cuisines.add(newCustomCuisine);
+            } catch (Exception e) {
+                newCustomCuisine = new Cuisine();
+                newCustomCuisine.setCategory(newCuisine);
+                newCustomCuisine = cuisineRepo.save(newCustomCuisine);
+                cuisines.add(newCustomCuisine);
+            }
+        }
+
+//        handles adding or changing a primary image
+        if (!imageUrl.equals("")) {
+            if (truck.getImages() != null) {
+                images = truck.getImages();
+                int primary = -1;
+                for (Image image : images) {
+                    if (image.isPrimary()) {
+                        primary = images.indexOf(image);
+                    }
+                }
+                if (primary != -1) {
+                    images.remove(primary);
+                }
+            }
+            Date date = new Date();
+            newTruckImage.setPath(imageUrl);
+            newTruckImage.setPrimary(true);
+            newTruckImage.setUser(truck.getUser());
+            newTruckImage.setTruck(truck);
+            newTruckImage.setDatestamp(new java.sql.Date(date.getTime()));
+            images.add(newTruckImage);
+        }
+
+        truck.setImages(images);
+//        cuisines.toString();
+        truck.setCuisines(cuisines);
+        truckRepo.save(truck);
+        if (newTruckImage.getPath() != null) {
+            imageRepo.save(newTruckImage);
+        }
+        truck = truckRepo.save(truck);
+
+        model.addAttribute("truck", truck);
+
+        return "redirect:/trucks/" + truck.getId();
+    }
 
 }
 

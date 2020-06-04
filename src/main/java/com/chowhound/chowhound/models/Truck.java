@@ -1,6 +1,7 @@
 package com.chowhound.chowhound.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -55,6 +56,9 @@ public class Truck {
 
     @Column
     private String twitter;
+
+    @Column
+    private Date dateAdded;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -217,4 +221,8 @@ public class Truck {
     public String getTwitter() { return twitter; }
 
     public void setTwitter(String twitter) { this.twitter = twitter; }
+
+    public Date getDateAdded() { return dateAdded; }
+
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
 }

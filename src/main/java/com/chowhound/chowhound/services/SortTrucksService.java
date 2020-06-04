@@ -26,6 +26,13 @@ public class SortTrucksService {
                 trucks.sort((Truck t1, Truck t2) -> t1.getName().compareToIgnoreCase(t2.getName()));
                 Collections.reverse(trucks);
                 break;
+            case "newest":
+                trucks.sort(Comparator.comparing(Truck::getDateAdded));
+                Collections.reverse(trucks);
+                break;
+            case "oldest":
+                trucks.sort(Comparator.comparing(Truck::getDateAdded));
+                break;
             default:
                 break;
         }

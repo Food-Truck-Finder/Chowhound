@@ -8,14 +8,12 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
 <div class="container main-cont">
-    <h1>Add a truck!</h1>
+    <h1>Change your truck's info!</h1>
     <div th:if="${param.error}">
         Chowhound already knows this truck.
     </div>
-    <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
+    <form th:action="@{'/trucks/' + ${truck.id} + '/edit'}" method="POST" th:object="${truck}">
         <div class="form-group">
-<!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
-<!--            <label for="username"><strong>Truck's name:</strong></label>-->
             <input placeholder="Truck name" class="form-control" id="username" th:field="*{name}" required/>
 
             <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
@@ -35,32 +33,28 @@
             <label for="cuisines">Choose cuisines:</label>
             <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple required>
 
-                <option th:each="option : ${cuisineOptions}" th:value="${option.id}"><span th:text="${option.category}" th:remove="tag"></span></option>
+                <option th:each="option : ${cuisineOptions}" th:value="${option.id}">
+                    <span th:text="${option.category}" th:remove="tag"></span></option>
 
             </select>
 
             <label for="addCuisine">Add your own cuisine:</label>
             <input class="form-control" id="addCuisine" placeholder="*Optional*" name="newCuisine" type="text">
-
-            <label for="ownerCheckbox">Do you own this truck?</label>
-            <!-- Checkbox -->
-            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" value="true" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
-            <input id='ownerHidden' type='hidden' value='false' name='owner'>
-            <!-- Owner Additional Info -->
-<!--            <input id="ownerEmail" class="hidden form-control" placeholder="Email Address" type="email">-->
-            <input id="ownerPhoneNumber" class="hidden form-control" placeholder="Phone Number" type="tel" th:field="*{phoneNumber}">
-            <input id="ownerTwitterUrl"  class="hidden form-control" placeholder="Twitter URL" type="url" th:field="*{twitter}">
-            <input id="ownerFacebookUrl" class="hidden form-control" placeholder="Facebook URL" type="url" th:field="*{facebook}">
-            <input id="ownerInstagramUrl" class="hidden form-control" placeholder="Instagram URL" type="url" th:field="*{instagram}">
-
+            <label for="ownerPhoneNumber">Contact Info:</label>
+            <input id="ownerPhoneNumber" class="form-control" placeholder="Phone Number" type="tel" th:field="*{phoneNumber}">
+            <input id="ownerTwitterUrl"  class="form-control" placeholder="Twitter URL" type="url" th:field="*{twitter}">
+            <input id="ownerFacebookUrl" class="form-control" placeholder="Facebook URL" type="url" th:field="*{facebook}">
+            <input id="ownerInstagramUrl" class="form-control" placeholder="Instagram URL" type="url" th:field="*{instagram}">
+            <input type="hidden" th:field="*{user}">
+            <input type="hidden" th:field="*{dateAdded}">
 
             <br>
-            <div class="hidden" id="primaryImg">
+            <div id="primaryImg">
                 <div class="box">
                     <form id="pick-form">
                         <div class="field">
                             <div class="control">
-                                <button class="btn btn-success" type="button" id="picker">Upload a picture</button>
+                                <button class="btn btn-success" type="button" id="picker">Change your primary picture</button>
                                 <input type="hidden" id="fileupload">
 
                             </div>
@@ -70,7 +64,11 @@
             </div>
             <input type="hidden" id="imageURL" name="imageURL">
             <br>
-            <button class="btn btn-success" type="submit">Mark it dude!</button>
+            <button class="btn btn-success" type="submit">Groom your truck!</button>
+            <button class="btn btn-warning btn-sm" style="color: white" type="submit"
+                    formmethod="get"
+                    th:formaction="'/posts/'+${truck.id}">Oops...Nevermind
+            </button>
         </div>
     </form>
     <br>

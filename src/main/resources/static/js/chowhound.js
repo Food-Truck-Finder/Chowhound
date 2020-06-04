@@ -34,7 +34,7 @@ function updateForm(result) {
 }
 
 function showOwnerRegisterInfo() {
-        $("#ownerEmail").removeClass("hidden");
+        $("#primaryImg").removeClass("hidden");
         $("#ownerPhoneNumber").removeClass("hidden");
         $("#ownerTwitterUrl").removeClass("hidden");
         $("#ownerFacebookUrl").removeClass("hidden");
@@ -42,7 +42,7 @@ function showOwnerRegisterInfo() {
 }
 
 function hideOwnerRegistrationInfo() {
-        $("#ownerEmail").addClass("hidden");
+        $("#primaryImg").addClass("hidden");
         $("#ownerPhoneNumber").addClass("hidden");
         $("#ownerTwitterUrl").addClass("hidden");
         $("#ownerFacebookUrl").addClass("hidden");
