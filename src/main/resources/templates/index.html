@@ -33,7 +33,7 @@
                             <div th:id="'truck_' + ${truck.id} + '_primaryImage'" class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"  th:each="image : ${truck.images}">
                                 <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
-                            <div class="carousel-item" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
+                            <div class="carousel-item secondaryCarouselImage" th:unless="${image.isPrimary() == true}" th:each="image : ${truck.images}">
                                 <img class="d-block w-100 cardImageFixed" th:src="${image.path}" alt="Image">
                             </div>
                         </div>

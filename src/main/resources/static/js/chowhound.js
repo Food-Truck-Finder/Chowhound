@@ -59,24 +59,37 @@ $(document).ready(function () {
         $("#saveImg").removeClass("hidden");
     }
 
+
     /* Placeholder image logic */
     /* image will no longer show up if an image uploaded .isPrimary() */
     let numberOfTrucks = $("#mainTruckContainer").children().length;
     for (let i = 1; i <= numberOfTrucks; i++) {
         if ($("#truck_" + i)) {
-            if ($("#truck_" + i).children().children().children().children().children().hasClass("active") === false) {
+            if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === true)) {
+                let secondaryToPrimaryImage = $("#truck_" + i).children().children().children().children().children().first()[0].lastElementChild.currentSrc;
                 $("#truck" + i + "carousel").append(
-                    '<div id="' + 'truck_' + i + '_primaryImg" ' +
-                    'class="' + 'carousel-item active mainCarouselImage">' +
-                    '<img class="' + 'd-block w-100 cardImageFixed" ' +
-                    'src="' + '../images/placeholderImg.png" ' +
-                    'alt="' + 'placeholderImg">' +
-                    '</div>'
+                    "<div id=\"truck_" + i + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"" + secondaryToPrimaryImage + "\"" +
+                    "alt=\"temporaryImage\">" +
+                    "</div>"
+                );
+                document.querySelector("#truck" + i + "carousel > div.carousel-item.secondaryCarouselImage").remove();
+            } else if (($("#truck_" + i).children().children().children().children().children().hasClass("active") === false)
+                && ($("#truck_" + i).children().children().children().children().children().hasClass("secondaryCarouselImage") === false)) {
+                $("#truck" + i + "carousel").append(
+                    "<div id=\"truck_" + i + "_primaryImg\" " +
+                    "class=\"carousel-item active mainCarouselImage\">" +
+                    "<img class=\"d-block w-100 cardImageFixed\" " +
+                    "src=\"../images/placeholderImg.png\" " +
+                    "alt=\"placeholderImg\">" +
+                    "</div>"
                 );
             }
         }
     }
-
 });
 
 
