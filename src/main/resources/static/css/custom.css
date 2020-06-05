@@ -12,6 +12,21 @@
 /*    overscroll-behavior: none;*/
 /*}*/
 
+.bg {
+    position: absolute;
+    z-index: -1;
+    background-image: url("/images/fastfood bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bgImg{
+    position: center;
+    background-size: cover;
+    opacity: .65;
+}
+
 
 .nav-logo {
     max-height: 100%;
@@ -33,7 +48,7 @@ image {
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     background: #eee;
-    opacity: .85;
+    /*opacity: .85;*/
     z-index: 0;
 }
 
@@ -212,13 +227,17 @@ li p {
 
 
 .favImg {
-    height: 18%;
-    width: 18%;
+    height: 2rem;
+    width: 2rem;
     z-index: 5;
+    margin-left: auto;
 }
 
-i {
+.fa {
     font-size: 2rem;
+    margin-left: 8px;
+    margin-right: 8px;
+    color: #5a6268;
 }
 
 .navbar{
@@ -234,4 +253,7 @@ i {
     /*opacity: .25;*/
 }
 
+#droparrow{
+    font-size: 1rem;
+}
 
