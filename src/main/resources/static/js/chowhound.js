@@ -2,7 +2,7 @@
 
 /* Only runs filestack API logic if in a window that we have the upload button in */
 /* Doing this to avoid console errors and so it doesn't run when not needed */
-if ((window.location.href.indexOf("trucks") > -1) && (!($("#logoutButton")))) {
+if (window.location.href.indexOf("trucks") > -1) {
 
     const client = filestack.init(fileStackKey);
     const options = {

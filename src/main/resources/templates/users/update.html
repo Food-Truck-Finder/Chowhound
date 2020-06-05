@@ -20,7 +20,7 @@
         <label for="password">Password</label>
         <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
         <br>
-        <input value="Save Changes!" type="submit"/>
+        <input class="btn btn-success" value="Save Changes!" type="submit"/><a class="btn btn-danger" th:href="@{/index}"><-Back</a>
     </form>
     <br>
 </div>
