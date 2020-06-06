@@ -262,3 +262,7 @@ li p {
 }
 
 /*>>>>>>> 38325ce14be5a680f44025497929a096487ac161*/
+
+#navbarSupportedContent {
+    width: 500px;
+}
