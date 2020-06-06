@@ -6,9 +6,18 @@
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
+
+<div class="bg">
+<br>
+<!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
+
+
 <div class="container main-cont text-center">
-    <br>
-    <h2>Lets sniff out some trucks!</h2>
+
+
+<br>
+    <img src="images/chowhound-sniffvector1.png" class="img-fluid d-inline-block" alt="Responsive image">
+    <h2></h2>
     <form action="">
         <label for="sort">Sort by:</label>
         <select id="sort" name="sortType">
@@ -23,9 +32,11 @@
         <input id="searchSubmit" type="submit">
     </form>
     <hr/>
+
+
 </div>
 
-<div class="container align-items-center overflow-auto">
+<div class="container align-items-center overflow-auto mb-5 pb-5">
 
     <div id="mainTruckContainer" class="row">
         <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3 height-100" th:each="truck : ${trucks}">
@@ -43,7 +54,7 @@
                 <!-- Card Image handling -->
                 <div class="card-img-top">
                     <div th:id="'carouselControls' + ${truck.id}" class="carousel slide" data-interval="false">
-                        <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner">
+                        <div th:id="'truck' + ${truck.id} + 'carousel'" class="carousel-inner position-relative">
                             <div th:id="'truck_' + ${truck.id} + '_primaryImage'"
                                  class="carousel-item active mainCarouselImage" th:if="${image.isPrimary() == true}"
                                  th:each="image : ${truck.images}">
@@ -68,14 +79,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body rounded">
                     <!-- Truck Description -->
                     <p class="card-text text-left">Description: [[${truck.description}]]</p>
                     <!--  Cuisines handling -->
                     <h6 class="card-header">
                         <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
                            aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
-                            <i class="fa fa-chevron-down pull-right"></i>
+                            <i class="fa fa-chevron-down pull-right" id="droparrow"></i>
                             Cuisines
                         </a>
                     </h6>
@@ -94,7 +105,7 @@
                     <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
                 </div>
                 <!-- truck info handling -->
-                <button type="button" class="btn btn-info" data-toggle="modal"
+                <button type="button" class="btn btn-secondary" data-toggle="modal"
                         th:data-target="'#truckModal' + ${truck.id}">
                     <span>Contact </span><span th:text="${truck.name}"></span>
                 </button>
@@ -103,7 +114,7 @@
             <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content text-center">
                         <div class="modal-header">
                             <span><h4 class="text-left">[[${truck.name}]]</h4></span>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -139,6 +150,13 @@
                                     [[${truck.phoneNumber}]]
                                 </div>
                             </div>
+                            <div>
+                            <div id="contact" class="socialMedia text-center mt-3 pt-3 border-top" th:if="${truck.twitter} != null or ${truck.instagram} != null or ${truck.facebook} != null">
+                                <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i class="fa fa-twitter"> </i></a>
+                                <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i class="fa fa-instagram"> </i></a>
+                                <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i class="fa fa-facebook"> </i></a>
+                            </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -149,6 +167,8 @@
         </div>
     </div>
 </div>
+</div>
+
 
 <footer th:replace="partials/partials :: footer"></footer>
 

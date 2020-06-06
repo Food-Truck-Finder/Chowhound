@@ -7,18 +7,41 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="container main-cont">
+<div class="container main-cont text-center mt-3">
     <br>
-    <h3><a th:text="${truck.name}" href="/index"></a></h3>
+    <h2 th:text="${truck.name}"></h2>
+    <a class="btn btn-secondary" href="/index"><-Back</a>
+    <br>
     <div class="container">
-        <p th:text="${truck.description}"></p>
+        <h5 for="description">Description:</h5>
+        <p id="description" th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
             <img th:id="'imageNumber' + ${image.id}" class="truckImage" th:src="${image.path}"/>
         </div>
-
-
-        <div class="container reviews my-4">
-            <div class="container" th:each="review : ${truck.reviews}"> Reviews:
+        <br>
+        <div id="truckImageAddPictureButton" sec:authorize="isAuthenticated()" class="container-fluid">
+            <div class="box">
+                <form id="pick-form">
+                    <div class="field">
+                        <div class="control">
+                            <button sec:authorize="isAuthenticated()" class="btn btn-secondary" type="button"
+                                    id="picker">
+                                Add a picture
+                            </button>
+                            <input type="hidden" id="fileupload">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
+            <input type="hidden" id="imageURL" name="imageURL">
+            <button class="btn btn-sm btn-secondary hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
+        </form>
+        <br>
+        <p>Reviews:</p>
+        <div th:if="${truck.reviews} != null" class="container reviews my-4">
+            <div class="container" th:each="review : ${truck.reviews}">
                 <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
                 <p th:text="${review.reviewText}"></p>
                 <p th:text="${review.stars}"></p>
@@ -27,69 +50,68 @@
             </div>
         </div>
 
+        <div class="d-inline-flex mb-3">
+
+            <div sec:authorize="isAuthenticated()" th:if="${truck.user.id} == ${user.id}">
+                <form>
+                    <button style="color: white" class="btn btn-secondary"
+                            th:formaction="'/trucks/' + ${truck.id} + '/edit'"
+                            th:formmethod="get" th:href="@{'/trucks/' + ${truck.id} + '/edit'}" value="Edit Truck">
+                        <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd"
+                                  d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+                        Edit your truck
+                    </button>
+                </form>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
+                <a style="color: white" class="btn btn-secondary" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
+                    favorites</a>
+            </div>
+            <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
+                <a class="btn btn-secondary" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <a class="btn btn-secondary" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
+            </div>
+            <br>
+        </div>
+
+
         <p>Fetch the owner:
             <span> 
-              <a th:if="${truck.user} != null" th:text="${truck.user.email}" th:href="@{|mailto:${truck.user.email}|}"></a>
+              <a th:if="${truck.user} != null" th:text="${truck.user.email}"
+                 th:href="@{|mailto:${truck.user.email}|}"></a>
             </span>
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
         </p>
+        <p>Tel #: <p th:text="${truck.phoneNumber}"></p></p>
 
-        <div class="socialMedia">
-            <a th:if="${truck.twitter} != null" th:href="${truck.twitter}"><i class="fa fa-twitter"></i></a>
-            <a th:if="${truck.instagram} != null" th:href="${truck.instagram}"><i class="fa fa-instagram"></i></a>
-            <a th:if="${truck.facebook} != null" th:href="${truck.twitter}"><i class="fa fa-facebook"></i></a>
+        <div id="contact" class="socialMedia">
+            <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i class="fa fa-twitter"> </i></a>
+            <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i class="fa fa-instagram"> </i></a>
+            <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i class="fa fa-facebook"> </i></a>
         </div>
 
-        <p>
-        <div id="truckImageAddPictureButton" sec:authorize="isAuthenticated()" class="container-fluid">
-            <div class="box">
-                <form id="pick-form">
-                    <div class="field">
-                        <div class="control">
-                            <button sec:authorize="isAuthenticated()" class="btn btn-success" type="button" id="picker">Add a picture</button>
-                            <input type="hidden" id="fileupload">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        </p>
+        <br>
+
+
+
 
     </div>
 
-    <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
-        <input type="hidden" id="imageURL" name="imageURL">
-        <button class="btn btn-sm btn-success hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
-    </form>
 
-    <div sec:authorize="isAuthenticated()" th:if="${truck.user.id} == ${user.id}">
-        <form>
-            <button style="color: white" class="btn btn-warning btn-sm"
-                    th:formaction="'/trucks/' + ${truck.id} + '/edit'"
-                    th:formmethod="get" th:href="@{'/trucks/' + ${truck.id} + '/edit'}" value="Edit Post">
-                <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd"
-                          d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
-                          clip-rule="evenodd"/>
-                </svg>
-                Edit your truck
-            </button>
-        </form>
-    </div>
 
-    <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
-        <a class="btn btn-warning btn-sm" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
-            favorites</a>
-    </div>
-    <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
-        <a class="btn btn-success btn-sm" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
-    </div>
-    <div sec:authorize="isAuthenticated()">
-        <a class="btn btn-success btn-sm" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
-    </div>
+
     <br>
+
+
+
 </div>
 
 <footer th:replace="partials/partials :: footer"></footer>
