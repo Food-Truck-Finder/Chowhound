@@ -24,7 +24,7 @@ function initMap() {
                 icon: image
             });
 
-            for (var i = 1; i < Object.entries($(".addressjs")).length - 1; i++) {
+            for (var i = 0; i < Object.entries($(".addressjs")).length - 1; i++) {
                 geo(i);
             }
         }, function () {
@@ -47,7 +47,7 @@ function geo(i) {
                 '<div id="bodyContent">' +
                 '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
                 '<p>' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
-                '<p><a href="http://localhost:8080/trucks/' + i + '">' +
+                '<p><a href="http://localhost:8080/trucks/' + (i + 1) + '">' +
                 'Visit truck</a> ' +
                 '</p>' +
                 '</div>' +
