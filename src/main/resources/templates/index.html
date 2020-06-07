@@ -3,14 +3,26 @@
 <head>
     <title>Chowhound trucks</title>
     <div th:replace="partials/partials :: head"></div>
+    <style>
+        #map {
+            height: 60%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
 <div class="bg"></div>
+<div id="map"></div>
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
 
 <div class="container main-cont text-center mt-3">
+
     <br>
     <h2>Lets sniff out some trucks!</h2>
     <form action="">
@@ -74,7 +86,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Truck Description -->
-                    <p class="card-text text-left">Description: [[${truck.description}]]</p>
+                    <p class="card-text text-left descjs">Description: [[${truck.description}]]</p>
                     <!--  Cuisines handling -->
                     <h6 class="card-header">
                         <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
@@ -109,7 +121,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content text-center">
                         <div class="modal-header">
-                            <span><h4 class="text-left">[[${truck.name}]]</h4></span>
+                            <span><h4 class="text-left namejs">[[${truck.name}]]</h4></span>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -119,7 +131,7 @@
                                 <h5>Address</h5>
                                 <li class="list-group-item">
 
-                                    <p th:text="${truck.address}"></p>
+                                    <p th:class="addressjs" th:text="${truck.address}"></p>
                                     <p>
                                         <span th:text="${truck.city}"></span><span>, </span>
                                         <span th:text="${truck.state}"></span><span>  </span>
@@ -144,11 +156,11 @@
                                 </div>
                             </div>
                             <div>
-                            <div id="contact" class="socialMedia text-center mt-3 pt-3 border-top" th:if="${truck.twitter} != null or ${truck.instagram} != null or ${truck.facebook} != null">
-                                <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i class="fa fa-twitter"> </i></a>
-                                <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i class="fa fa-instagram"> </i></a>
-                                <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i class="fa fa-facebook"> </i></a>
-                            </div>
+                                <div id="contact" class="socialMedia text-center mt-3 pt-3 border-top" th:if="${truck.twitter} != null or ${truck.instagram} != null or ${truck.facebook} != null">
+                                    <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i class="fa fa-twitter"> </i></a>
+                                    <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i class="fa fa-instagram"> </i></a>
+                                    <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i class="fa fa-facebook"> </i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -163,5 +175,9 @@
 
 <footer th:replace="partials/partials :: footer"></footer>
 
+<script src="js/index.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap">
+</script>
 </body>
 </html>
