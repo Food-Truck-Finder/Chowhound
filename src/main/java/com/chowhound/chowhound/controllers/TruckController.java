@@ -222,7 +222,7 @@ public class TruckController {
     ){
         model.addAttribute("cuisineOptions", cuisineRepo.findAllByIsPrimaryIsTrue());
         model.addAttribute("truck", truckRepo.getOne(truckId));
-        return "/trucks/edit";
+        return "trucks/edit";
     }
 
     @PostMapping("trucks/{id}/edit")
