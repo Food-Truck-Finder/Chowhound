@@ -38,7 +38,8 @@ if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index()
 
 /* Placeholder image logic */
 /* image will no longer show up if an image uploaded .isPrimary() */
-if (window.location.href.indexOf("index") > -1) {
+if ((window.location.href.indexOf(".rocks") > -1) || (window.location.href.indexOf("index") > -1)) {
+    // if (window.location.href.indexOf("index") > -1) {
     let numberOfTrucks = $("#mainTruckContainer").children().length;
     for (let i = 1; i <= numberOfTrucks; i++) {
         if ($("#truck_" + i)) {
