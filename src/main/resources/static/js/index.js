@@ -1,4 +1,6 @@
-var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+var flag = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+var truck = '../images/chowhound-finalfinalcolor (1).png';
+var infoWindowIsOpen = false;
 var infoWindow;
 
 // prompt for user location, center map, add markers
@@ -21,12 +23,14 @@ function initMap() {
                 map: map,
                 position: pos,
                 animation: google.maps.Animation.DROP,
-                icon: image
+                icon: flag,
+                zIndex: 7
             });
 
             for (var i = 0; i < Object.entries($(".addressjs")).length - 1; i++) {
                 geo(i);
             }
+
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -43,12 +47,14 @@ function geo(i) {
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<h1 id="firstHeading" class="firstHeading">' + Object.entries($(".namejs"))[i][1].innerHTML + '</h1>' +
+                '<h1 id="firstHeading" class="firstHeading text-center">' + Object.entries($(".namejs"))[i][1].innerHTML + '</h1>' +
+                '<form class="text-center" action="http://localhost:8080/trucks/' + (i + 1) + '">' +
+                '<input type="submit" value="Visit Truck" class="btn btn-info"/>' +
+                '</form>' +
+                '<br/>' +
                 '<div id="bodyContent">' +
-                '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
                 '<p>' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
-                '<p><a href="http://localhost:8080/trucks/' + (i + 1) + '">' +
-                'Visit truck</a> ' +
+                '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
                 '</p>' +
                 '</div>' +
                 '</div>';
@@ -58,11 +64,19 @@ function geo(i) {
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
-                animation: google.maps.Animation.DROP
+                animation: google.maps.Animation.DROP,
+                icon: truck,
+                zIndex: 5
             });
+
             marker.addListener('click', function () {
                 infowindow.open(map, marker);
             });
+            map.addListener('click', function () {
+                infowindow.close();
+            });
+
+
         }
     });
 }
