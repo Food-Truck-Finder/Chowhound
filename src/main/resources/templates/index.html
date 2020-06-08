@@ -20,8 +20,8 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div class="bg">
-  <div id="map"></div>
+
+<div id="map"></div>
 <br>
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
 
@@ -98,7 +98,7 @@
                     <!-- Truck Description -->
 
                     <p class="card-text text-left">Description: </p>
-                    <p class="card-text text-left text-truncate">[[${truck.description}]]</p>
+                    <p class="card-text text-left text-truncate descjs">[[${truck.description}]]</p>
 
                     <!--  Cuisines handling -->
                     <h6 class="card-header">
@@ -146,9 +146,9 @@
 
                                     <p th:class="addressjs" th:text="${truck.address}"></p>
                                     <p>
-                                        <span th:text="${truck.city}"></span><span>, </span>
-                                        <span th:text="${truck.state}"></span><span>  </span>
-                                        <span th:text="${truck.zipCode}"></span>
+                                        <span th:class="cityjs" th:text="${truck.city}"></span><span>, </span>
+                                        <span th:class="statejs" th:text="${truck.state}"></span><span>  </span>
+                                        <span th:class="zipjs" th:text="${truck.zipCode}"></span>
                                     </p>
                                 </li>
                             </ul>
@@ -184,7 +184,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 
