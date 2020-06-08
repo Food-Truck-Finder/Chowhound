@@ -111,12 +111,12 @@ h1, h2, h3 {
 
 .nav-logo {
     max-height: 100%;
-    max-width: 73%;
+    max-width: 50%;
 }
 
 .navbar-brand {
     max-height: 100%;
-    max-width: 73%;
+    max-width: 100%;
     background-size: auto;
 }
 

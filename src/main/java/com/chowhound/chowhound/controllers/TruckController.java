@@ -222,7 +222,7 @@ public class TruckController {
     ){
         model.addAttribute("cuisineOptions", cuisineRepo.findAllByIsPrimaryIsTrue());
         model.addAttribute("truck", truckRepo.getOne(truckId));
-        return "/trucks/update";
+        return "/trucks/edit";
     }
 
     @PostMapping("trucks/{id}/edit")
@@ -276,6 +276,7 @@ public class TruckController {
             images.add(newTruckImage);
         }
 
+        truck.setDateAdded(truck.getDateAdded());
         truck.setImages(images);
 //        cuisines.toString();
         truck.setCuisines(cuisines);
