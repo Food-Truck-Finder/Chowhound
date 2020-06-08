@@ -5,7 +5,7 @@
 
 if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index() > -1)) {
 
-    const client = filestack.init(fileStackKey);
+    const client = filestack.init("A6lt9lQyPTq285Z97ova1z");
     const options = {
         onUploadDone: updateForm,
         maxSize: 10 * 1920 * 1080,
