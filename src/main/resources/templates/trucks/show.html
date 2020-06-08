@@ -10,7 +10,7 @@
 <div class="container main-cont text-center mt-3">
     <br>
     <h2 th:text="${truck.name}"></h2>
-    <a class="btn btn-secondary" href="/index"><-Back</a>
+    <a class="btn btn-warning special" href="/index"><-Back</a>
     <br>
     <div class="container">
         <h5 for="description">Description:</h5>
@@ -24,7 +24,7 @@
                 <form id="pick-form">
                     <div class="field">
                         <div class="control">
-                            <button sec:authorize="isAuthenticated()" class="btn btn-secondary" type="button"
+                            <button sec:authorize="isAuthenticated()" class="btn btn-warning" type="button"
                                     id="picker">
                                 Add a picture
                             </button>
@@ -36,7 +36,7 @@
         </div>
         <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
             <input type="hidden" id="imageURL" name="imageURL">
-            <button class="btn btn-sm btn-secondary hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
+            <button class="btn btn-sm btn-warning hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
         </form>
         <br>
         <p>Reviews:</p>
@@ -54,7 +54,7 @@
 
             <div sec:authorize="isAuthenticated()" th:if="${truck.user.id} == ${user.id}">
                 <form>
-                    <button style="color: white" class="btn btn-secondary"
+                    <button style="color: white" class="btn btn-warning"
                             th:formaction="'/trucks/' + ${truck.id} + '/edit'"
                             th:formmethod="get" th:href="@{'/trucks/' + ${truck.id} + '/edit'}" value="Edit Truck">
                         <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
@@ -70,14 +70,14 @@
             </div>
 
             <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
-                <a style="color: white" class="btn btn-secondary" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
+                <a style="color: white" class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
                     favorites</a>
             </div>
             <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
-                <a class="btn btn-secondary" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
+                <a class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <a class="btn btn-secondary" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
+                <a class="btn btn-warning" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
             </div>
             <br>
         </div>

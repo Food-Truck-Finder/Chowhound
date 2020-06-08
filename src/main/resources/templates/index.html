@@ -16,8 +16,8 @@
 
 
 <br>
-    <img src="images/chowhound-nav4.png" class="img-fluid d-inline-block" alt="Responsive image">
-    <h2></h2>
+<!--    <img src="images/chowhound-db.png" class="img-fluid d-inline-block" alt="Responsive image">-->
+    <h1 class="indexHeader">Food Truck Locator & Database</h1>
     <form action="">
         <label for="sort">Sort by:</label>
         <select id="sort" name="sortType">
@@ -29,7 +29,7 @@
             <option value="oldest">Oldest</option>
         </select>
         <input type="hidden" name="searchTerm" th:value="${searchTerm}">
-        <input id="searchSubmit" type="submit">
+        <input id="searchSubmit" type="submit" class="btn btn-warning btn-sm">
     </form>
     <hr/>
 
@@ -43,13 +43,13 @@
             <div class="card container main-cont">
 
                 <!-- Truck name handling -->
-                <h2 class="card-header text-center">
+                <h3 class="card-header text-center">
                     <div class="cardTitleContainer">
-                        <a class="cardTitleAnchor" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                        <a class="cardTitleAnchor text-truncate" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
                         <img th:if="${favorites.contains(truck)}" class="favImg" alt="favorite"
                              src="images/hydrant-favorite.svg">
                     </div>
-                </h2>
+                </h3>
 
                 <!-- Card Image handling -->
                 <div class="card-img-top">
@@ -81,7 +81,8 @@
                 </div>
                 <div class="card-body rounded">
                     <!-- Truck Description -->
-                    <p class="card-text text-left">Description: [[${truck.description}]]</p>
+                    <p class="card-text text-left">Description: </p>
+                    <p class="card-text text-left text-truncate">[[${truck.description}]]</p>
                     <!--  Cuisines handling -->
                     <h6 class="card-header">
                         <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"

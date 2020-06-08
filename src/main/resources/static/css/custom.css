@@ -1,5 +1,48 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
+.btn-secondary {
+    border: 1px solid grey !important;
+
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', cursive, bold;
+    color: firebrick;
+}
+
+.main-cont a, footer a, nav a, .indexHeader h1 {
+   color: firebrick;
+}
+
+.main-cont a:hover, footer a:hover, nav a:hover {
+    color: #ff1111;
+    text-decoration: none;
+}
+
+/*a {*/
+/*    color: firebrick;*/
+/*}*/
+
+/*a:hover {*/
+/*    color: #ff1111;*/
+/*    text-decoration: none;*/
+/*}*/
+
+.btn {
+    color: white;
+}
+
+.btn a {
+    color: white;
+}
+.special {
+    color: white !important;
+}
+
+.special:hover {
+    color: black !important;
+}
 /*.wrapper {*/
 /*    !*background-image: url("/images/chowhound-background.png");*!*/
 /*    background-repeat: no-repeat;*/
@@ -19,8 +62,8 @@
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
     /*background-attachment: fixed;*/
-    background: rgb(255,255,255);
-    background: linear-gradient(138deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%, rgba(255,237,0,1) 100%);
+    /*background: rgb(255,255,255);*/
+    /*background: linear-gradient(138deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%, rgba(255,237,0,1) 100%);*/
 }
 
 .bgImg{
@@ -190,7 +233,7 @@ li p {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    /*background: #4CAF50;*/
     width: 100%;
     border: 0;
     padding: 15px;
@@ -200,12 +243,12 @@ li p {
 }
 
 .form button:hover, .form button:active, .form button:focus {
-    background: #43A047;
+    /*background: #43A047;*/
 }
 
 .form .message {
     margin: 15px 0 0;
-    color: dodgerblue;
+    color: firebrick;
     font-size: 12px;
 }
 

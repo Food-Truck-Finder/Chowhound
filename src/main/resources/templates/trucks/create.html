@@ -16,9 +16,9 @@
         <div class="form-group">
 <!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
 <!--            <label for="username"><strong>Truck's name:</strong></label>-->
-            <input placeholder="Truck name" class="form-control" id="username" th:field="*{name}" required/>
+            <input placeholder="Truck name" class="form-control" maxlength="25" id="username" th:field="*{name}" required/>
 
-            <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
+            <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" maxlength="255" type="text" th:field="*{description}" required></textarea>
 
             <label for="address">Where is the truck located?</label>
             <input placeholder="Street" class="form-control" type="text" id="address" th:field="*{address}" required>
@@ -60,7 +60,7 @@
                     <form id="pick-form">
                         <div class="field">
                             <div class="control">
-                                <button class="btn btn-success" type="button" id="picker">Upload a picture</button>
+                                <button class="btn btn-warning" type="button" id="picker">Upload a picture</button>
                                 <input type="hidden" id="fileupload">
                             </div>
                         </div>
@@ -69,7 +69,7 @@
             </div>
             <input type="hidden" id="imageURL" name="imageURL">
             <br>
-            <button class="btn btn-success" type="submit">Mark it dude!</button>
+            <button class="btn btn-warning" type="submit">Mark it, dude!</button>
         </div>
     </form>
     <br>
