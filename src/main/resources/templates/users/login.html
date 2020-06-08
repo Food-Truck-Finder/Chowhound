@@ -6,8 +6,8 @@
 </head>
 <body>
 <div th:replace="partials/partials :: navbar"></div>
-
-<div id="signInContainer" class="mt-3 mb-auto">
+<div class="signInWrapper">
+<div id="signInContainer" class="container main-cont my-3">
     <h1 class="text-center">Login</h1>
     <div class="text-center" th:if="${param.error}">
         Invalid Username and Password.
@@ -32,7 +32,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 </body>
 <footer th:replace="partials/partials :: footer"></footer>

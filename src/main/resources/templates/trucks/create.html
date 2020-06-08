@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Chowhound trucks</title>
+    <title>Chow Hound!</title>
     <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont mb-3">
-    <h1>Add a truck!</h1>
+<div class="container main-cont my-3" id="createContainerBody">
+    <h1>Add a Truck to the Pack!</h1>
     <div th:if="${param.error}">
-        Chowhound already knows this truck.
+        Chow Hound already knows this truck.
     </div>
     <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
         <div class="form-group">
@@ -32,7 +32,7 @@
             <label for="hours">Operating hours:</label>
             <input placeholder="Ex. 9:00AM-5:00PM" class="form-control" id="hours" type="text" th:field="*{hours}">
 
-            <label for="cuisines">Choose cuisines:</label>
+            <label for="cuisines">Cuisines offered:</label>
             <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple required>
 
                 <option th:each="option : ${cuisineOptions}" th:value="${option.id}"><span th:text="${option.category}" th:remove="tag"></span></option>

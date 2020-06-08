@@ -1,5 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.signInWrapper {
+    height: 90vh;
+}
+
+#addReviewButton {
+    color: white;
+}
+
 footer {
     /*position: fixed;*/
     bottom: 0;
@@ -10,7 +18,7 @@ body {
     height: 100vh;
 }
 
-#viewContainer, #reviewContainer, #indexContainer {
+#viewContainer, #reviewContainer, #indexContainer, #createContainerBody {
     background: rgb(207,207,207);
 }
 
@@ -57,7 +65,7 @@ h1, h2, h3 {
 /*    text-decoration: none;*/
 /*}*/
 
-.btn {
+.btn, .btn-warning {
     color: white;
 }
 

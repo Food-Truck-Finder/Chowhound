@@ -9,7 +9,7 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div class="container main-cont mb-3" id="reviewContainer">
+<div class="container main-cont my-3" id="reviewContainer">
     <h1>Bark About This Truck!</h1>
     <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post">
 <!--        th:object="${review}"-->
@@ -29,6 +29,6 @@
 </div>
 
 
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </html>
