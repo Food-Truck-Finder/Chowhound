@@ -39,14 +39,18 @@
             <button class="btn btn-sm btn-warning hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
         </form>
         <br>
+
         <p>Reviews:</p>
-        <div th:if="${truck.reviews} != null" class="container reviews my-4">
-            <div class="container" th:each="review : ${truck.reviews}">
+        <div class="container reviews my-4">
+            <div th:if="!(${truck.reviews.isEmpty()})" class="container" th:each="review : ${truck.reviews}">
                 <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
                 <p th:text="${review.reviewText}"></p>
                 <p th:text="${review.stars}"></p>
                 <p th:text="${review.datestamp}"></p>
                 <hr>
+            </div>
+            <div th:unless="!(${truck.reviews.isEmpty()})" class="container">
+                <p>No hounds have any barks about this truck...You could be the first!</p>
             </div>
         </div>
 
