@@ -4,7 +4,7 @@
     height: 90vh;
 }
 
-#addReviewButton {
+#addReviewButton, #favoriteButton {
     color: white;
 }
 

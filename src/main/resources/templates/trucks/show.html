@@ -70,14 +70,14 @@
             </div>
 
             <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
-                <a style="color: white" class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Remove from
-                    favorites</a>
+                <a style="color: white" class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Leave the
+                    pack</a>
             </div>
             <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
-                <a class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Add to favorites</a>
+                <a class="btn btn-warning" id="favoriteButton" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Mark as a favorite</a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <a class="btn btn-warning" id="addReviewButton" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Add a Review</a>
+                <a class="btn btn-warning" id="addReviewButton" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Bark a Review</a>
             </div>
             <br>
         </div>
