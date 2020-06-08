@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Chowhound trucks</title>
+    <title>Chow Hound!</title>
     <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
@@ -12,7 +12,7 @@
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
 
 
-<div class="container main-cont text-center">
+<div class="container main-cont text-center mb-3" id="indexContainer">
 
 
 <br>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
 </div>
 
 
-<footer th:replace="partials/partials :: footer"></footer>
 
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
 </html>

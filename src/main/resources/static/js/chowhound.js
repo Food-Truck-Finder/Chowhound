@@ -110,7 +110,7 @@ if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.in
                     "<div id=\"truck_" + truckId + "_primaryImg\" " +
                     "class=\"carousel-item active mainCarouselImage\">" +
                     "<img class=\"d-block w-100 cardImageFixed\" " +
-                    "src=\"../images/newplaceholder.png\" " +
+                    "src=\"../images/notfound.png\" " +
                     "alt=\"placeholderImg\">" +
                     "</div>"
                 );

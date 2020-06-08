@@ -1,5 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+footer {
+    /*position: fixed;*/
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    height: 100vh;
+}
+
+#viewContainer, #reviewContainer, #indexContainer {
+    background: rgb(207,207,207);
+}
+
+
+h3.card-header, .card-titlecontainer, .card-body {
+    background: rgb(207,207,207);
+}
+
+
+
+textarea {
+    background: #f2f2f2;
+}
+
+form {
+    background: rgb(207,207,207) ;
+}
 
 .btn-secondary {
     border: 1px solid grey !important;
@@ -11,11 +39,11 @@ h1, h2, h3 {
     color: firebrick;
 }
 
-.main-cont a, footer a, nav a, .indexHeader h1 {
+.main-cont a, footer a, nav a, .indexHeader h1, .logOut {
    color: firebrick;
 }
 
-.main-cont a:hover, footer a:hover, nav a:hover {
+.main-cont a:hover, footer a:hover, nav a:hover, .logOut {
     color: #ff1111;
     text-decoration: none;
 }
@@ -40,7 +68,7 @@ h1, h2, h3 {
     color: white !important;
 }
 
-.special:hover {
+.special:hover, #logoutButtonf {
     color: black !important;
 }
 /*.wrapper {*/
@@ -191,20 +219,21 @@ li p {
 /* Registration  & SignIn */
 #signUpContainer, #signInContainer {
     z-index: 1;
-    background: lightgrey;
+    background: rgb(207,207,207);
     border-radius: 10px;
     width: 400px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#signInContainer {
-    margin-top: 10em;
-}
+/*#signInContainer {*/
+/*    margin-top: 10em;*/
+/*}*/
 
-#signUpContainer {
-    margin-top: 5em;
-}
+/*#signUpContainer {*/
+/*    margin-top: 5em;*/
+/*}*/
 
 .register-page, .signIn-page {
     position: relative;
@@ -286,7 +315,7 @@ li p {
 }
 
 .navbar{
-    background: #f9f8fa;
+    background: rgb(207,207,207);
 }
 
 #homeBody {

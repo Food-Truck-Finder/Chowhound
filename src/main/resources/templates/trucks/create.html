@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont">
+<div class="container main-cont mb-3">
     <h1>Add a truck!</h1>
     <div th:if="${param.error}">
         Chowhound already knows this truck.
@@ -16,7 +16,7 @@
         <div class="form-group">
 <!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
 <!--            <label for="username"><strong>Truck's name:</strong></label>-->
-            <input placeholder="Truck name" class="form-control" maxlength="25" id="username" th:field="*{name}" required/>
+            <input placeholder="Truck name" class="form-control" maxlength="25" id="username" th:field="*{name}" required autofocus/>
 
             <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" maxlength="255" type="text" th:field="*{description}" required></textarea>
 
@@ -44,7 +44,7 @@
 
             <label for="ownerCheckbox">Do you own this truck?</label>
             <!-- Checkbox -->
-            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" value="true" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
+            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
             <input id='ownerHidden' type='hidden' value='false' name='owner'>
             <!-- Owner Additional Info -->
 <!--            <input id="ownerEmail" class="hidden form-control" placeholder="Email Address" type="email">-->
@@ -67,14 +67,14 @@
                     </form>
                 </div>
             </div>
-            <input type="hidden" id="imageURL" name="imageURL">
+            <input type="text" id="imageURL" name="imageURL">
             <br>
             <button class="btn btn-warning" type="submit">Mark it, dude!</button>
         </div>
     </form>
     <br>
 </div>
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 
 </body>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </html>
