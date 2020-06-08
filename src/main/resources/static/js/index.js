@@ -47,11 +47,8 @@ function geo(i) {
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<h1 id="firstHeading" class="firstHeading text-center">' + Object.entries($(".namejs"))[i][1].innerHTML + '</h1>' +
-                '<form class="text-center" action="http://localhost:8080/trucks/' + (i + 1) + '">' +
-                '<input type="submit" value="Visit Truck" class="btn btn-info"/>' +
-                '</form>' +
-                '<br/>' +
+                '<h1 id="firstHeading" class="firstHeading text-center"><a style="text-decoration: none" href="http://localhost:8080/trucks/' + (i + 1) + '">' + 'Visit ' +
+                Object.entries($(".namejs"))[i][1].innerHTML + '</a></h1>' +
                 '<div id="bodyContent">' +
                 '<p>' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
                 '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
