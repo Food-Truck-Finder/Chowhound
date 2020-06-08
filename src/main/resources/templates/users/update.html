@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont">
+<div class="container main-cont my-3">
     <h1>Change your contact email and/or your password</h1>
     <form th:action="@{/update_profile}" method="POST" th:object="${user}">
         <!--        <label for="username">Username</label>-->
@@ -20,10 +20,10 @@
         <label for="password">Password</label>
         <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
         <br>
-        <input class="btn btn-success" value="Save Changes!" type="submit"/><a class="btn btn-danger" th:href="@{/index}"><-Back</a>
+        <input class="btn btn-warning" value="Save Changes!" type="submit"/>      <a class="btn btn-warning" th:href="@{/index}"><-Back</a>
     </form>
     <br>
 </div>
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </html>

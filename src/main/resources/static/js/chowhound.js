@@ -60,7 +60,7 @@ if (window.location.href.indexOf("index") > -1) {
                     "<div id=\"truck_" + i + "_primaryImg\" " +
                     "class=\"carousel-item active mainCarouselImage\">" +
                     "<img class=\"d-block w-100 cardImageFixed\" " +
-                    "src=\"../images/placeholderImg.png\" " +
+                    "src=\"../images/newplaceholder.png\" " +
                     "alt=\"placeholderImg\">" +
                     "</div>"
                 );
@@ -110,7 +110,7 @@ if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.in
                     "<div id=\"truck_" + truckId + "_primaryImg\" " +
                     "class=\"carousel-item active mainCarouselImage\">" +
                     "<img class=\"d-block w-100 cardImageFixed\" " +
-                    "src=\"../images/placeholderImg.png\" " +
+                    "src=\"../images/notfound.png\" " +
                     "alt=\"placeholderImg\">" +
                     "</div>"
                 );

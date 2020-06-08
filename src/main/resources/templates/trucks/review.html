@@ -9,12 +9,12 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div class="container main-cont">
+<div class="container main-cont my-3" id="reviewContainer">
     <h1>Bark About This Truck!</h1>
     <form th:action="@{'/reviews/' + ${truck.id} + '/addReview'}" method="post">
 <!--        th:object="${review}"-->
         <label for="reviewText">Speak!</label>
-        <textarea class="form-control" id="reviewText" name="reviewText" type="text" ></textarea>
+        <textarea class="form-control" id="reviewText" name="reviewText" type="text" autofocus></textarea>
 <!--        th:field="*{reviewText}"-->
         <select name="stars" id="stars">
             <option value="1">One Bone</option>
@@ -24,11 +24,11 @@
             <option value="5">Five Bones</option>
         </select>
 <!--        <input type="hidden" name="datestamp" id="datestamp" value="<?php CURDATE(); ?>" th:field="*{datestamp}">-->
-        <input type="submit" class="btn btn-sm btn-success">
+        <input type="submit" class="btn btn-sm btn-warning special">
     </form>
 </div>
 
 
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </body>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </html>

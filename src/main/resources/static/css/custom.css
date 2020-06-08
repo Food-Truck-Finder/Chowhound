@@ -1,5 +1,84 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.signInWrapper {
+    height: 90vh;
+}
+
+#addReviewButton, #favoriteButton {
+    color: white;
+}
+
+footer {
+    /*position: fixed;*/
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    height: 100vh;
+}
+
+#viewContainer, #reviewContainer, #indexContainer, #createContainerBody {
+    background: rgb(207,207,207);
+}
+
+
+h3.card-header, .card-titlecontainer, .card-body {
+    background: rgb(207,207,207);
+}
+
+
+
+textarea {
+    background: #f2f2f2;
+}
+
+form {
+    background: rgb(207,207,207) ;
+}
+
+.btn-secondary {
+    border: 1px solid grey !important;
+
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', cursive, bold;
+    color: firebrick;
+}
+
+.main-cont a, footer a, nav a, .indexHeader h1, .logOut {
+   color: firebrick;
+}
+
+.main-cont a:hover, footer a:hover, nav a:hover, .logOut {
+    color: #ff1111;
+    text-decoration: none;
+}
+
+/*a {*/
+/*    color: firebrick;*/
+/*}*/
+
+/*a:hover {*/
+/*    color: #ff1111;*/
+/*    text-decoration: none;*/
+/*}*/
+
+.btn, .btn-warning {
+    color: white;
+}
+
+.btn a {
+    color: white;
+}
+.special {
+    color: white !important;
+}
+
+.special:hover, #logoutButtonf {
+    color: black !important;
+}
 /*.wrapper {*/
 /*    !*background-image: url("/images/chowhound-background.png");*!*/
 /*    background-repeat: no-repeat;*/
@@ -13,12 +92,14 @@
 /*}*/
 
 .bg {
-    position: absolute;
-    z-index: -1;
-    background-image: url("/images/fastfood bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /*position: absolute;*/
+    /*z-index: -1;*/
+    /*background-image: url("/images/fastfood bg.jpg");*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    /*background: rgb(255,255,255);*/
+    /*background: linear-gradient(138deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%, rgba(255,237,0,1) 100%);*/
 }
 
 .bgImg{
@@ -146,20 +227,21 @@ li p {
 /* Registration  & SignIn */
 #signUpContainer, #signInContainer {
     z-index: 1;
-    background: lightgrey;
+    background: rgb(207,207,207);
     border-radius: 10px;
     width: 400px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#signInContainer {
-    margin-top: 10em;
-}
+/*#signInContainer {*/
+/*    margin-top: 10em;*/
+/*}*/
 
-#signUpContainer {
-    margin-top: 5em;
-}
+/*#signUpContainer {*/
+/*    margin-top: 5em;*/
+/*}*/
 
 .register-page, .signIn-page {
     position: relative;
@@ -188,7 +270,7 @@ li p {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    /*background: #4CAF50;*/
     width: 100%;
     border: 0;
     padding: 15px;
@@ -198,12 +280,12 @@ li p {
 }
 
 .form button:hover, .form button:active, .form button:focus {
-    background: #43A047;
+    /*background: #43A047;*/
 }
 
 .form .message {
     margin: 15px 0 0;
-    color: dodgerblue;
+    color: firebrick;
     font-size: 12px;
 }
 
@@ -241,13 +323,15 @@ li p {
 }
 
 .navbar{
-    background: #f9f8fa;
+    background: rgb(207,207,207);
 }
 
-#homeTextCard {
-    color: black;
+#homeBody {
+    opacity: 50;
 }
 
+/*<<<<<<< HEAD*/
+/*=======*/
 #homeBodyOverlay {
     background-color: rgba(200, 203, 207, .40);
     /*opacity: .25;*/
@@ -257,3 +341,8 @@ li p {
     font-size: 1rem;
 }
 
+/*>>>>>>> 38325ce14be5a680f44025497929a096487ac161*/
+
+#navbarSupportedContent {
+    width: 500px;
+}

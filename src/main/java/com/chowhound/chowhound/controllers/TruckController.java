@@ -87,7 +87,7 @@ public class TruckController {
     public String submitTruckRegistration(
             @ModelAttribute Truck truck,
             @RequestParam List<Cuisine> cuisines,
-            @RequestParam boolean owner,
+            @RequestParam boolean ownerCheckbox,
             @RequestParam String newCuisine,
             @RequestParam(value = "imageURL") String imageUrl,
             Model model) {
@@ -107,8 +107,9 @@ public class TruckController {
                 cuisines.add(newCustomCuisine);
             }
         }
-        if (owner) {
+        if (ownerCheckbox) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = userRepo.getOne(user.getId());
             truck.setUser(user);
         }
 
@@ -145,10 +146,12 @@ public class TruckController {
 
         truck.setDateAdded(new java.sql.Date(date.getTime()));
         truck.setImages(images);
-        cuisines.toString();
+//        cuisines.toString();
         truck.setCuisines(cuisines);
         truck = this.truckRepo.save(truck);
-        imageRepo.save(newTruckImage);
+        if (!newTruckImage.getPath().equals("")) {
+            imageRepo.save(newTruckImage);
+        }
         model.addAttribute("truck", truck);
         return "redirect:/index";
     }

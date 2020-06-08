@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Chowhound trucks</title>
+    <title>Chow Hound!</title>
     <div th:replace="partials/partials :: head"></div>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
@@ -19,14 +19,20 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 
-<div class="bg"></div>
-<div id="map"></div>
+
+<div class="bg">
+  <div id="map"></div>
+<br>
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
 
-<div class="container main-cont text-center mt-3">
 
-    <br>
-    <h2>Lets sniff out some trucks!</h2>
+<div class="container main-cont text-center mb-3" id="indexContainer">
+
+
+<br>
+<!--    <img src="images/chowhound-db.png" class="img-fluid d-inline-block" alt="Responsive image">-->
+    <h1 class="indexHeader">Food Truck Locator & Database</h1>
+
     <form action="">
         <label for="sort">Sort by:</label>
         <select id="sort" name="sortType">
@@ -38,9 +44,11 @@
             <option value="oldest">Oldest</option>
         </select>
         <input type="hidden" name="searchTerm" th:value="${searchTerm}">
-        <input id="searchSubmit" type="submit">
+        <input id="searchSubmit" type="submit" class="btn btn-warning btn-sm">
     </form>
     <hr/>
+
+
 </div>
 
 <div class="container align-items-center overflow-auto mb-5 pb-5">
@@ -50,13 +58,13 @@
             <div class="card container main-cont">
 
                 <!-- Truck name handling -->
-                <h2 class="card-header text-center">
+                <h3 class="card-header text-center">
                     <div class="cardTitleContainer">
-                        <a class="cardTitleAnchor" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
+                        <a class="cardTitleAnchor text-truncate" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
                         <img th:if="${favorites.contains(truck)}" class="favImg" alt="favorite"
                              src="images/hydrant-favorite.svg">
                     </div>
-                </h2>
+                </h3>
 
                 <!-- Card Image handling -->
                 <div class="card-img-top">
@@ -86,9 +94,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body rounded">
                     <!-- Truck Description -->
-                    <p class="card-text text-left descjs">Description: [[${truck.description}]]</p>
+
+                    <p class="card-text text-left">Description: </p>
+                    <p class="card-text text-left text-truncate">[[${truck.description}]]</p>
+
                     <!--  Cuisines handling -->
                     <h6 class="card-header">
                         <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
@@ -112,7 +123,7 @@
                     <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
                 </div>
                 <!-- truck info handling -->
-                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                <button type="button" class="btn btn-warning" data-toggle="modal"
                         th:data-target="'#truckModal' + ${truck.id}">
                     <span>Contact </span><span th:text="${truck.name}"></span>
                 </button>
@@ -166,7 +177,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -174,12 +185,14 @@
         </div>
     </div>
 </div>
+</div>
 
-<footer th:replace="partials/partials :: footer"></footer>
+
 
 <script src="js/index.js"></script>
 <script async defer
         src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap'>
 </script>
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
 </html>

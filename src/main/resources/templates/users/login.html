@@ -6,13 +6,13 @@
 </head>
 <body>
 <div th:replace="partials/partials :: navbar"></div>
-
-<div id="signInContainer">
-    <h1 class="text-center">Log In</h1>
-    <div th:if="${param.error}">
+<div class="signInWrapper">
+<div id="signInContainer" class="container main-cont my-3">
+    <h1 class="text-center">Login</h1>
+    <div class="text-center" th:if="${param.error}">
         Invalid Username and Password.
     </div>
-    <div th:if="${param.logout}">
+    <div class="text-center" th:if="${param.logout}">
         You have been logged out.
     </div>
     <div class="signIn-page">
@@ -23,7 +23,7 @@
                 <label for="password"><strong>Password</strong></label>
                 <input id="password" name="password" type="password"/>
                 <p>
-                    <button type="submit">Log In</button>
+                    <button type="submit" class="btn btn-warning">Log In</button>
                 </p>
             </form>
             <div class="p-3">
@@ -32,8 +32,8 @@
         </div>
     </div>
 </div>
+</div>
 
-
-<footer th:replace="partials/partials :: footer"></footer>
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
 </html>

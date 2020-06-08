@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Chowhound trucks</title>
+    <title>Chow Hound!</title>
     <div th:replace="partials/partials :: head"></div>
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont">
-    <h1>Add a truck!</h1>
+<div class="container main-cont my-3" id="createContainerBody">
+    <h1>Add a Truck to the Pack!</h1>
     <div th:if="${param.error}">
-        Chowhound already knows this truck.
+        Chow Hound already knows this truck.
     </div>
     <form th:action="@{/trucks/create}" method="POST" th:object="${truck}">
         <div class="form-group">
 <!--            <input type="number" hidden="hidden" th:value="${truck.id}" th:field="*{id}">-->
 <!--            <label for="username"><strong>Truck's name:</strong></label>-->
-            <input placeholder="Truck name" class="form-control" id="username" th:field="*{name}" required/>
+            <input placeholder="Truck name" class="form-control" maxlength="25" id="username" th:field="*{name}" required autofocus/>
 
-            <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" type="text" th:field="*{description}" required></textarea>
+            <textarea placeholder="Enter a little about the truck and the food served." class="form-control" id="description" maxlength="255" type="text" th:field="*{description}" required></textarea>
 
             <label for="address">Where is the truck located?</label>
             <input placeholder="Street" class="form-control" type="text" id="address" th:field="*{address}" required>
@@ -32,7 +32,7 @@
             <label for="hours">Operating hours:</label>
             <input placeholder="Ex. 9:00AM-5:00PM" class="form-control" id="hours" type="text" th:field="*{hours}">
 
-            <label for="cuisines">Choose cuisines:</label>
+            <label for="cuisines">Cuisines offered:</label>
             <select name="cuisines" class="form-control selectpicker" id="cuisines" multiple required>
 
                 <option th:each="option : ${cuisineOptions}" th:value="${option.id}"><span th:text="${option.category}" th:remove="tag"></span></option>
@@ -44,7 +44,7 @@
 
             <label for="ownerCheckbox">Do you own this truck?</label>
             <!-- Checkbox -->
-            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" value="true" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
+            <input type="checkbox" id="ownerCheckbox" name="ownerCheckbox" onchange="if (this.checked === true) {showOwnerRegisterInfo()} else if (this.checked === false ) {hideOwnerRegistrationInfo()}">
             <input id='ownerHidden' type='hidden' value='false' name='owner'>
             <!-- Owner Additional Info -->
 <!--            <input id="ownerEmail" class="hidden form-control" placeholder="Email Address" type="email">-->
@@ -60,7 +60,7 @@
                     <form id="pick-form">
                         <div class="field">
                             <div class="control">
-                                <button class="btn btn-success" type="button" id="picker">Upload a picture</button>
+                                <button class="btn btn-warning" type="button" id="picker">Upload a picture</button>
                                 <input type="hidden" id="fileupload">
                             </div>
                         </div>
@@ -69,12 +69,12 @@
             </div>
             <input type="hidden" id="imageURL" name="imageURL">
             <br>
-            <button class="btn btn-success" type="submit">Mark it dude!</button>
+            <button class="btn btn-warning" type="submit">Mark it, dude!</button>
         </div>
     </form>
     <br>
 </div>
-<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 
 </body>
+<standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
 </html>

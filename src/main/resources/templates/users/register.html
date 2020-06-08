@@ -7,7 +7,7 @@
 <body>
 <div th:replace="partials/partials :: navbar"></div>
 
-<div id="signUpContainer">
+<div id="signUpContainer" class="my-3">
     <h1 class="text-center">Create an account</h1>
     <div th:if="${param.error}">
         Username is already taken.
@@ -37,6 +37,6 @@
 </div>
 
 
-<footer th:replace="partials/partials :: footer"></footer>
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
 </html>
