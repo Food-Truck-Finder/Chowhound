@@ -206,6 +206,16 @@ image {
     text-decoration: none;
 }
 
+#footer-nav a {
+    width: 100%;
+    color: firebrick;
+}
+
+#footer-nav a:hover {
+    color: #ff1111;
+    text-decoration: none;
+}
+
 .cardTitleContainer {
     margin: 5px 0;
 }
