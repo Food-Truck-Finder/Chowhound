@@ -7,31 +7,32 @@
 <body>
 <div th:replace="partials/partials :: navbar"></div>
 <div class="signInWrapper">
-<div id="signInContainer" class="container main-cont my-3">
-    <h1 class="text-center">Login</h1>
-    <div class="text-center" th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div class="text-center" th:if="${param.logout}">
-        You have been logged out.
-    </div>
-    <div class="signIn-page">
-        <div class="form">
-            <form th:action="@{/login}" method="post">
-                <label for="username"><strong>Username</strong></label>
-                <input id="username" name="username" type="text" autofocus/>
-                <label for="password"><strong>Password</strong></label>
-                <input id="password" name="password" type="password"/>
-                <p>
-                    <button type="submit" class="btn btn-warning">Log In</button>
-                </p>
-            </form>
-            <div class="p-3">
-                <p class="text-center">Not part of our pack? <a class="message" th:href="@{/register}">Register here</a></p>
+    <div id="signInContainer" class="container main-cont">
+        <h1 class="text-center">Login</h1>
+        <div class="text-center" th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div class="text-center" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <div class="signIn-page">
+            <div class="form">
+                <form th:action="@{/login}" method="post">
+                    <label for="username"><strong>Username</strong></label>
+                    <input id="username" name="username" type="text" autofocus/>
+                    <label for="password"><strong>Password</strong></label>
+                    <input id="password" name="password" type="password"/>
+                    <p>
+                        <button type="submit" class="btn btn-warning">Log In</button>
+                    </p>
+                </form>
+                <div class="p-3">
+                    <p class="text-center">Not part of our pack? <a class="message" th:href="@{/register}">Register
+                        here</a></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 </body>

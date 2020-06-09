@@ -38,7 +38,7 @@ if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index()
 
 /* Placeholder image logic */
 /* image will no longer show up if an image uploaded .isPrimary() */
-if (window.location.href.indexOf("index") > -1) {
+if ((window.location.href.indexOf(".rocks") > -1) || (window.location.href.indexOf("index") > -1)) {
     let numberOfTrucks = $("#mainTruckContainer").children().length;
     for (let i = 1; i <= numberOfTrucks; i++) {
         if ($("#truck_" + i)) {
@@ -142,6 +142,59 @@ function showSaveButtonAndHideUpload() {
     $("#truckImageAddPictureButton").addClass("hidden");
     $("#saveImg").removeClass("hidden");
 }
+
+/* Trucks crate page anchor handling */
+if (window.location.href.indexOf("trucks/create") > -1) {
+    $("#addATruckButton").css("color", "rgba(0, 0, 0, 1)");
+    $("#addATruckButton").css("font-weight", "bold");
+}
+
+/* Favorite trucks page anchor handling */
+if (window.location.href.indexOf("/favorites") > -1) {
+    $("#favoriteTruckButton").css("color", "rgba(0, 0, 0, 1)");
+    $("#favoriteTruckButton").css("font-weight", "bold");
+    $("#navBottom").css("position", "fixed");
+
+}
+
+if (window.location.href.indexOf("/login") > -1) {
+    $("#navBottom").css("position", "fixed");
+}
+
+if (window.location.href.indexOf("update_profile") > -1) {
+    $("#navBottom").css("position", "fixed");
+}
+
+if (window.location.href.indexOf("/register") > -1) {
+    $("#navBottom").css("position", "fixed");
+}
+
+if (window.location.href.indexOf("/about") > -1) {
+    $("#navBottom").css("position", "fixed");
+}
+
+if (window.location.href.indexOf("/trucks/create") > -1) {
+    let ownerCheckbox = document.getElementById("ownerCheckbox");
+    if (ownerCheckbox.checked === false) {
+        $("#navBottom").css("position", "fixed");
+    }
+    if (ownerCheckbox.checked === true) {
+        $("#navBottom").css("position", "");
+        $("#createContainerBody").css("margin-bottom", "50px");
+    }
+    ownerCheckbox.addEventListener("click", function () {
+        if (ownerCheckbox.checked === false) {
+            $("#navBottom").css("position", "fixed");
+        } else if (ownerCheckbox.checked === true) {
+            $("#navBottom").css("position", "");
+            $("#createContainerBody").css("margin-bottom", "50px");
+        }
+    })
+}
+
+// if (window.location.href.indexOf("/index") === -1) {
+//     $("#backgroundImg").css("background-image", "none");
+// }
 
 
 

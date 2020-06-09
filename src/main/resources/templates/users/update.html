@@ -7,22 +7,25 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont my-3">
-    <h1>Change your contact email and/or your password</h1>
-    <form th:action="@{/update_profile}" method="POST" th:object="${user}">
-        <!--        <label for="username">Username</label>-->
-        <input type="hidden" id="username" th:field="*{username}"/>
-        <input type="hidden" id="id" th:field="*{id}"/>
-        <!--        <br>-->
-        <label for="email">Email</label>
-        <input id="email" th:value="${user.email}" th:field="*{email}"/>
-        <br>
-        <label for="password">Password</label>
-        <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
-        <br>
-        <input class="btn btn-warning" value="Save Changes!" type="submit"/>      <a class="btn btn-warning" th:href="@{/index}"><-Back</a>
-    </form>
-    <br>
+<div id="updateContainer" class="container main-cont">
+    <div class="form">
+        <h1>Update email / password</h1>
+        <form th:action="@{/update_profile}" method="POST" th:object="${user}">
+            <!--        <label for="username">Username</label>-->
+            <input type="hidden" id="username" th:field="*{username}"/>
+            <input type="hidden" id="id" th:field="*{id}"/>
+            <!--        <br>-->
+            <label for="email">Email</label>
+            <input id="email" th:value="${user.email}" th:field="*{email}"/>
+            <br>
+            <label for="password">Password</label>
+            <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
+            <br>
+            <button class="btn btn-warning"type="submit">Save changes!</button>
+            <br>
+            <a class="btn btn-warning my-3 special" th:href="@{/index}"><-Back</a>
+        </form>
+    </div>
 </div>
 </body>
 <standard_scripts th:replace="partials/partials :: footer"></standard_scripts>
