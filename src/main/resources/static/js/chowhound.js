@@ -142,7 +142,7 @@ if (window.location.href.indexOf("trucks/create") > -1) {
 if (window.location.href.indexOf("/favorites") > -1) {
     $("#favoriteTruckButton").css("color", "rgba(0, 0, 0, 1)");
     $("#favoriteTruckButton").css("font-weight", "bold");
-    $("#navBottom").css("position", "fixed");
+    // $("#navBottom").css("position", "fixed");
 }
 if (window.location.href.indexOf("/login") > -1) {
     $("#navBottom").css("position", "fixed");
