@@ -20,7 +20,7 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 
-<div class="bg">
+<div id="backgroundImg" class="bg">
   <div id="map"></div>
 <br>
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
@@ -30,7 +30,6 @@
 
 
 <br>
-<!--    <img src="images/chowhound-db.png" class="img-fluid d-inline-block" alt="Responsive image">-->
     <h1 class="indexHeader">Food Truck Locator & Database</h1>
 
     <form action="">
@@ -51,14 +50,14 @@
 
 </div>
 
-<div class="container align-items-center overflow-auto mb-5 pb-5">
+<div class="container-fluid align-items-center">
 
     <div id="mainTruckContainer" class="row">
-        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3 height-100" th:each="truck : ${trucks}">
-            <div class="card container main-cont">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 col-xl-3 mb-3 height-100" th:each="truck : ${trucks}">
+            <div class="card container mainCardCont br10">
 
                 <!-- Truck name handling -->
-                <h3 class="card-header text-center">
+                <h3 class="card-header text-center bgTrans">
                     <div class="cardTitleContainer">
                         <a class="cardTitleAnchor text-truncate" th:text="${truck.name}" th:href="@{'/trucks/' + ${truck.id}}"></a>
                         <img th:if="${favorites.contains(truck)}" class="favImg" alt="favorite"
@@ -94,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body rounded">
+                <div class="card-body">
                     <!-- Truck Description -->
 
                     <p class="card-text text-left">Description: </p>
@@ -121,12 +120,13 @@
                     </div>
                     <!-- Food Rating -->
                     <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
+                    <!-- truck info handling -->
+                    <button type="button" class="btn btn-warning w-100" data-toggle="modal"
+                            th:data-target="'#truckModal' + ${truck.id}">
+                        <span>Contact </span><span th:text="${truck.name}"></span>
+                    </button>
                 </div>
-                <!-- truck info handling -->
-                <button type="button" class="btn btn-warning" data-toggle="modal"
-                        th:data-target="'#truckModal' + ${truck.id}">
-                    <span>Contact </span><span th:text="${truck.name}"></span>
-                </button>
+
             </div>
             <!-- Modal -->
             <div class="modal fade" th:id="'truckModal' + ${truck.id}" tabindex="-1" role="dialog"

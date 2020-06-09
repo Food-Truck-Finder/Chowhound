@@ -7,16 +7,16 @@
 <body>
 <div th:replace="partials/partials :: navbar"></div>
 
-<div id="signUpContainer" class="my-3">
+<div id="signUpContainer">
     <h1 class="text-center">Create an account</h1>
     <div th:if="${param.error}">
         Username is already taken.
     </div>
-    <div class="register-page">
+    <div class="register-page my-auto">
         <div class="form">
             <form class="register-form" th:action="@{/register}" method="POST" th:object="${user}">
                 <label for="username"><strong>Username</strong></label>
-                <input id="username" th:field="*{username}" required/>
+                <input id="username" th:field="*{username}" autofocus required/>
                 <label for="firstName"><strong>First Name</strong></label>
                 <input id="firstName" th:field="*{firstName}" required/>
                 <label for="lastName"><strong>Last Name</strong></label>
@@ -26,7 +26,7 @@
                 <label for="password"><strong>Password</strong></label>
                 <input id="password" type="password" th:field="*{password}" required/>
                 <p>
-                    <button id="register" type="submit">Create Account</button>
+                    <button id="register" class="btn btn-warning" type="submit">Create Account</button>
                 </p>
             </form>
             <div class="p-3">

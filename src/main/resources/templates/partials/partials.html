@@ -26,9 +26,9 @@
     <!-- Error Page CSS-->
     <link th:href="@{../../css/error.css}" rel="stylesheet">
 </div>
-<body>
+
 <!-- This is my standard navbar-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
+<nav th:fragment="navbar" id="topNav" class="navbar navbar-expand-lg navbar-light border-bottom">
 
     <a class="nav-logo" th:href="@{/index}"><img class="navbar-brand" src="/images/chowhound-navnew3.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,9 +39,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 <!--            <li class="nav-item"><a class="nav-link" href="/index">Find some chow</a></li>-->
-            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/trucks/create">Add a
+            <li sec:authorize="isAuthenticated()" class="nav-item"><a id="addATruckButton" class="nav-link" href="/trucks/create">Add a
                 Truck</a></li>
-            <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/favorites">My
+            <li sec:authorize="isAuthenticated()" class="nav-item"><a id="favoriteTruckButton" class="nav-link" href="/favorites">My
                 trucks</a></li>
             <!--            <li class="nav-item"><a class="nav-link" href="/welcome">Welcome</a></li>-->
         </ul>
@@ -70,13 +70,12 @@
 
 
 
-</body>
 <!-- Footer -->
 <footer th:fragment="footer">
 
-    <div class="navbar border-top align-items-center">
+    <div id="navBottom" class="navbar border-top align-items-center text-center">
 
-        <ul class="navbar-nav m-auto text-center" id="footer-nav">
+        <ul class="navbar-nav m-auto" id="footer-nav">
 
             <li class="nav-item">
                 <p>Chowhound © 2020</p>

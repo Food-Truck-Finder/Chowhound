@@ -36,7 +36,7 @@
         </div>
         <form sec:authorize="isAuthenticated()" method="post" th:action="@{'/trucks/' + ${truck.id} + '/saveImg'}">
             <input type="hidden" id="imageURL" name="imageURL">
-            <button class="btn btn-sm btn-warning hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
+            <button class="btn btn-sm btn-success hidden" type="submit" name="saveImg" id="saveImg">Save Image</button>
         </form>
         <br>
         <p>Reviews:</p>
