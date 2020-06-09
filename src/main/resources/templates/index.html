@@ -97,7 +97,7 @@
                 <div class="card-body rounded">
                     <!-- Truck Description -->
 
-                    <p class="card-text text-left">Description: </p>
+<!--                    <p class="card-text text-left">Description: </p>-->
                     <p class="card-text text-left text-truncate descjs">[[${truck.description}]]</p>
 
                     <!--  Cuisines handling -->
@@ -105,7 +105,7 @@
                         <a class="collapsed d-block" data-toggle="collapse" th:href="'#collapse-collapsed_' + ${truck.id}"
                            aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                             <i class="fa fa-chevron-down pull-right" id="droparrow"></i>
-                            Cuisines
+                            Chow Options
                         </a>
                     </h6>
                     <div th:id="'collapse-collapsed_' + ${truck.id}" class="collapse" aria-labelledby="heading-collapsed">
@@ -120,7 +120,21 @@
 
                     </div>
                     <!-- Food Rating -->
-                    <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>
+                    <div class="card-text text-center">
+<!--                        Rating: [[${truck.getAverageReviewRating()}]]-->
+                        <span class="text-center bonesContainer">
+                            <img class="bones" src="/images/5bone-recolor-reangle.png" alt="5 Bones" th:if="(${truck.getAverageReviewRating()} > 4.5)">
+                            <img class="bones" src="/images/4.5.png" alt="4.5 Bones" th:if="(${truck.getAverageReviewRating()} > 4 and ${truck.getAverageReviewRating()} <= 4.5)">
+                            <img class="bones" src="/images/4.png" alt="4 Bones" th:if="(${truck.getAverageReviewRating()} > 3.5 and ${truck.getAverageReviewRating()} <= 4)">
+                            <img class="bones" src="/images/3.5.png" alt="3.5 Bones" th:if="(${truck.getAverageReviewRating()} > 3 and ${truck.getAverageReviewRating()} <= 3.5)">
+                            <img class="bones" src="/images/3.png" alt="3 Bones" th:if="(${truck.getAverageReviewRating()} > 2.5 and ${truck.getAverageReviewRating()} <= 3)">
+                            <img class="bones" src="/images/2.5.png" alt="2.5 Bones" th:if="(${truck.getAverageReviewRating()} > 2 and ${truck.getAverageReviewRating()} <= 2.5)">
+                            <img class="bones" src="/images/2.png" alt="2 Bones" th:if="(${truck.getAverageReviewRating()} > 1.5 and ${truck.getAverageReviewRating()} <= 2)">
+                            <img class="bones" src="/images/1.5.png" alt="1.5 Bones" th:if="(${truck.getAverageReviewRating()} > 1 and ${truck.getAverageReviewRating()} <= 1.5)">
+                            <img class="bones" src="/images/1.png" alt="1 Bones" th:if="(${truck.getAverageReviewRating()} >= .5 and ${truck.getAverageReviewRating()} <= 1)">
+                            <p class="bonesContainer my-auto" th:if="(${truck.getAverageReviewRating()} <= .5 )">No barks about this truck!</p>
+                        </span>
+                    </div>
                 </div>
                 <!-- truck info handling -->
                 <button type="button" class="btn btn-warning" data-toggle="modal"

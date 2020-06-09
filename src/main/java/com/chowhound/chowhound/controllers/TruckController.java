@@ -33,8 +33,13 @@ public class TruckController {
         this.sortTrucksService = sortTrucksService;
     }
 
+    @GetMapping("/")
+    public String redirectOnLanding() {
+        return "redirect:/index";
+    }
+
     //mapping for index page
-    @GetMapping({"/index", "/"})
+    @GetMapping("/index") //    {"/index", "/"}
     public String sortTrucks(Model model, @RequestParam(defaultValue = "") String sortType, @RequestParam(defaultValue = "") String searchTerm) {
         User user;
         List<Truck> favorites = new ArrayList<>();

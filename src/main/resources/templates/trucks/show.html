@@ -13,7 +13,7 @@
     <a class="btn btn-warning special" href="/index"><-Back</a>
     <br>
     <div class="container">
-        <h5 for="description">Description:</h5>
+        <!--        <h5 for="description">Description:</h5>-->
         <p id="description" th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
             <img th:id="'imageNumber' + ${image.id}" class="truckImage" th:src="${image.path}"/>
@@ -42,12 +42,24 @@
 
         <p>Reviews:</p>
         <div class="container reviews my-4">
+
             <div th:if="!(${truck.reviews.isEmpty()})" class="container" th:each="review : ${truck.reviews}">
-                <p th:text="'Reviewed by: ' + ${review.getUser().username}"></p>
-                <p th:text="${review.reviewText}"></p>
-                <p th:text="${review.stars}"></p>
-                <p th:text="${review.datestamp}"></p>
-                <hr>
+                <div class="singleReview">
+                    <strong th:text="'Reviewed by: ' + ${review.getUser().username}"></strong>
+                    <p th:text="${review.reviewText}"></p>
+<!--                    <strong th:text="${review.stars}"></strong>-->
+
+                    <span class="text-center">
+                        <img class="bones" src="/images/5bone-recolor-reangle.png" alt="5 Bones" th:if="(${review.stars} == 5)">
+                        <img class="bones" src="/images/4.png" alt="4 Bones" th:if="(${review.stars} == 4)">
+                        <img class="bones" src="/images/3.png" alt="3 Bones" th:if="(${review.stars} == 3)">
+                        <img class="bones" src="/images/2.png" alt="2 Bones" th:if="(${review.stars} == 2)">
+                        <img class="bones" src="/images/1.png" alt="1 Bones" th:if="(${review.stars} == 1)">
+                    </span>
+
+
+                    <p th:text="${review.datestamp}"></p>
+                </div>
             </div>
             <div th:unless="!(${truck.reviews.isEmpty()})" class="container">
                 <p>No hounds have any barks about this truck...You could be the first!</p>
@@ -61,7 +73,8 @@
                     <button style="color: white" class="btn btn-warning"
                             th:formaction="'/trucks/' + ${truck.id} + '/edit'"
                             th:formmethod="get" th:href="@{'/trucks/' + ${truck.id} + '/edit'}" value="Edit Truck">
-                        <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                        <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16"
+                             fill="currentColor"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd"
@@ -74,46 +87,50 @@
             </div>
 
             <div sec:authorize="isAuthenticated()" th:if="${isFav} == true">
-                <a style="color: white" class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Leave the
+                <a style="color: white" class="btn btn-warning" th:href="@{'/favorites/' + ${truck.id} + '/removeFav'}">Leave
+                    the
                     pack</a>
             </div>
             <div sec:authorize="isAuthenticated()" th:unless="${isFav} == true">
-                <a class="btn btn-warning" id="favoriteButton" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Mark as a favorite</a>
+                <a class="btn btn-warning" id="favoriteButton" th:href="@{'/favorites/' + ${truck.id} + '/addFav'}">Mark
+                    as a favorite</a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <a class="btn btn-warning" id="addReviewButton" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Bark a Review</a>
+                <a class="btn btn-warning" id="addReviewButton" th:href="@{'/reviews/' + ${truck.id} + '/addReview'}">Bark
+                    a Review</a>
             </div>
             <br>
         </div>
 
 
-        <p>Fetch the owner:
+        <p><strong>Fetch the owner:</strong>
             <span> 
               <a th:if="${truck.user} != null" th:text="${truck.user.email}"
                  th:href="@{|mailto:${truck.user.email}|}"></a>
             </span>
             <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
         </p>
-        <p>Tel #: <p th:text="${truck.phoneNumber}"></p></p>
+        <div><strong>Tel #:</strong>
+            <p th:if="(${truck.phoneNumber} == null)">No tags for this hound</p>
+            <p th:unless="(${truck.phoneNumber} == null)" th:text="${truck.phoneNumber}"></p>
+        </div>
 
         <div id="contact" class="socialMedia">
-            <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i class="fa fa-twitter"> </i></a>
-            <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i class="fa fa-instagram"> </i></a>
-            <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i class="fa fa-facebook"> </i></a>
+            <a th:if="${truck.twitter} != null" th:href="${truck.twitter}" target="_blank"> <i
+                    class="fa fa-twitter"> </i></a>
+            <a th:if="${truck.instagram} != null" th:href="${truck.instagram}" target="_blank"> <i
+                    class="fa fa-instagram"> </i></a>
+            <a th:if="${truck.facebook} != null" th:href="${truck.facebook}" target="_blank"> <i
+                    class="fa fa-facebook"> </i></a>
         </div>
 
         <br>
 
 
-
-
     </div>
 
 
-
-
     <br>
-
 
 
 </div>

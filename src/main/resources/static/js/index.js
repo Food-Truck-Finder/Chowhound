@@ -47,8 +47,8 @@ function geo(i) {
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<h1 id="firstHeading" class="firstHeading text-center"><a style="text-decoration: none" href="http://localhost:8080/trucks/' + (i + 1) + '">' + 'Visit ' +
-                Object.entries($(".namejs"))[i][1].innerHTML + '</a></h1>' +
+                '<h2 id="firstHeading" class="firstHeading text-center"><a style="text-decoration: none" href="https://chowhound.rocks/trucks/' + (i + 1) + '">' + 'Visit ' +
+                Object.entries($(".namejs"))[i][1].innerHTML + '</a></h2>' +
                 '<div id="bodyContent">' +
                 '<p>' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
                 '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +

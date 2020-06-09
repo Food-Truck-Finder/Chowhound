@@ -56,15 +56,6 @@ h1, h2, h3 {
     text-decoration: none;
 }
 
-/*a {*/
-/*    color: firebrick;*/
-/*}*/
-
-/*a:hover {*/
-/*    color: #ff1111;*/
-/*    text-decoration: none;*/
-/*}*/
-
 .btn, .btn-warning {
     color: white;
 }
@@ -79,28 +70,7 @@ h1, h2, h3 {
 .special:hover, #logoutButtonf {
     color: black !important;
 }
-/*.wrapper {*/
-/*    !*background-image: url("/images/chowhound-background.png");*!*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    !*background-size: cover;*!*/
-/*    background-attachment: fixed;*/
-/*    height: 100vh;*/
-/*    object-fit: contain;*/
-/*    position: relative;*/
-/*    overscroll-behavior: none;*/
-/*}*/
 
-.bg {
-    /*position: absolute;*/
-    /*z-index: -1;*/
-    /*background-image: url("/images/fastfood bg.jpg");*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-attachment: fixed;*/
-    /*background: rgb(255,255,255);*/
-    /*background: linear-gradient(138deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%, rgba(255,237,0,1) 100%);*/
-}
 
 .bgImg{
     position: center;
@@ -302,9 +272,12 @@ li p {
 }
 
 .reviews {
-    border: grey 1px solid;
-    max-height: 175px;
+    border: lightgray 1px solid;
+    max-height: 40%;
     overflow: scroll;
+    box-shadow: 0 0 5px #000000;
+    background-color: rgb(215,215,215);
+    width:75%;
 }
 
 
@@ -345,4 +318,23 @@ li p {
 
 #navbarSupportedContent {
     width: 500px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.singleReview{
+    border-bottom: 1px solid gray;
+    border-top:1px solid gray;
+}
+
+.bones {
+    height: 3rem;
+}
+.bonesContainer {
+    height: 48px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
