@@ -14,7 +14,7 @@
     <br>
     <div class="container">
         <!--        <h5 for="description">Description:</h5>-->
-        <p id="description" th:text="${truck.description}"></p>
+        <p id="description" class="reviews container mt-3" th:text="${truck.description}"></p>
         <div class="d-inline" th:each="image : ${truck.images}">
             <img th:id="'imageNumber' + ${image.id}" class="truckImage" th:src="${image.path}"/>
         </div>
@@ -108,7 +108,7 @@
               <a th:if="${truck.user} != null" th:text="${truck.user.email}"
                  th:href="@{|mailto:${truck.user.email}|}"></a>
             </span>
-            <span th:unless="${truck.user} != null"> No Owner found for this hound!</span>
+            <span th:unless="${truck.user} != null"> Stray hound!</span>
         </p>
         <div><strong>Tel #:</strong>
             <p th:if="(${truck.phoneNumber} == null)">No tags for this hound</p>

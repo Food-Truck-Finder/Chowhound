@@ -21,9 +21,10 @@
             <label for="password">Password</label>
             <input id="password" type="password" th:value="${user.password}" th:field="*{password}"/>
             <br>
-            <button class="btn btn-warning"type="submit">Save changes!</button>
-            <br>
-            <a class="btn btn-warning my-3 special" th:href="@{/index}"><-Back</a>
+            <div class="d-flex justify-content-around">
+                <button class="btn btn-warning m-2 p-2 special"><a th:href="@{/index}"><-Back</a></button>
+                <button class="btn btn-warning m-2 p-2" type="submit">Save changes!</button>
+            </div>
         </form>
     </div>
 </div>

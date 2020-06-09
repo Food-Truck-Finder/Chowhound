@@ -44,17 +44,16 @@
             <option value="oldest">Oldest</option>
         </select>
         <input type="hidden" name="searchTerm" th:value="${searchTerm}">
-        <input id="searchSubmit" type="submit" class="btn btn-warning btn-sm">
+        <input id="searchSubmit" type="submit" class="btn btn-danger btn-sm">
     </form>
-    <hr/>
 
 
 </div>
 
-<div class="container-fluid align-items-center">
+<div class="container align-items-center">
 
     <div id="mainTruckContainer" class="row">
-        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 col-xl-3 mb-3 height-100" th:each="truck : ${trucks}">
+        <div th:id="'truck_' + ${truck.id}" class="col-12 col-lg-4 mb-3 height-100" th:each="truck : ${trucks}">
             <div class="card container mainCardCont br10">
 
                 <!-- Truck name handling -->
@@ -141,7 +140,7 @@
 <!--                    &lt;!&ndash; truck info handling &ndash;&gt;-->
                     <button type="button" class="btn btn-warning w-100" data-toggle="modal"
                             th:data-target="'#truckModal' + ${truck.id}">
-                        <span>Contact </span><span th:text="${truck.name}"></span>
+                        <span>Contact Info</span>
                     </button>
 <!--&gt;>>>>>> ddeddbc48b318fd903b312476498bc97e134f6a2-->
                 </div>
@@ -183,8 +182,12 @@
                                 <div class="col-6 text-center">
                                     [[${truck.hours}]]
                                 </div>
-                                <div class="col-6 text-center">
-                                    [[${truck.phoneNumber}]]
+<!--                                <div class="col-6 text-center">-->
+<!--                                    [[${truck.phoneNumber}]]-->
+<!--                                </div>-->
+                                <div  class="col-6 text-center">
+                                    <p th:if="(${truck.phoneNumber} == null)">No tags for this hound</p>
+                                    <p th:unless="(${truck.phoneNumber} == null)" th:text="${truck.phoneNumber}"></p>
                                 </div>
                             </div>
                             <div>

@@ -156,6 +156,9 @@ if (window.location.href.indexOf("/register") > -1) {
 if (window.location.href.indexOf("/about") > -1) {
     $("#navBottom").css("position", "fixed");
 }
+if (window.location.href.indexOf("/addReview") > -1) {
+    $("#navBottom").css("position", "fixed");
+}
 if (window.location.href.indexOf("/trucks/create") > -1) {
     let ownerCheckbox = document.getElementById("ownerCheckbox");
     if (ownerCheckbox.checked === false) {
@@ -174,6 +177,7 @@ if (window.location.href.indexOf("/trucks/create") > -1) {
         }
     })
 }
+
 // if (window.location.href.indexOf("/index") === -1) {
 //     $("#backgroundImg").css("background-image", "none");
 // }

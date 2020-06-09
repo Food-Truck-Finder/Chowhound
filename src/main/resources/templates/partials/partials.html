@@ -28,7 +28,7 @@
 </div>
 <body>
 <!-- This is my standard navbar-->
-<nav th:fragment="navbar" id="topNav" class="navbar navbar-expand-lg navbar-light border-bottom">
+<nav th:fragment="navbar" id="topNav" class="navbar navbar-expand-lg navbar-light border-dark">
 
     <a class="nav-logo" th:href="@{/index}"><img class="navbar-brand" src="/images/chowhound-navnew3.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,7 +47,7 @@
         <form class="form-inline my-2 my-lg-0" action="/index">
             <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Sniff 'em out!"
                    aria-label="Search" autocomplete="">
-            <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
         </form>
 
 
@@ -72,7 +72,7 @@
 <!-- Footer -->
 <footer th:fragment="footer">
 
-    <div id="navBottom" class="navbar border-top align-items-center">
+    <div id="navBottom" class="navbar border-dark align-items-center">
 
         <ul class="navbar-nav m-auto text-center" id="footer-nav">
 

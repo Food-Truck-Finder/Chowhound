@@ -22,10 +22,14 @@
 /*    z-index: -1;*/
 /*}*/
 
-#viewContainer, #reviewContainer, #indexContainer, #createContainerBody {
+#viewContainer, #reviewContainer, #createContainerBody {
     background: rgb(207,207,207);
 }
 
+
+#indexContainer {
+    background-image: linear-gradient( 284deg, rgb(229, 203, 60) 53.7%, rgba(253,168,10,1) 88.9% );
+}
 
 h3.card-header, .card-titlecontainer {
     background: rgb(207,207,207);
@@ -37,9 +41,9 @@ textarea {
     background: #f2f2f2;
 }
 
-form {
-    background: rgb(207,207,207) ;
-}
+/*form {*/
+/*    background: rgb(207,207,207) ;*/
+/*}*/
 
 .btn-secondary {
     border: 1px solid grey !important;
@@ -150,6 +154,7 @@ image {
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     background: #eee;
+    border: 1px solid black;
     /*opacity: .85;*/
 }
 
@@ -157,6 +162,7 @@ image {
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     background: rgb(207,207,207);
+    border: 1px solid black;
     /*opacity: .85;*/
 }
 
@@ -341,11 +347,9 @@ li p {
     max-height: 40%;
     overflow: scroll;
     box-shadow: 0 0 5px #000000;
-    background-color: rgb(215,215,215);
+    background-color: #ffffff;
     width:75%;
 }
-
-
 .favImg {
     height: 2rem;
     width: 2rem;
@@ -361,7 +365,10 @@ li p {
 }
 
 .navbar{
-    background: rgb(207,207,207);
+    /*background: rgb(207,207,207);*/
+    background-image: linear-gradient( 284deg, rgb(229, 203, 60) 53.7%, rgba(253,168,10,1) 88.9% );
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #homeBody {
@@ -409,10 +416,17 @@ li p {
     left: 0;
     bottom: 0;
     z-index: 1020;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
-.width400 {
-    width: 600px;
+#topNav {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.width520 {
+    max-width: 520px;
 }
 
 #updateContainer {
@@ -434,4 +448,26 @@ li p {
 
 body {
     background-image: url("/images/bg-there-is-no-final.png");
+    height: 100vh;
+}
+
+input {
+    margin-bottom: 4px;
+}
+
+#description {
+    /*margin-bottom: 4px;*/
+    height: 132px;
+}
+
+textarea{
+    margin-bottom: 4px;
+}
+
+#reviewText {
+    height: 132px;
+}
+
+.revSub {
+    width: 100%;
 }

@@ -7,8 +7,8 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<div class="container main-cont my-3" id="createContainerBody">
-    <h1>Add a Truck to the Pack!</h1>
+<div class="container main-cont width520" id="createContainerBody">
+    <h1 class="text-center">Add a Truck to the Pack!</h1>
     <div th:if="${param.error}">
         Chow Hound already knows this truck.
     </div>
@@ -68,8 +68,7 @@
                 </div>
             </div>
             <input type="hidden" id="imageURL" name="imageURL">
-            <br>
-            <button class="btn btn-warning" type="submit">Mark it, dude!</button>
+<!--            <button class="btn btn-warning" type="submit">Mark it, dude!</button>-->
         </div>
             <button class="btn btn-warning w-100 mb-2" type="submit">Mark it, dude!</button>
     </form>
