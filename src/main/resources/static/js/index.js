@@ -2,7 +2,6 @@ var flag = 'https://developers.google.com/maps/documentation/javascript/examples
 var truck = '../images/chowhound-finalfinalcolor (1).png';
 var infoWindowIsOpen = false;
 var infoWindow;
-
 // prompt for user location, center map, add markers
 function initMap() {
     geocoder = new google.maps.Geocoder();
@@ -11,7 +10,6 @@ function initMap() {
         zoom: 12
     });
     infoWindow = new google.maps.InfoWindow;
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
@@ -26,11 +24,9 @@ function initMap() {
                 icon: flag,
                 zIndex: 7
             });
-
             for (var i = 0; i < Object.entries($(".addressjs")).length - 1; i++) {
                 geo(i);
             }
-
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -39,19 +35,19 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-
 // add marker function
 function geo(i) {
     geocoder.geocode({'address': Object.entries($(".addressjs"))[i][1].innerHTML}, function (results, status) {
         if (status == 'OK') {
-            var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<h2 id="firstHeading" class="firstHeading text-center"><a style="text-decoration: none" href="https://chowhound.rocks/trucks/' + (i + 1) + '">' + 'Visit ' +
-                Object.entries($(".namejs"))[i][1].innerHTML + '</a></h2>' +
-                '<div id="bodyContent">' +
-                '<p>' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
-                '<p>' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
+            var contentString = '<div id="content" style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,240,240,1) 0%, rgba(255,255,255,1) 100%); padding: 5px; border-radius: 5px; border-bottom: 1px #fddddd solid;\n' +
+                '    border-top: 1px solid #fddddd;">' +
+                '<h3 id="firstHeading" class="firstHeading text-center" ><a style="font-family: \'Bangers\', cursive, bold;\n' +
+                '    color: firebrick" href="https://chowhound.rocks/trucks/' + (i + 1) + '">' + 'Visit ' +
+                Object.entries($(".namejs"))[i][1].innerHTML + '</a></h3>' +
+                '<div id="bodyContent" style="">' +
+                '<p style="font-size: 1em; font-weight: bold; text-align: center; margin-bottom: 3px">' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
+                '<p style="font-size: 1.5em; text-align: center;\n' +
+                '; padding: 3px; border-radius: 5px;">' + Object.entries($(".descjs"))[i][1].innerHTML + '</p>' +
                 '</p>' +
                 '</div>' +
                 '</div>';
@@ -65,19 +61,15 @@ function geo(i) {
                 icon: truck,
                 zIndex: 5
             });
-
             marker.addListener('click', function () {
                 infowindow.open(map, marker);
             });
             map.addListener('click', function () {
                 infowindow.close();
             });
-
-
         }
     });
 }
-
 // user did not allow browser to use there location
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);

@@ -12,7 +12,6 @@ if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index()
         accept: 'image/*',
         uploadInBackground: false,
     };
-
     /* Get references to the DOM elements */
     const picker = client.picker(options);
     // const form = document.getElementById('pick-form');
@@ -20,13 +19,11 @@ if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index()
     const btn = document.getElementById('picker');
     // const nameBox = document.getElementById('nameBox');
     // const urlBox = document.getElementById('urlBox');
-
     /* Event Listener */
     btn.addEventListener('click', function (e) {
         e.preventDefault();
         picker.open();
     });
-
     /* Helper to overwrite the field input value */
     function updateForm(result) {
         const fileData = result.filesUploaded[0];
@@ -35,14 +32,9 @@ if ((window.location.href.indexOf("trucks") > -1) && ($("#logoutButton").index()
         showSaveButtonAndHideUpload();
     }
 }
-
 /* Placeholder image logic */
 /* image will no longer show up if an image uploaded .isPrimary() */
 if ((window.location.href.indexOf(".rocks") > -1) || (window.location.href.indexOf("index") > -1)) {
-<<<<<<< HEAD
-    // if (window.location.href.indexOf("index") > -1) {
-=======
->>>>>>> ddeddbc48b318fd903b312476498bc97e134f6a2
     let numberOfTrucks = $("#mainTruckContainer").children().length;
     for (let i = 1; i <= numberOfTrucks; i++) {
         if ($("#truck_" + i)) {
@@ -72,7 +64,6 @@ if ((window.location.href.indexOf(".rocks") > -1) || (window.location.href.index
         }
     }
 }
-
 /* Favorites & searched truck placeholder image handling */
 if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.indexOf("searchTerm") > -1)) {
     function favoritesTruckIdGetter() {
@@ -93,7 +84,6 @@ if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.in
             favoritesTruckImageHandler(truck);
         });
     }
-
     function favoritesTruckImageHandler(truckId) {
         if ($("#truck_" + truckId)) {
             if (($("#truck_" + truckId).children().children().children().children().children().hasClass("active") === false)
@@ -123,7 +113,6 @@ if ((window.location.href.indexOf("favorites") > -1) || (window.location.href.in
     }
     favoritesTruckIdGetter();
 }
-
 /* NEW TRUCK EVENT TO SHOW AND HIDE ADDITIONAL INFO */
 function showOwnerRegisterInfo() {
     $("#primaryImgUploadButton").removeClass("hidden");
@@ -132,7 +121,6 @@ function showOwnerRegisterInfo() {
     $("#ownerFacebookUrl").removeClass("hidden");
     $("#ownerInstagramUrl").removeClass("hidden");
 }
-
 function hideOwnerRegistrationInfo() {
     $("#primaryImgUploadButton").addClass("hidden");
     $("#ownerPhoneNumber").addClass("hidden");
@@ -140,43 +128,34 @@ function hideOwnerRegistrationInfo() {
     $("#ownerFacebookUrl").addClass("hidden");
     $("#ownerInstagramUrl").addClass("hidden");
 }
-
 /* TRUCK VIEW EVENT TO HIDE UPLOAD PIC & SHOW SAVE BUTTON */
 function showSaveButtonAndHideUpload() {
     $("#truckImageAddPictureButton").addClass("hidden");
     $("#saveImg").removeClass("hidden");
 }
-
 /* Trucks crate page anchor handling */
 if (window.location.href.indexOf("trucks/create") > -1) {
     $("#addATruckButton").css("color", "rgba(0, 0, 0, 1)");
     $("#addATruckButton").css("font-weight", "bold");
 }
-
 /* Favorite trucks page anchor handling */
 if (window.location.href.indexOf("/favorites") > -1) {
     $("#favoriteTruckButton").css("color", "rgba(0, 0, 0, 1)");
     $("#favoriteTruckButton").css("font-weight", "bold");
     $("#navBottom").css("position", "fixed");
-
 }
-
 if (window.location.href.indexOf("/login") > -1) {
     $("#navBottom").css("position", "fixed");
 }
-
 if (window.location.href.indexOf("update_profile") > -1) {
     $("#navBottom").css("position", "fixed");
 }
-
 if (window.location.href.indexOf("/register") > -1) {
     $("#navBottom").css("position", "fixed");
 }
-
 if (window.location.href.indexOf("/about") > -1) {
     $("#navBottom").css("position", "fixed");
 }
-
 if (window.location.href.indexOf("/trucks/create") > -1) {
     let ownerCheckbox = document.getElementById("ownerCheckbox");
     if (ownerCheckbox.checked === false) {
@@ -195,21 +174,6 @@ if (window.location.href.indexOf("/trucks/create") > -1) {
         }
     })
 }
-
 // if (window.location.href.indexOf("/index") === -1) {
 //     $("#backgroundImg").css("background-image", "none");
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

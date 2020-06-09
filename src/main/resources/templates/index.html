@@ -16,13 +16,13 @@
 
     </style>
 </head>
-<body>
+<body class="mb-5">
 <nav th:replace="partials/partials :: navbar"></nav>
 
+<div class="mt-3" id="map"></div>
 
+<!--<div id="backgroundImg" class="bg">-->
 
-<div id="backgroundImg" class="bg">
-  <div id="map"></div>
 <br>
 <!--<img class="bgImg" src="/images/fastfood%20bg.jpg" alt="">-->
 
@@ -139,10 +139,10 @@
 <!--=======-->
 <!--                    <p class="card-text text-left"> Rating: [[${truck.getAverageReviewRating()}]] <span class="text-left"> (put icon here)</span></p>-->
 <!--                    &lt;!&ndash; truck info handling &ndash;&gt;-->
-<!--                    <button type="button" class="btn btn-warning w-100" data-toggle="modal"-->
-<!--                            th:data-target="'#truckModal' + ${truck.id}">-->
-<!--                        <span>Contact </span><span th:text="${truck.name}"></span>-->
-<!--                    </button>-->
+                    <button type="button" class="btn btn-warning w-100" data-toggle="modal"
+                            th:data-target="'#truckModal' + ${truck.id}">
+                        <span>Contact </span><span th:text="${truck.name}"></span>
+                    </button>
 <!--&gt;>>>>>> ddeddbc48b318fd903b312476498bc97e134f6a2-->
                 </div>
 
