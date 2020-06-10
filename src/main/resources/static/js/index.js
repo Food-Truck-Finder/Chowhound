@@ -24,7 +24,7 @@ function initMap() {
                 icon: flag,
                 zIndex: 7
             });
-            for (var i = 1; i < Object.entries($(".addressjs")).length - 1; i++) {
+            for (var i = 0; i < Object.entries($(".addressjs")).length - 1; i++) {
                 geo(i);
             }
         }, function () {
