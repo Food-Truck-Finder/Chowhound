@@ -42,7 +42,7 @@ function geo(i) {
             var contentString = '<div id="content" style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,240,240,1) 0%, rgba(255,255,255,1) 100%); padding: 5px; border-radius: 5px; border-bottom: 1px #fddddd solid;\n' +
                 '    border-top: 1px solid #fddddd;">' +
                 '<h3 id="firstHeading" class="firstHeading text-center" ><a style="font-family: \'Bangers\', cursive, bold;\n' +
-                '    color: firebrick" href="https://chowhound.rocks/trucks/' + (i + 1) + '">' + 'Visit ' +
+                '    color: firebrick" href="https://chowhound.rocks/trucks/' + Object.entries($(".idjs"))[i][1].innerHTML + '">' + 'Visit ' +
                 Object.entries($(".namejs"))[i][1].innerHTML + '</a></h3>' +
                 '<div id="bodyContent" style="">' +
                 '<p style="font-size: 1em; font-weight: bold; text-align: center; margin-bottom: 3px">' + Object.entries($(".addressjs"))[i][1].innerHTML + '</p>' +
